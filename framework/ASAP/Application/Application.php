@@ -8,6 +8,9 @@ use ASAP\Contract\ContractException;
 use ASAP\Http\Request;
 use ASAP\Http\Response;
 use ASAP\Routing\Router;
+use ASAP\Security\AclGuard;
+use ASAP\Security\FsmGuard;
+use ASAP\Security\SiteSecurityPolicyLoader;
 use ASAP\Site\SiteResolver;
 use ASAP\Template\TwigTemplateRenderer;
 
@@ -18,14 +21,15 @@ use ASAP\Template\TwigTemplateRenderer;
  *   Orchestrate the minimal ASAP PHP 8 request pipeline.
  *
  * Responsibility:
- *   Site resolution, route matching, controller dispatch and response return.
+ *   Site resolution, FSM guard, ACL guard, route matching, controller dispatch
+ *   and response return.
  *
  * Contract:
  *   The Application orchestrates only. It does not read content, render templates
- *   directly, decide ACL rights, or silently compensate missing configuration.
+ *   directly, decide ACL rules itself, or silently compensate missing configuration.
  *
  * Since:
- *   P112D1
+ *   P112D2
  */
 final class Application
 {
@@ -43,6 +47,11 @@ final class Application
     public function run(Request $request): Response
     {
         $site = (new SiteResolver($this->paths->sitesRoot))->resolve($request);
+        $securityPolicy = (new SiteSecurityPolicyLoader())->load($site->securityFile);
+
+        $fsmState = (new FsmGuard())->assertAllowed($request, $securityPolicy);
+        (new AclGuard())->assertAllowed($request, $securityPolicy, $fsmState);
+
         $router = Router::fromXml($site->routesFile);
         $match = $router->match($request, $site);
 

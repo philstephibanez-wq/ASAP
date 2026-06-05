@@ -21,7 +21,7 @@ use SimpleXMLElement;
  *   No default site fallback. If no site matches, the resolver fails explicitly.
  *
  * Since:
- *   P112D1
+ *   P112D2
  */
 final class SiteResolver
 {
@@ -54,18 +54,33 @@ final class SiteResolver
             if ($this->pathMatchesBasePath($request->path, $basePath)) {
                 $id = trim((string) ($xml['id'] ?? ''));
                 $routesElement = $xml->routes;
+                $securityElement = $xml->security;
 
                 if (!$routesElement instanceof SimpleXMLElement) {
                     throw ContractException::because('ASAP_SITE_ROUTES_NODE_MISSING', $file);
                 }
 
+                if (!$securityElement instanceof SimpleXMLElement) {
+                    throw ContractException::because('ASAP_SITE_SECURITY_NODE_MISSING', $file);
+                }
+
                 $routesFileName = trim((string) ($routesElement['file'] ?? ''));
+                $securityFileName = trim((string) ($securityElement['file'] ?? ''));
 
                 if ($routesFileName === '') {
                     throw ContractException::because('ASAP_SITE_ROUTES_FILE_EMPTY', $file);
                 }
 
-                return new SiteDefinition($id, $basePath, dirname($file) . DIRECTORY_SEPARATOR . $routesFileName);
+                if ($securityFileName === '') {
+                    throw ContractException::because('ASAP_SITE_SECURITY_FILE_EMPTY', $file);
+                }
+
+                return new SiteDefinition(
+                    $id,
+                    $basePath,
+                    dirname($file) . DIRECTORY_SEPARATOR . $routesFileName,
+                    dirname($file) . DIRECTORY_SEPARATOR . $securityFileName
+                );
             }
         }
 
