@@ -2,22 +2,23 @@
 
 declare(strict_types=1);
 
-namespace ASAP\URL;
+namespace ASAP\Url;
 
 /**
- * PUBLIC LEGACY-ALIGNED URL GENERATOR
+ * PUBLIC LEGACY-COLLISION RECONCILIATION
  *
  * Role:
- *   Preserve the original ASAP `URL\Url` concept.
+ *   Preserve the ASAP URL concept inside the canonical Windows-safe
+ *   `ASAP\Url` namespace/directory.
  *
  * Responsibility:
- *   Build local application URLs.
+ *   Generate local application URLs.
  *
  * Contract:
  *   URL generation only. No route matching and no redirect side effects.
  *
  * Since:
- *   P112D4C
+ *   P112D4E
  */
 final class Url
 {
