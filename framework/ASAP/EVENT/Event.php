@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\EVENT;
+namespace ASAP\Event;
 /**
  * Legacy-aligned ASAP Event domain.
  * No silent fallback. Single responsibility only.

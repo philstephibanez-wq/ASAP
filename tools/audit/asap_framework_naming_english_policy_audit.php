@@ -10,7 +10,7 @@ declare(strict_types=1);
  * It scans the current ASAP framework and reports:
  * - directory names not aligned with the target PascalCase namespace policy;
  * - legacy uppercase directory segments;
- * - French/franglais tokens in PHP/MD/XML/JSON/TXT files;
+ * - French/franglais tokens in PHP/MD/Xml/Json/TXT files;
  * - proposed normalized English names where the mapping is unambiguous.
  *
  * The tool does not rename, edit, or delete framework files.

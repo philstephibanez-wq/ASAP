@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ASAP\Application;
 
-use ASAP\CONTROLLER\ControllerDispatcher;
+use ASAP\Controller\ControllerDispatcher;
 use ASAP\Http\Request;
 use ASAP\Http\Response;
 use ASAP\Renderer\HtmlRenderer;
@@ -26,7 +26,7 @@ use ASAP\Template\TwigTemplateRenderer;
  *   and response return.
  *
  * Legacy alignment:
- *   The dispatcher belongs to `ASAP\CONTROLLER`, matching the original ASAP
+ *   The dispatcher belongs to `ASAP\Controller`, matching the original ASAP
  *   namespace/domain naming.
  *
  * Contract:

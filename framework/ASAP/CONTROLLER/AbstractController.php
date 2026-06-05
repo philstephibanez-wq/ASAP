@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\CONTROLLER;
+namespace ASAP\Controller;
 
 /**
  * PUBLIC LEGACY-ALIGNED ABSTRACT CONTROLLER

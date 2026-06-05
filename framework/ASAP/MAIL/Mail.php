@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\MAIL;
+namespace ASAP\Mail;
 
 /**
  * PUBLIC LEGACY-ALIGNED MAIL MESSAGE

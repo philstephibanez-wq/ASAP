@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ASAP\I18N\Plural;
+namespace ASAP\I18n\Plural;
 
-use ASAP\I18N\PluralRuleInterface;
+use ASAP\I18n\PluralRuleInterface;
 
 /**
  * PUBLIC PLURAL RULE

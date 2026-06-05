@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\LANGUAGE;
+namespace ASAP\Language;
 /**
  * Legacy-aligned ASAP Language domain.
  * No silent fallback. Single responsibility only.

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace ASAP\Security;
 
-use ASAP\ACL\AccessRule;
-use ASAP\ACL\PrivilegeDefinition;
-use ASAP\ACL\ResourceDefinition;
-use ASAP\ACL\RoleDefinition;
+use ASAP\Acl\AccessRule;
+use ASAP\Acl\PrivilegeDefinition;
+use ASAP\Acl\ResourceDefinition;
+use ASAP\Acl\RoleDefinition;
 use ASAP\Contract\ContractException;
-use ASAP\FSM\StateDefinition;
-use ASAP\FSM\TransitionDefinition;
+use ASAP\Fsm\StateDefinition;
+use ASAP\Fsm\TransitionDefinition;
 use SimpleXMLElement;
 
 /**

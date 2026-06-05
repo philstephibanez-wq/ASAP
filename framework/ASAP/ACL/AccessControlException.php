@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 use RuntimeException;
 
@@ -19,7 +19,7 @@ use RuntimeException;
  * Contract:
  *   ACL must deny or fail explicitly. No implicit allow fallback.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 class AccessControlException extends RuntimeException
 {

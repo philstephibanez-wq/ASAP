@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\MODEL;
+namespace ASAP\Model;
 
 /**
  * PUBLIC LEGACY-ALIGNED MODEL

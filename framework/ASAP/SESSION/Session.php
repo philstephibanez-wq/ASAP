@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\SESSION;
+namespace ASAP\Session;
 
 /**
  * PUBLIC LEGACY-ALIGNED SESSION

@@ -15,13 +15,13 @@ require_once __DIR__ . '/../../framework/ASAP/Template/Smarty.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/X64.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/TemplateRendererInterface.php';
 require_once __DIR__ . '/../../framework/ASAP/View.php';
-require_once __DIR__ . '/../../framework/ASAP/LINK/Link.php';
+require_once __DIR__ . '/../../framework/ASAP/Link/Link.php';
 
 use ASAP\Acl;
 use ASAP\Configuration;
 use ASAP\Debug;
 use ASAP\Fsm;
-use ASAP\LINK\Link;
+use ASAP\Link\Link;
 use ASAP\Template\Smarty;
 use ASAP\Template\TemplateException;
 use ASAP\Template\X64;

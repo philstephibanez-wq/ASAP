@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\DIRECTORY;
+namespace ASAP\Directory;
 /**
  * Legacy-aligned ASAP Directory domain.
  * No silent fallback. Single responsibility only.

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 /**
  * PUBLIC DTO
@@ -17,7 +17,7 @@ namespace ASAP\ACL;
  * Contract:
  *   Rules are explicit. No implicit allow fallback is allowed.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 final class AccessRule
 {

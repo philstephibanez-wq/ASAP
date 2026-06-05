@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ASAP\Security;
 
-use ASAP\FSM\StateMachine;
+use ASAP\Fsm\StateMachine;
 use ASAP\Http\Request;
 
 /**

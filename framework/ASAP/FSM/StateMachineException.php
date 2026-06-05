@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\FSM;
+namespace ASAP\Fsm;
 
 use RuntimeException;
 
@@ -19,7 +19,7 @@ use RuntimeException;
  * Contract:
  *   No silent fallback. Every invalid FSM operation must fail with an explicit code.
  *
- * @package ASAP\FSM
+ * @package ASAP\Fsm
  */
 final class StateMachineException extends RuntimeException
 {

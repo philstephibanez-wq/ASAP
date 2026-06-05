@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\FSM;
+namespace ASAP\Fsm;
 
 /**
  * PUBLIC DTO
@@ -17,7 +17,7 @@ namespace ASAP\FSM;
  * Contract:
  *   A TransitionResult exists only for a successful transition.
  *
- * @package ASAP\FSM
+ * @package ASAP\Fsm
  */
 final class TransitionResult
 {

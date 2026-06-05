@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\FSM;
+namespace ASAP\Fsm;
 
 /**
  * PUBLIC DTO
@@ -17,7 +17,7 @@ namespace ASAP\FSM;
  * Contract:
  *   State identifiers must be explicit non-empty strings.
  *
- * @package ASAP\FSM
+ * @package ASAP\Fsm
  */
 final class StateDefinition
 {

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 /**
  * PUBLIC DTO
@@ -17,7 +17,7 @@ namespace ASAP\ACL;
  * Contract:
  *   Role identifiers must be explicit non-empty strings.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 final class RoleDefinition
 {

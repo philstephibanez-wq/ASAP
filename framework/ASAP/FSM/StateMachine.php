@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\FSM;
+namespace ASAP\Fsm;
 
 /**
  * PUBLIC CLASS
@@ -17,7 +17,7 @@ namespace ASAP\FSM;
  * Contract:
  *   No fallback state. No implicit transition. No GraphViz dependency. No destructor persistence.
  *
- * @package ASAP\FSM
+ * @package ASAP\Fsm
  */
 final class StateMachine
 {

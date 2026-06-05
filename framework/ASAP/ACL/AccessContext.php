@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 /**
  * PUBLIC DTO
@@ -17,7 +17,7 @@ namespace ASAP\ACL;
  * Contract:
  *   Context keys must be explicit. ACL must not read globals silently.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 final class AccessContext
 {

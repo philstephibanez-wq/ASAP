@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\REST;
+namespace ASAP\Rest;
 
 use ASAP\Http\Response;
 

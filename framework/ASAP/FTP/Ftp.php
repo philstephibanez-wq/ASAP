@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\FTP;
+namespace ASAP\Ftp;
 
 /**
  * PUBLIC LEGACY-ALIGNED FTP BOUNDARY

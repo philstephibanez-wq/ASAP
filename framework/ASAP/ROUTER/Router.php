@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\ROUTER;
+namespace ASAP\Router;
 
 /**
  * PUBLIC LEGACY-ALIGNED ROUTER

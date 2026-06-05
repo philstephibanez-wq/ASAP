@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\I18N;
+namespace ASAP\I18n;
 
 /**
  * PUBLIC SERVICE

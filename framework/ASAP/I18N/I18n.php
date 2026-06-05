@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ASAP\I18N;
+namespace ASAP\I18n;
 
-use ASAP\I18N\Plural\EnglishPluralRule;
-use ASAP\I18N\Plural\FrenchPluralRule;
-use ASAP\I18N\Plural\RussianPluralRule;
-use ASAP\I18N\Plural\SpanishPluralRule;
+use ASAP\I18n\Plural\EnglishPluralRule;
+use ASAP\I18n\Plural\FrenchPluralRule;
+use ASAP\I18n\Plural\RussianPluralRule;
+use ASAP\I18n\Plural\SpanishPluralRule;
 
 /**
  * PUBLIC LEGACY-ALIGNED I18N FACADE

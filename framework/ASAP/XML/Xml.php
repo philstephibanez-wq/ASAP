@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\XML;
+namespace ASAP\Xml;
 use SimpleXMLElement;
 final class Xml
 {

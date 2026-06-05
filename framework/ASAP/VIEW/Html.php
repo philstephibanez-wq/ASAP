@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\VIEW;
+namespace ASAP\View;
 
 use ASAP\Http\Response;
 use ASAP\Template\TemplateRendererInterface;

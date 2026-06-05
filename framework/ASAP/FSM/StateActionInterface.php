@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\FSM;
+namespace ASAP\Fsm;
 
 /**
  * PUBLIC INTERFACE
@@ -17,7 +17,7 @@ namespace ASAP\FSM;
  * Contract:
  *   Actions are declared objects. No arbitrary function name fallback is allowed.
  *
- * @package ASAP\FSM
+ * @package ASAP\Fsm
  */
 interface StateActionInterface
 {

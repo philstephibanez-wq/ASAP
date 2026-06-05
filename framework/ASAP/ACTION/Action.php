@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\ACTION;
+namespace ASAP\Action;
 /**
  * Legacy-aligned ASAP Action domain.
  * No silent fallback. Single responsibility only.

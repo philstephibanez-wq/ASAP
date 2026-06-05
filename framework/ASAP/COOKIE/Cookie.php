@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\COOKIE;
+namespace ASAP\Cookie;
 /**
  * Legacy-aligned ASAP Cookie domain.
  * No silent fallback. Single responsibility only.

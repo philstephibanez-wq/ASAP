@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 /**
  * PUBLIC EXCEPTION
@@ -17,7 +17,7 @@ namespace ASAP\ACL;
  * Contract:
  *   Denial must be explicit and inspectable.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 final class AccessDeniedException extends AccessControlException
 {

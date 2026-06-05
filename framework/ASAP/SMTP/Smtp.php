@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\SMTP;
+namespace ASAP\Smtp;
 
 /**
  * PUBLIC LEGACY-ALIGNED SMTP CONFIG

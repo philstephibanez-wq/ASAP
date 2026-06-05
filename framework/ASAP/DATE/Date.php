@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\DATE;
+namespace ASAP\Date;
 /**
  * Legacy-aligned ASAP Date domain.
  * No silent fallback. Single responsibility only.

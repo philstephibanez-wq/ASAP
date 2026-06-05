@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\CONTROLLER;
+namespace ASAP\Controller;
 
 use ASAP\Application\ApplicationPaths;
 use ASAP\Http\Request;
@@ -11,7 +11,7 @@ use ASAP\Renderer\HtmlRenderer;
 use ASAP\Renderer\ViewModel;
 use ASAP\Routing\RouteMatch;
 use ASAP\Template\TemplateRendererInterface;
-use ASAP\VIEW\Html;
+use ASAP\View\Html;
 use ReflectionClass;
 use ReflectionNamedType;
 
@@ -25,7 +25,7 @@ use ReflectionNamedType;
  *   Convert controller results into HTTP responses through official renderers.
  *
  * Legacy alignment:
- *   Lives in `ASAP\CONTROLLER`, matching the original framework domain.
+ *   Lives in `ASAP\Controller`, matching the original framework domain.
  *
  * Contract:
  *   Dispatcher does not route, does not authorize, does not read content and

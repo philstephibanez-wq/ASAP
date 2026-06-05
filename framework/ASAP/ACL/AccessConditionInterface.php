@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 /**
  * PUBLIC INTERFACE
@@ -17,7 +17,7 @@ namespace ASAP\ACL;
  * Contract:
  *   Conditions are declared objects. No arbitrary Reflection call fallback is allowed.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 interface AccessConditionInterface
 {

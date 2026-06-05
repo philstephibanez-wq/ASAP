@@ -12,7 +12,7 @@ namespace ASAP;
  *
  * Contract:
  *   This is not the full ACL engine. It does not grant access implicitly.
- *   Full ACL decisions belong to `ASAP\ACL\AccessControl`.
+ *   Full ACL decisions belong to `ASAP\Acl\AccessControl`.
  *
  * Since:
  *   P112P1

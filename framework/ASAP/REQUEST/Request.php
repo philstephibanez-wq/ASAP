@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\REQUEST;
+namespace ASAP\Request;
 use ASAP\Http\Request as HttpRequest;
 final class Request
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ASAP\CONTROLLER;
+namespace ASAP\Controller;
 
 use ASAP\Application\ApplicationPaths;
 use ASAP\Http\Response;
 use ASAP\Template\TemplateRendererInterface;
-use ASAP\VIEW\Html;
+use ASAP\View\Html;
 
 /**
  * PUBLIC LEGACY-ALIGNED BASE CONTROLLER

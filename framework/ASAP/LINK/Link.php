@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\LINK;
+namespace ASAP\Link;
 
 /**
  * PUBLIC LEGACY-ALIGNED LINK

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\LOG;
+namespace ASAP\Log;
 
 final class Log
 {

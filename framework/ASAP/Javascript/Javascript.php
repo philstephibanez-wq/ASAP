@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace ASAP\JS;
+namespace ASAP\Javascript;
 /**
  * Legacy-aligned ASAP Javascript domain.
  * No silent fallback. Single responsibility only.

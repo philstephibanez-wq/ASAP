@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ASAP\Security;
 
-use ASAP\ACL\AccessContext;
-use ASAP\ACL\AccessControl;
-use ASAP\ACL\AccessControlException;
+use ASAP\Acl\AccessContext;
+use ASAP\Acl\AccessControl;
+use ASAP\Acl\AccessControlException;
 use ASAP\Http\Request;
 
 /**

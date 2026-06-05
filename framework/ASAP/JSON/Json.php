@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\JSON;
+namespace ASAP\JavascriptON;
 
 /**
  * PUBLIC LEGACY-ALIGNED JSON

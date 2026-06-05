@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace ASAP\ACL;
+namespace ASAP\Acl;
 
 /**
  * PUBLIC CLASS
@@ -17,7 +17,7 @@ namespace ASAP\ACL;
  * Contract:
  *   No singleton. No implicit allow. No Reflection condition fallback.
  *
- * @package ASAP\ACL
+ * @package ASAP\Acl
  */
 final class AccessControl
 {

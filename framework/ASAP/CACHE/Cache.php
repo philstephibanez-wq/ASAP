@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\CACHE;
+namespace ASAP\Cache;
 
 /**
  * PUBLIC LEGACY-ALIGNED CACHE

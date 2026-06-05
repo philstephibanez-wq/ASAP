@@ -23,7 +23,7 @@ use ASAP\Contract\ContractException;
  *   P112D1
  *
  * Extended:
- *   P112Q1 adds methods/host/locale/format/ACL/FSM/source metadata while
+ *   P112Q1 adds methods/host/locale/format/Acl/Fsm/source metadata while
  *   preserving the original constructor arguments.
  */
 final class RouteDefinition

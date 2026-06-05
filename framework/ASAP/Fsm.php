@@ -11,7 +11,7 @@ namespace ASAP;
  *   Restore the small top-level `ASAP\Fsm` demo surface.
  *
  * Contract:
- *   Demo data only. Runtime FSM execution belongs to `ASAP\FSM\StateMachine`.
+ *   Demo data only. Runtime FSM execution belongs to `ASAP\Fsm\StateMachine`.
  *
  * Since:
  *   P112P1
