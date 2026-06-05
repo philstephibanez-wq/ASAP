@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../framework/ASAP/Exception.php';
+require_once __DIR__ . '/../../framework/ASAP/Exception/Exception.php';
 require_once __DIR__ . '/../../framework/ASAP/Contract/ContractException.php';
-require_once __DIR__ . '/../../framework/ASAP/Configuration.php';
-require_once __DIR__ . '/../../framework/ASAP/ConfigLoader.php';
-require_once __DIR__ . '/../../framework/ASAP/Support.php';
-require_once __DIR__ . '/../../framework/ASAP/SimpleXMLElementExtended.php';
-require_once __DIR__ . '/../../framework/ASAP/SimpleXMLElementExtended.class.php';
-require_once __DIR__ . '/../../framework/ASAP/Singleton.php';
-require_once __DIR__ . '/../../framework/ASAP/Singleton.class.php';
-require_once __DIR__ . '/../../framework/ASAP/Validator.php';
+require_once __DIR__ . '/../../framework/ASAP/Config/Configuration.php';
+require_once __DIR__ . '/../../framework/ASAP/Config/ConfigLoader.php';
+require_once __DIR__ . '/../../framework/ASAP/Support/Support.php';
+require_once __DIR__ . '/../../framework/ASAP/Compatibility/SimpleXMLElementExtended.php';
+require_once __DIR__ . '/../../framework/ASAP/Compatibility/LegacySimpleXMLElementExtended.php';
+require_once __DIR__ . '/../../framework/ASAP/Compatibility/Singleton.php';
+require_once __DIR__ . '/../../framework/ASAP/Compatibility/LegacySingleton.php';
+require_once __DIR__ . '/../../framework/ASAP/Validation/Validator.php';
 require_once __DIR__ . '/../../framework/ASAP/I18n/TranslationException.php';
 require_once __DIR__ . '/../../framework/ASAP/I18n/LocaleCode.php';
 require_once __DIR__ . '/../../framework/ASAP/I18n/PluralRuleInterface.php';
@@ -24,25 +24,25 @@ require_once __DIR__ . '/../../framework/ASAP/I18n/JsonTranslationCatalogLoader.
 require_once __DIR__ . '/../../framework/ASAP/I18n/Translator.php';
 require_once __DIR__ . '/../../framework/ASAP/I18n/I18n.php';
 require_once __DIR__ . '/../../framework/ASAP/Http/Response.php';
-require_once __DIR__ . '/../../framework/ASAP/Response.php';
+require_once __DIR__ . '/../../framework/ASAP/Response/ResponseFacade.php';
 require_once __DIR__ . '/../../framework/ASAP/Url/Url.php';
-require_once __DIR__ . '/../../framework/ASAP/Package.php';
-require_once __DIR__ . '/../../framework/ASAP/PackageRepository.php';
-require_once __DIR__ . '/../../framework/ASAP/Kernel.php';
-require_once __DIR__ . '/../../framework/ASAP/Bootstrap.php';
+require_once __DIR__ . '/../../framework/ASAP/Package/Package.php';
+require_once __DIR__ . '/../../framework/ASAP/Package/PackageRepository.php';
+require_once __DIR__ . '/../../framework/ASAP/Core/Kernel.php';
+require_once __DIR__ . '/../../framework/ASAP/Core/Bootstrap.php';
 
-use ASAP\Bootstrap;
-use ASAP\ConfigLoader;
+use ASAP\Core\Bootstrap;
+use ASAP\Config\ConfigLoader;
 use ASAP\I18n\I18n;
-use ASAP\Kernel;
-use ASAP\Package;
-use ASAP\PackageRepository;
-use ASAP\Response;
-use ASAP\SimpleXMLElementExtended;
-use ASAP\Singleton;
-use ASAP\Support;
+use ASAP\Core\Kernel;
+use ASAP\Package\Package;
+use ASAP\Package\PackageRepository;
+use ASAP\Response\ResponseFacade;
+use ASAP\Compatibility\SimpleXMLElementExtended;
+use ASAP\Compatibility\Singleton;
+use ASAP\Support\Support;
 use ASAP\Url\Url;
-use ASAP\Validator;
+use ASAP\Validation\Validator;
 
 function assertTrue(bool $condition, string $message): void
 {

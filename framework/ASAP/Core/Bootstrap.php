@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Core;
 
 use ASAP\Application\Application;
 use ASAP\Http\Request;
@@ -28,7 +28,7 @@ final class Bootstrap
             $response = $target->run($request ?? Request::fromGlobals());
 
             if (!$response instanceof HttpResponse) {
-                throw Exception::because('ASAP_BOOTSTRAP_RESPONSE_INVALID');
+                throw \ASAP\Exception\Exception::because('ASAP_BOOTSTRAP_RESPONSE_INVALID');
             }
 
             return $response;

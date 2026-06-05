@@ -36,10 +36,31 @@ function assertExactDirectoryState(string $parent, string $old, string $new): vo
     echo 'PASS DIRECTORY ' . $old . ' -> ' . $new . PHP_EOL;
 }
 
+function assertRenderFinalState(string $parent): void
+{
+    $segments = exactDirectorySegmentsRecipe($parent);
+
+    if (in_array('RENDER', $segments, true)) {
+        throw new RuntimeException('OLD_DIRECTORY_SEGMENT_STILL_PRESENT: RENDER');
+    }
+
+    if (in_array('Render', $segments, true)) {
+        echo 'PASS DIRECTORY RENDER -> Render' . PHP_EOL;
+        return;
+    }
+
+    if (in_array('Renderer', $segments, true)) {
+        echo 'PASS DIRECTORY Render removed after Renderer cleanup' . PHP_EOL;
+        return;
+    }
+
+    throw new RuntimeException('RENDER_OR_RENDERER_DIRECTORY_MISSING');
+}
+
 assertExactDirectoryState($frameworkRoot, 'ROUTING', 'Routing');
 assertExactDirectoryState($frameworkRoot, 'SITE', 'Site');
 assertExactDirectoryState($frameworkRoot, 'URL', 'Url');
-assertExactDirectoryState($frameworkRoot, 'RENDER', 'Render');
+assertRenderFinalState($frameworkRoot);
 
 require_once $frameworkRoot . '/Contract/ContractException.php';
 require_once $frameworkRoot . '/Routing/RouteCompilerException.php';

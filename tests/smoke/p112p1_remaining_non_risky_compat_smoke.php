@@ -2,31 +2,31 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../framework/ASAP/Exception.php';
+require_once __DIR__ . '/../../framework/ASAP/Exception/Exception.php';
 require_once __DIR__ . '/../../framework/ASAP/Contract/ContractException.php';
-require_once __DIR__ . '/../../framework/ASAP/Configuration.php';
-require_once __DIR__ . '/../../framework/ASAP/Debug.php';
-require_once __DIR__ . '/../../framework/ASAP/Validator.php';
-require_once __DIR__ . '/../../framework/ASAP/Acl.php';
-require_once __DIR__ . '/../../framework/ASAP/Fsm.php';
+require_once __DIR__ . '/../../framework/ASAP/Config/Configuration.php';
+require_once __DIR__ . '/../../framework/ASAP/Debug/Debug.php';
+require_once __DIR__ . '/../../framework/ASAP/Validation/Validator.php';
+require_once __DIR__ . '/../../framework/ASAP/Acl/Acl.php';
+require_once __DIR__ . '/../../framework/ASAP/Fsm/Fsm.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/TemplateException.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/Adapter.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/Smarty.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/X64.php';
 require_once __DIR__ . '/../../framework/ASAP/Template/TemplateRendererInterface.php';
-require_once __DIR__ . '/../../framework/ASAP/View.php';
+require_once __DIR__ . '/../../framework/ASAP/View/View.php';
 require_once __DIR__ . '/../../framework/ASAP/Link/Link.php';
 
-use ASAP\Acl;
-use ASAP\Configuration;
-use ASAP\Debug;
-use ASAP\Fsm;
+use ASAP\Acl\Acl;
+use ASAP\Config\Configuration;
+use ASAP\Debug\Debug;
+use ASAP\Fsm\Fsm;
 use ASAP\Link\Link;
 use ASAP\Template\Smarty;
 use ASAP\Template\TemplateException;
 use ASAP\Template\X64;
-use ASAP\Validator;
-use ASAP\View;
+use ASAP\Validation\Validator;
+use ASAP\View\View;
 
 function assertTrue(bool $condition, string $message): void
 {

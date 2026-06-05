@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\View;
 
 use ASAP\Template\TemplateRendererInterface;
 
@@ -30,7 +30,7 @@ final class View
     public function render(TemplateRendererInterface|callable $renderer): string
     {
         if ($this->template === '') {
-            throw Exception::because('ASAP_VIEW_TEMPLATE_EMPTY');
+            throw \ASAP\Exception\Exception::because('ASAP_VIEW_TEMPLATE_EMPTY');
         }
 
         if ($renderer instanceof TemplateRendererInterface) {
@@ -40,7 +40,7 @@ final class View
         $result = $renderer($this->template, $this->data);
 
         if (!is_string($result)) {
-            throw Exception::because('ASAP_VIEW_RENDERER_RESULT_INVALID');
+            throw \ASAP\Exception\Exception::because('ASAP_VIEW_RENDERER_RESULT_INVALID');
         }
 
         return $result;

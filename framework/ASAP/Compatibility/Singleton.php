@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Compatibility;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
@@ -44,6 +44,6 @@ class Singleton
      */
     public function __call(string $name, array $arguments): mixed
     {
-        throw Exception::because('ASAP_SINGLETON_METHOD_NOT_FOUND', static::class . '::' . $name);
+        throw \ASAP\Exception\Exception::because('ASAP_SINGLETON_METHOD_NOT_FOUND', static::class . '::' . $name);
     }
 }

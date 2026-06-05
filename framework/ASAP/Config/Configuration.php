@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Config;
 
 /**
  * PUBLIC LEGACY-ALIGNED CONFIGURATION
@@ -43,7 +43,7 @@ final class Configuration
     public function get(string $key): mixed
     {
         if (!$this->has($key)) {
-            throw Exception::because('ASAP_CONFIGURATION_KEY_MISSING', $key);
+            throw \ASAP\Exception\Exception::because('ASAP_CONFIGURATION_KEY_MISSING', $key);
         }
 
         return $this->values[$key];
@@ -52,7 +52,7 @@ final class Configuration
     public function set(string $key, mixed $value): void
     {
         if (trim($key) === '') {
-            throw Exception::because('ASAP_CONFIGURATION_KEY_EMPTY');
+            throw \ASAP\Exception\Exception::because('ASAP_CONFIGURATION_KEY_EMPTY');
         }
 
         $this->values[$key] = $value;
@@ -71,7 +71,7 @@ final class Configuration
     public function setEnv(string $env): void
     {
         if (trim($env) === '') {
-            throw Exception::because('ASAP_CONFIGURATION_ENV_EMPTY');
+            throw \ASAP\Exception\Exception::because('ASAP_CONFIGURATION_ENV_EMPTY');
         }
 
         $this->set('env', $env);
@@ -118,7 +118,7 @@ final class Configuration
             }
         }
 
-        throw Exception::because('ASAP_CONFIGURATION_USER_AGENT_MISSING');
+        throw \ASAP\Exception\Exception::because('ASAP_CONFIGURATION_USER_AGENT_MISSING');
     }
 
     private function detectBrowser(string $userAgent): string

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Core;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
@@ -20,10 +20,10 @@ final class Kernel
 {
     public function __construct(
         private readonly string $rootDir,
-        private readonly PackageRepository $packages = new PackageRepository()
+        private readonly \ASAP\Package\PackageRepository $packages = new \ASAP\Package\PackageRepository()
     ) {
         if (trim($this->rootDir) === '') {
-            throw Exception::because('ASAP_KERNEL_ROOT_EMPTY');
+            throw \ASAP\Exception\Exception::because('ASAP_KERNEL_ROOT_EMPTY');
         }
     }
 
@@ -32,7 +32,7 @@ final class Kernel
         return rtrim(str_replace('\\', '/', $this->rootDir), '/');
     }
 
-    public function getPackage(string $id): Package
+    public function getPackage(string $id): \ASAP\Package\Package
     {
         return $this->packages->get($id);
     }
@@ -67,7 +67,7 @@ final class Kernel
     private function buildLocalUrl(string $path): string
     {
         if ($path === '' || $path[0] !== '/') {
-            throw Exception::because('ASAP_KERNEL_URL_PATH_INVALID', $path);
+            throw \ASAP\Exception\Exception::because('ASAP_KERNEL_URL_PATH_INVALID', $path);
         }
 
         return $path;

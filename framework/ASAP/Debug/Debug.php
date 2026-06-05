@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Debug;
 
 /**
  * PUBLIC LEGACY-ALIGNED DEBUG UTILITY

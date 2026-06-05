@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Package;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
@@ -31,11 +31,11 @@ final class Package
         private readonly array $content = []
     ) {
         if (trim($this->id) === '') {
-            throw Exception::because('ASAP_PACKAGE_ID_EMPTY');
+            throw \ASAP\Exception\Exception::because('ASAP_PACKAGE_ID_EMPTY');
         }
 
         if (trim($this->rootDir) === '') {
-            throw Exception::because('ASAP_PACKAGE_ROOT_EMPTY', $this->id);
+            throw \ASAP\Exception\Exception::because('ASAP_PACKAGE_ROOT_EMPTY', $this->id);
         }
     }
 
@@ -67,7 +67,7 @@ final class Package
         }
 
         if (!array_key_exists($key, $this->content)) {
-            throw Exception::because('ASAP_PACKAGE_CONTENT_KEY_MISSING', $this->id . '::' . $key);
+            throw \ASAP\Exception\Exception::because('ASAP_PACKAGE_CONTENT_KEY_MISSING', $this->id . '::' . $key);
         }
 
         return $this->content[$key];

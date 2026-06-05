@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Support;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
@@ -28,7 +28,7 @@ final class Support
         $path = trim(str_replace('\\', '/', $path));
 
         if ($path === '') {
-            throw Exception::because('ASAP_SUPPORT_PATH_EMPTY');
+            throw \ASAP\Exception\Exception::because('ASAP_SUPPORT_PATH_EMPTY');
         }
 
         $prefix = '';
@@ -47,7 +47,7 @@ final class Support
 
             if ($segment === '..') {
                 if ($segments === []) {
-                    throw Exception::because('ASAP_SUPPORT_PATH_TRAVERSAL_OUTSIDE_ROOT', $path);
+                    throw \ASAP\Exception\Exception::because('ASAP_SUPPORT_PATH_TRAVERSAL_OUTSIDE_ROOT', $path);
                 }
 
                 array_pop($segments);

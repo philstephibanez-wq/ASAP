@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Package;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
@@ -38,7 +38,7 @@ final class PackageRepository
     public function get(string $id): Package
     {
         if (!isset($this->packages[$id])) {
-            throw Exception::because('ASAP_PACKAGE_NOT_FOUND', $id);
+            throw \ASAP\Exception\Exception::because('ASAP_PACKAGE_NOT_FOUND', $id);
         }
 
         return $this->packages[$id];

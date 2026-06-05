@@ -29,9 +29,9 @@ Terminer le reliquat non risqué après P112O.
 - `TEMPLATE\Smarty::assignAll()`
 - `TEMPLATE\Smarty::parse()`
 - `TEMPLATE\X64` shim
-- `ASAP\Acl::canView()`
-- `ASAP\Fsm::demoFlow()`
-- `ASAP\View::render()`
+- `ASAP\Acl\Acl::canView()`
+- `ASAP\Fsm\Fsm::demoFlow()`
+- `ASAP\View\View::render()`
 
 ## Exclusions
 

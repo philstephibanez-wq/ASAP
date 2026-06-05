@@ -21,11 +21,11 @@ du framework original.
 - `ASAP\MAIL`
 - `ASAP\FTP`
 - `ASAP\SMTP`
-- `ASAP\Configuration`
-- `ASAP\ConfigLoader`
-- `ASAP\Validator`
-- `ASAP\Debug`
-- `ASAP\Exception`
+- `ASAP\Config\Configuration`
+- `ASAP\Config\ConfigLoader`
+- `ASAP\Validation\Validator`
+- `ASAP\Debug\Debug`
+- `ASAP\Exception\Exception`
 
 ## Décision
 

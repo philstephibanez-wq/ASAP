@@ -7,7 +7,7 @@ Porter un bloc plus massif du cœur ASAP PHP 8 autour de la représentation test
 ## Classes ajoutées
 
 - `ASAP\Controller`
-- `ASAP\Renderer`
+- `ASAP\Rendererer`
 - `ASAP\Form`
 - `ASAP\Helper`
 - `ASAP\Url`

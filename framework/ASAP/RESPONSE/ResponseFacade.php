@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Response;
 
 use ASAP\Http\Response as HttpResponse;
 
@@ -18,7 +18,7 @@ use ASAP\Http\Response as HttpResponse;
  * Since:
  *   P112O
  */
-final class Response
+final class ResponseFacade
 {
     public static function html(string $body, int $status = 200): HttpResponse
     {

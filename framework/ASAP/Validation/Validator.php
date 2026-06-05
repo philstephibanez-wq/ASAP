@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP;
+namespace ASAP\Validation;
 
 /**
  * PUBLIC LEGACY-ALIGNED VALIDATOR
