@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../framework/ASAP/I18N/Translator.php';
 require_once __DIR__ . '/../../framework/ASAP/I18N/I18n.php';
 require_once __DIR__ . '/../../framework/ASAP/Http/Response.php';
 require_once __DIR__ . '/../../framework/ASAP/Response.php';
-require_once __DIR__ . '/../../framework/ASAP/URL/Url.php';
+require_once __DIR__ . '/../../framework/ASAP/Url/Url.php';
 require_once __DIR__ . '/../../framework/ASAP/Package.php';
 require_once __DIR__ . '/../../framework/ASAP/PackageRepository.php';
 require_once __DIR__ . '/../../framework/ASAP/Kernel.php';

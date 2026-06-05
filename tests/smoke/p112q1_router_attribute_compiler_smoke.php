@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../framework/ASAP/Contract/ContractException.php';
-require_once __DIR__ . '/../../framework/ASAP/ROUTING/RouteCompilerException.php';
-require_once __DIR__ . '/../../framework/ASAP/ROUTING/RouteDefinition.php';
-require_once __DIR__ . '/../../framework/ASAP/ROUTING/Route.php';
-require_once __DIR__ . '/../../framework/ASAP/ROUTING/ClassIndex.php';
-require_once __DIR__ . '/../../framework/ASAP/ROUTING/AttributeRouteProvider.php';
-require_once __DIR__ . '/../../framework/ASAP/ROUTING/RouteManifestCompiler.php';
+require_once __DIR__ . '/../../framework/ASAP/Routing/RouteCompilerException.php';
+require_once __DIR__ . '/../../framework/ASAP/Routing/RouteDefinition.php';
+require_once __DIR__ . '/../../framework/ASAP/Routing/Route.php';
+require_once __DIR__ . '/../../framework/ASAP/Routing/ClassIndex.php';
+require_once __DIR__ . '/../../framework/ASAP/Routing/AttributeRouteProvider.php';
+require_once __DIR__ . '/../../framework/ASAP/Routing/RouteManifestCompiler.php';
 require_once __DIR__ . '/../fixtures/P112Q1/DemoRouteController.php';
 require_once __DIR__ . '/../fixtures/P112Q1/DuplicateRouteController.php';
 

@@ -13,7 +13,7 @@ du framework original.
 - `ASAP\I18N\I18n`
 - `ASAP\HELPER`
 - `ASAP\MENU`
-- `ASAP\URL`
+- `ASAP\Url`
 - `ASAP\LINK`
 - `ASAP\MODEL`
 - `ASAP\REST`
