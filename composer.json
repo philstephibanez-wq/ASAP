@@ -1,0 +1,20 @@
+﻿{
+  "name": "logandplay/asap",
+  "description": "ASAP PHP framework — As Simple As Possible / As Soon As Possible",
+  "type": "library",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.0",
+    "twig/twig": "^3.0"
+  },
+  "autoload": {
+    "classmap": [
+      "framework/ASAP"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests"
+    ]
+  }
+}
