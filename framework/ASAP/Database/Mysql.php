@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\BDD;
+namespace ASAP\Database;
 
 use PDO;
 
