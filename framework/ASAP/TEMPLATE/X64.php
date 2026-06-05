@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\TEMPLATE;
+namespace ASAP\Template;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM

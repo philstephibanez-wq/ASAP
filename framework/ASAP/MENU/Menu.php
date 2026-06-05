@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\MENU;
+namespace ASAP\Menu;
 
 /**
  * PUBLIC LEGACY-ALIGNED MENU

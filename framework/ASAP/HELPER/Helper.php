@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ASAP\HELPER;
+namespace ASAP\Helper;
 
 /**
  * PUBLIC LEGACY-ALIGNED HELPER
