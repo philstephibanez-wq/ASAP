@@ -15,6 +15,7 @@ use SimpleXMLElement;
  * Contract:
  *   Site chooses provider explicitly.
  *   Missing database config fails when database is requested.
+ *   Missing <options> is valid and produces an empty options array.
  */
 final class DatabaseConfigLoader
 {
@@ -56,18 +57,21 @@ final class DatabaseConfigLoader
         }
 
         $options = [];
+        $optionNodes = $xml->xpath('options/option');
 
-        if ($xml->options instanceof SimpleXMLElement) {
-            foreach ($xml->options->option as $option) {
-                $name = trim((string) ($option['name'] ?? ''));
-                $value = trim((string) ($option['value'] ?? ''));
+        if ($optionNodes === false) {
+            throw DatabaseException::because('ASAP_DATABASE_OPTIONS_XPATH_FAILED', $source);
+        }
 
-                if ($name === '') {
-                    throw DatabaseException::because('ASAP_DATABASE_OPTION_NAME_EMPTY', $source);
-                }
+        foreach ($optionNodes as $option) {
+            $name = trim((string) ($option['name'] ?? ''));
+            $value = trim((string) ($option['value'] ?? ''));
 
-                $options[$name] = $value;
+            if ($name === '') {
+                throw DatabaseException::because('ASAP_DATABASE_OPTION_NAME_EMPTY', $source);
             }
+
+            $options[$name] = $value;
         }
 
         return new DatabaseConnectionConfig(
