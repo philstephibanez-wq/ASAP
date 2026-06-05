@@ -1,4 +1,4 @@
-﻿/vendor/
+/vendor/
 /composer.lock
 /.phpdoc/
 /.phpdoc-cache/
@@ -13,3 +13,19 @@
 *.log
 .DS_Store
 Thumbs.db
+
+# BEGIN MAESTRO_WORKSPACE P112Q2I0_ASAP_GITHUB_BOOTSTRAP
+/.env
+/.env.*
+!/.env.example
+/var/tmp/
+/var/spool/
+/var/runtime/
+/var/lstsa/runs/
+/var/lstsa/archives/
+/var/lstsa/reports/
+/var/lstsa/quarantine/
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+# END MAESTRO_WORKSPACE P112Q2I0_ASAP_GITHUB_BOOTSTRAP
