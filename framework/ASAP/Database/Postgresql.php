@@ -5,15 +5,9 @@ declare(strict_types=1);
 namespace ASAP\Database;
 
 /**
- * PUBLIC MYSQL FACTORY
- *
- * Role:
- *   Create explicit PDO MySQL connections from declared parameters.
- *
- * Contract:
- *   No default host/database/user/password. Caller provides everything.
+ * PUBLIC POSTGRESQL FACTORY
  */
-final class Mysql
+final class Postgresql
 {
     public function connect(string $host, string $database, string $user, string $password, ?string $port = null): Database
     {
@@ -27,7 +21,7 @@ final class Mysql
         }
 
         return (new PdoDatabaseConnector())->connect(
-            new DatabaseConnectionConfig(DatabaseProvider::MYSQL, null, $user, $password, $parameters)
+            new DatabaseConnectionConfig(DatabaseProvider::POSTGRESQL, null, $user, $password, $parameters)
         );
     }
 }

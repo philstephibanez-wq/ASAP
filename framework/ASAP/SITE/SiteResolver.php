@@ -19,9 +19,6 @@ use SimpleXMLElement;
  *
  * Contract:
  *   No default site fallback. If no site matches, the resolver fails explicitly.
- *
- * Since:
- *   P112D2
  */
 final class SiteResolver
 {
@@ -32,13 +29,6 @@ final class SiteResolver
         }
     }
 
-    /**
-     * PUBLIC API
-     *
-     * @param Request $request Normalized request.
-     *
-     * @return SiteDefinition Resolved site.
-     */
     public function resolve(Request $request): SiteDefinition
     {
         $files = glob(rtrim($this->sitesRoot, '/\\') . '/*/site.xml') ?: [];
@@ -52,39 +42,58 @@ final class SiteResolver
             }
 
             if ($this->pathMatchesBasePath($request->path, $basePath)) {
-                $id = trim((string) ($xml['id'] ?? ''));
-                $routesElement = $xml->routes;
-                $securityElement = $xml->security;
-
-                if (!$routesElement instanceof SimpleXMLElement) {
-                    throw ContractException::because('ASAP_SITE_ROUTES_NODE_MISSING', $file);
-                }
-
-                if (!$securityElement instanceof SimpleXMLElement) {
-                    throw ContractException::because('ASAP_SITE_SECURITY_NODE_MISSING', $file);
-                }
-
-                $routesFileName = trim((string) ($routesElement['file'] ?? ''));
-                $securityFileName = trim((string) ($securityElement['file'] ?? ''));
-
-                if ($routesFileName === '') {
-                    throw ContractException::because('ASAP_SITE_ROUTES_FILE_EMPTY', $file);
-                }
-
-                if ($securityFileName === '') {
-                    throw ContractException::because('ASAP_SITE_SECURITY_FILE_EMPTY', $file);
-                }
-
-                return new SiteDefinition(
-                    $id,
-                    $basePath,
-                    dirname($file) . DIRECTORY_SEPARATOR . $routesFileName,
-                    dirname($file) . DIRECTORY_SEPARATOR . $securityFileName
-                );
+                return $this->definitionFromXml($xml, $file, $basePath);
             }
         }
 
         throw ContractException::because('ASAP_SITE_NOT_RESOLVED', $request->path);
+    }
+
+    private function definitionFromXml(SimpleXMLElement $xml, string $file, string $basePath): SiteDefinition
+    {
+        $id = trim((string) ($xml['id'] ?? ''));
+        $routesElement = $xml->routes;
+        $securityElement = $xml->security;
+        $databaseElement = $xml->database;
+
+        if (!$routesElement instanceof SimpleXMLElement) {
+            throw ContractException::because('ASAP_SITE_ROUTES_NODE_MISSING', $file);
+        }
+
+        if (!$securityElement instanceof SimpleXMLElement) {
+            throw ContractException::because('ASAP_SITE_SECURITY_NODE_MISSING', $file);
+        }
+
+        $routesFileName = trim((string) ($routesElement['file'] ?? ''));
+        $securityFileName = trim((string) ($securityElement['file'] ?? ''));
+
+        if ($routesFileName === '') {
+            throw ContractException::because('ASAP_SITE_ROUTES_FILE_EMPTY', $file);
+        }
+
+        if ($securityFileName === '') {
+            throw ContractException::because('ASAP_SITE_SECURITY_FILE_EMPTY', $file);
+        }
+
+        $databaseFile = null;
+
+        if ($databaseElement instanceof SimpleXMLElement && count($databaseElement->attributes()) > 0) {
+            $databaseFileName = trim((string) ($databaseElement['file'] ?? ''));
+
+            if ($databaseFileName === '') {
+                throw ContractException::because('ASAP_SITE_DATABASE_FILE_EMPTY', $file);
+            }
+
+            $databaseFile = dirname($file) . DIRECTORY_SEPARATOR . $databaseFileName;
+        }
+
+        return new SiteDefinition(
+            $id,
+            $basePath,
+            dirname($file) . DIRECTORY_SEPARATOR . $routesFileName,
+            dirname($file) . DIRECTORY_SEPARATOR . $securityFileName,
+            $databaseFile
+        );
     }
 
     private function pathMatchesBasePath(string $path, string $basePath): bool

@@ -13,13 +13,10 @@ use ASAP\Contract\ContractException;
  *   Carry one resolved ASAP site contract.
  *
  * Responsibility:
- *   Expose site id, base path, routes file and security file.
+ *   Expose site id, base path, routes file, security file and optional database file.
  *
  * Contract:
- *   A resolved site must point to existing configuration files.
- *
- * Since:
- *   P112D2
+ *   A resolved site must point to existing declared configuration files.
  */
 final class SiteDefinition
 {
@@ -27,7 +24,8 @@ final class SiteDefinition
         public readonly string $id,
         public readonly string $basePath,
         public readonly string $routesFile,
-        public readonly string $securityFile
+        public readonly string $securityFile,
+        public readonly ?string $databaseFile = null
     ) {
         if (trim($this->id) === '') {
             throw ContractException::because('ASAP_SITE_ID_EMPTY');
@@ -44,5 +42,23 @@ final class SiteDefinition
         if (!is_file($this->securityFile)) {
             throw ContractException::because('ASAP_SITE_SECURITY_FILE_MISSING', $this->securityFile);
         }
+
+        if ($this->databaseFile !== null && !is_file($this->databaseFile)) {
+            throw ContractException::because('ASAP_SITE_DATABASE_FILE_MISSING', $this->databaseFile);
+        }
+    }
+
+    public function hasDatabase(): bool
+    {
+        return $this->databaseFile !== null;
+    }
+
+    public function requireDatabaseFile(): string
+    {
+        if ($this->databaseFile === null) {
+            throw ContractException::because('ASAP_SITE_DATABASE_FILE_NOT_DECLARED', $this->id);
+        }
+
+        return $this->databaseFile;
     }
 }
