@@ -31,6 +31,14 @@ final class LstsaRunner
                 ]);
             }
 
+            if (($run['payload']['mode'] ?? null) === 'database_staging') {
+                $result = (new LstsaDatabaseStagingExecutor($this->store))->execute($run);
+                return $this->store->finish($run, (string)$result['status'], [
+                    'counts' => $result['counts'] ?? [],
+                    'artifacts' => $result['artifacts'] ?? [],
+                ]);
+            }
+
             $counts = [
                 'loaded' => 0,
                 'accepted' => 0,

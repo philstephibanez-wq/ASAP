@@ -44,6 +44,17 @@
 - [x] VÃ©rifier archives runtime.
 - [x] VÃ©rifier quarantine et checkpoints.
 - [x] Conserver `Lstsa*` pour les symboles PHP.
-- [ ] P112Q2I5 : exposition Reference Book / backoffice, sans exÃ©cution HTTP.
+- [x] P112Q2I5 : controle FSM background + staging SQLite cible, sans execution HTTP.
 <!-- END MAESTRO_WORKSPACE P112Q2I4_ASAP_Lstsa_REPORTS_ARCHIVES_CATALOG -->
 
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
+## P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING
+
+- [x] Runner background piloté par FSM.
+- [x] Objets de phase Load/Secure/Transform/Store/Archive/Report.
+- [x] Store via table de staging contrôlée dans la BDD cible.
+- [x] Commit final cible uniquement après validation 100 %.
+- [x] Cleanup staging en succès et échec.
+- [x] Event OK / FAIL append-only.
+- [ ] P112Q2I6 : durcir le mapping SQL multi-provider au-delà du smoke SQLite.
+<!-- END MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->

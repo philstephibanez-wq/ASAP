@@ -195,6 +195,25 @@ final class LstsaRunStore
         return $path;
     }
 
+    public function writeEventPayload(array &$run, string $suffix, array $payload): string
+    {
+        $path = $this->artifactPath($run, 'events', $suffix);
+        if (file_exists($path)) {
+            throw new \RuntimeException('Lstsa event append-only violation: ' . $path);
+        }
+
+        $this->writeJson($path, [
+            'run_id' => $run['run_id'],
+            'lstsa_id' => $run['lstsa_id'],
+            'created_at' => $this->now(),
+            'payload' => $payload,
+        ]);
+        $this->registerArtifact($run, 'events', $path);
+        $this->writeRun($run);
+
+        return $path;
+    }
+
     public function finish(array &$run, string $status, array $summary = []): array
     {
         LstsaRunStatus::assertValid($status);
@@ -369,6 +388,7 @@ final class LstsaRunStore
             $this->reportsDir(),
             $this->archivesDir(),
             $this->quarantineDir(),
+            $this->eventsDir(),
             $this->checkpointsDir(),
         ] as $dir) {
             if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
@@ -407,6 +427,11 @@ final class LstsaRunStore
         return $this->lstsaRoot . DIRECTORY_SEPARATOR . 'quarantine';
     }
 
+    private function eventsDir(): string
+    {
+        return $this->lstsaRoot . DIRECTORY_SEPARATOR . 'events';
+    }
+
     private function checkpointsDir(): string
     {
         return $this->lstsaRoot . DIRECTORY_SEPARATOR . 'checkpoints';
@@ -436,6 +461,7 @@ final class LstsaRunStore
         $baseDir = match ($kind) {
             'archives' => $this->archivesDir(),
             'quarantine' => $this->quarantineDir(),
+            'events' => $this->eventsDir(),
             'checkpoints' => $this->checkpointsDir(),
             default => throw new \InvalidArgumentException('Unknown Lstsa artifact kind: ' . $kind),
         };

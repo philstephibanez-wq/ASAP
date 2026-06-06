@@ -79,6 +79,44 @@ XML;
         ], 'p112q2i3_recipe');
     }
 
+
+    public function enqueueDatabaseStagingSmokeRun(string $sourceSqlitePath, string $targetSqlitePath): array
+    {
+        $definitionXml = <<<'XML'
+<lstsa id="p112q2i5_sqlite_user_sync" version="1.0.0">
+  <load connection="source" table="raw_users">
+    <field name="email" type="string" required="true" min_length="5" max_length="255" max_bytes="512" />
+    <field name="status" type="string" required="true" max_length="32" enum="active,inactive" />
+  </load>
+  <transform>
+    <field target="email" source="email" type="email" required="true" max_length="255" max_bytes="512" transform="trim|lower" />
+    <field target="is_active" source="status" type="bool" required="true" transform="status_to_bool" />
+  </transform>
+  <store connection="target" table="users" mode="replace" />
+  <archive mode="append_only" path="var/lstsa/archives" />
+  <runtime max_run_seconds="120" max_batch_seconds="10" max_rows_per_batch="100" max_memory_mb="128" heartbeat_every_seconds="1" stale_after_seconds="30" />
+</lstsa>
+XML;
+
+        $databaseConfigXml = '<databases default="source">'
+            . '<connection name="source" provider="sqlite"><path>' . htmlspecialchars($sourceSqlitePath, ENT_XML1) . '</path></connection>'
+            . '<connection name="target" provider="sqlite"><path>' . htmlspecialchars($targetSqlitePath, ENT_XML1) . '</path></connection>'
+            . '</databases>';
+
+        return $this->enqueue('p112q2i5_sqlite_user_sync', [
+            'definition_version' => 'P112Q2I5',
+            'mode' => 'database_staging',
+            'definition_xml' => $definitionXml,
+            'database_config_xml' => $databaseConfigXml,
+            'max_run_seconds' => 120,
+            'max_batch_seconds' => 10,
+            'max_rows_per_batch' => 100,
+            'max_memory_mb' => 128,
+            'heartbeat_every_seconds' => 1,
+            'stale_after_seconds' => 30,
+        ], 'p112q2i5_recipe');
+    }
+
     private function withDefaultSchedulingLimits(array $payload): array
     {
         $payload['max_run_seconds'] = (int)($payload['max_run_seconds'] ?? 300);

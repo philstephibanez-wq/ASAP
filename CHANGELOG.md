@@ -46,3 +46,12 @@
 - Maintien volontaire de la convention PHP `Lstsa*`.
 <!-- END MAESTRO_WORKSPACE P112Q2I4_ASAP_Lstsa_REPORTS_ARCHIVES_CATALOG -->
 
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
+## P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING
+
+- Ajout du contrôle FSM explicite du runner Lstsa background.
+- Ajout des objets de phase Load / Secure input / Transform / Secure output / Store / Archive / Report.
+- Ajout d’un flux SQLite source -> staging cible -> commit final cible, avec suppression du staging en succès ou échec.
+- Ajout des événements append-only OK / FAIL sous `var/lstsa/events/`.
+- Ajout d’une recette de validation hors HTTP avec BDD source/cible SQLite temporaires.
+<!-- END MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->

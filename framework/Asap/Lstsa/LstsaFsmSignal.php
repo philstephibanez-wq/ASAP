@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ASAP\Lstsa;
+
+/**
+ * PUBLIC LSTSAR FSM SIGNAL REGISTRY
+ *
+ * @visibility public
+ * @role Defines the stable signals accepted by the Lstsa background runner FSM.
+ * @contract Signals are explicit transition instructions. There is no implicit
+ *           next step and no fallback transition when one signal is missing.
+ * @sideEffects None.
+ */
+final class LstsaFsmSignal
+{
+    public const START = 'START';
+    public const LOAD_OK = 'LOAD_OK';
+    public const SECURE_INPUT_OK = 'SECURE_INPUT_OK';
+    public const TRANSFORM_OK = 'TRANSFORM_OK';
+    public const SECURE_OUTPUT_OK = 'SECURE_OUTPUT_OK';
+    public const STORE_OK = 'STORE_OK';
+    public const ARCHIVE_OK = 'ARCHIVE_OK';
+    public const REPORT_OK = 'REPORT_OK';
+    public const FAIL = 'FAIL';
+}

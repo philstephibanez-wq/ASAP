@@ -56,3 +56,18 @@ No long runner is started from Apache. The runner/scheduler must be introduced i
 - CrÃ©e une recette de validation qui vÃ©rifie reports/archives/quarantine/checkpoints.
 <!-- END MAESTRO_WORKSPACE P112Q2I4_ASAP_Lstsa_REPORTS_ARCHIVES_CATALOG -->
 
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
+## P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING
+
+### Scope
+- Adds explicit FSM control to the Lstsa background runner path.
+- Adds phase objects for Load, Secure input, Transform, Secure output, Store, Archive and Report.
+- Adds SQLite source/target staging execution through the existing ASAP database configuration objects.
+- Adds final OK/FAIL events as append-only runtime artifacts.
+
+### Contract
+- No heavy HTTP execution.
+- The scheduler enqueues, the runner executes, and the FSM controls the authorized next step.
+- The target final table is updated only after the staging table is fully validated.
+- A failed run removes staging tables and must not leave partial target data.
+<!-- END MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
