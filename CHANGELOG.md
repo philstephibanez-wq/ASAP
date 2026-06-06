@@ -55,3 +55,13 @@
 - Ajout des événements append-only OK / FAIL sous `var/lstsa/events/`.
 - Ajout d’une recette de validation hors HTTP avec BDD source/cible SQLite temporaires.
 <!-- END MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
+
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
+## P112Q2J_ASAP_GLOBAL_RECIPE_SUITE
+
+- Added a manifest-driven global ASAP recipe suite.
+- Added reusable recipe runner, context, result and report objects.
+- Added life robot scenario framework for simulated user/system flows.
+- Added technical coverage for core, database, FSM, ACL, I18N, routing, templates and Lstsa/LSTSAR.
+- Added ignored runtime report storage under `var/recipes/`.
+<!-- END MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->

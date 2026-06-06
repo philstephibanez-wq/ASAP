@@ -58,3 +58,14 @@
 - [x] Event OK / FAIL append-only.
 - [ ] P112Q2I6 : durcir le mapping SQL multi-provider au-delà du smoke SQLite.
 <!-- END MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
+
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
+## P112Q2J_ASAP_GLOBAL_RECIPE_SUITE
+
+- [x] Créer la suite globale de recette ASAP.
+- [x] Ajouter un manifest de recettes évolutif.
+- [x] Couvrir les recettes techniques principales.
+- [x] Ajouter des scénarios life robotisés multi-acteurs.
+- [x] Produire rapports JSON/Markdown runtime ignorés.
+- [ ] P112Q2J1 : brancher chaque futur palier à une recette obligatoire dans le manifest global.
+<!-- END MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->

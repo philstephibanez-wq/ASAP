@@ -71,3 +71,19 @@ No long runner is started from Apache. The runner/scheduler must be introduced i
 - The target final table is updated only after the staging table is fully validated.
 - A failed run removes staging tables and must not leave partial target data.
 <!-- END MAESTRO_WORKSPACE P112Q2I5_ASAP_Lstsa_FSM_BACKGROUND_STAGING -->
+
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
+## P112Q2J_ASAP_GLOBAL_RECIPE_SUITE
+
+### Scope
+- Adds the official global ASAP recipe suite under `tools/recipes/`.
+- Adds technical recipes for preflight, Git/runtime structure, naming, PHP lint, docs, core, database, FSM, ACL, I18N, routing, template and Lstsa/LSTSAR.
+- Adds life robot scenarios simulating anonymous, admin, denied, scheduler, background runner and maintenance flows.
+- Adds JSON/Markdown runtime reports under ignored `var/recipes/`.
+
+### Contract
+- No HTTP-heavy execution.
+- No browser automation.
+- No mutation outside dedicated runtime sandboxes.
+- New features must register recipes in `RecipeManifest`.
+<!-- END MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
