@@ -36,3 +36,14 @@
 - [ ] P112Q2I4 : store rÃ©el via providers multi-BDD.
 <!-- END MAESTRO_WORKSPACE P112Q2I3_ASAP_LSTSA_BATCH_CHECKPOINT_EXECUTOR -->
 
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG -->
+## P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG
+
+- [x] Cataloguer les runs LSTSA.
+- [x] VÃ©rifier rapports JSON/MD.
+- [x] VÃ©rifier archives runtime.
+- [x] VÃ©rifier quarantine et checkpoints.
+- [x] Conserver `Lstsa*` pour les symboles PHP.
+- [ ] P112Q2I5 : exposition Reference Book / backoffice, sans exÃ©cution HTTP.
+<!-- END MAESTRO_WORKSPACE P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG -->
+

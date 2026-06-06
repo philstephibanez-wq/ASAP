@@ -37,3 +37,12 @@
 - Rapports JSON/MD enrichis avec artifacts.
 <!-- END MAESTRO_WORKSPACE P112Q2I3_ASAP_LSTSA_BATCH_CHECKPOINT_EXECUTOR -->
 
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG -->
+## P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG
+
+- Ajout du catalogue LSTSA des rapports, archives, quarantaines et checkpoints.
+- Ajout de snapshots JSON/Markdown append-only sous `var/lstsa/reports/_index`.
+- Ajout du CLI `bin/asap-lstsa-reports.cmd`.
+- Maintien volontaire de la convention PHP `Lstsa*`.
+<!-- END MAESTRO_WORKSPACE P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG -->
+

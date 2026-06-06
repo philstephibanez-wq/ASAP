@@ -47,3 +47,12 @@ No long runner is started from Apache. The runner/scheduler must be introduced i
 - Met Ã  jour les scripts CLI LSTSA.
 <!-- END MAESTRO_WORKSPACE P112Q2I3_ASAP_LSTSA_BATCH_CHECKPOINT_EXECUTOR -->
 
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG -->
+## P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG
+
+- CrÃ©e `ASAP\\LSTSA\\LstsaReportCatalog`.
+- CrÃ©e `tools/automation/asap_lstsa_reports.php`.
+- CrÃ©e `bin/asap-lstsa-reports.cmd`.
+- CrÃ©e une recette de validation qui vÃ©rifie reports/archives/quarantine/checkpoints.
+<!-- END MAESTRO_WORKSPACE P112Q2I4_ASAP_LSTSA_REPORTS_ARCHIVES_CATALOG -->
+
