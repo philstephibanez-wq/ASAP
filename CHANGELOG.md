@@ -1,4 +1,4 @@
-﻿# CHANGELOG â€” P112C5
+# CHANGELOG â€” P112C5
 
 ## AjoutÃ©
 - Squelette HTML navigable du Reference Book ASAP.
@@ -65,3 +65,27 @@
 - Added technical coverage for core, database, FSM, ACL, I18N, routing, templates and Lstsa/LSTSAR.
 - Added ignored runtime report storage under `var/recipes/`.
 <!-- END MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
+
+
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE -->
+## P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE
+
+- Replaces the rejected minimal HTTP witness with a real evolutive HTTP/Mail life recipe.
+- Adds an anti-regression feature manifest under `tools/recipes/manifest/`.
+- Adds `MailRecipe` and `FeatureManifestRecipe` to the global suite.
+- Adds a visible rich recipe dashboard driven by real local HTTP GET/POST requests.
+- Adds MailRobot sandbox send/receive validation and LSTSAR HTTP scheduling/background execution validation.
+<!-- END MAESTRO_WORKSPACE P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE -->
+
+
+## P112Q2J3_ASAP_RECIPE_LIVE_MOVIE_DASHBOARD
+
+- Added live movie dashboard behaviour to the ASAP global HTTP/mail life recipe.
+- Added polling timeline, current actor/action, progress bar, HTTP transcript, MailRobot inbox and LSTSAR event stream.
+- Added `ASAP_LIVE_MOVIE_DASHBOARD_OK` as a visible dashboard contract marker.
+## P112Q2J4_ASAP_REAL_MAILPIT_LIVE_RECIPE
+
+- Replaced local JSON-only mail robot proof with real Mailpit SMTP/API delivery checks.
+- Added Mailpit availability, send, receive and content assertions to the global ASAP recipe.
+- Added real Mailpit markers to the visible live recipe dashboard.
+

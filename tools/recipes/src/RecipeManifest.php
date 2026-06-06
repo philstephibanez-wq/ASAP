@@ -8,10 +8,12 @@ use ASAP\Recipe\Recipes\AclRecipe;
 use ASAP\Recipe\Recipes\CoreAutoloadRecipe;
 use ASAP\Recipe\Recipes\DatabaseRecipe;
 use ASAP\Recipe\Recipes\DocsRecipe;
+use ASAP\Recipe\Recipes\FeatureManifestRecipe;
 use ASAP\Recipe\Recipes\FsmRecipe;
 use ASAP\Recipe\Recipes\GitStructureRecipe;
 use ASAP\Recipe\Recipes\I18nRecipe;
 use ASAP\Recipe\Recipes\LstsaRecipe;
+use ASAP\Recipe\Recipes\MailRecipe;
 use ASAP\Recipe\Recipes\NamingRecipe;
 use ASAP\Recipe\Recipes\PhpLintRecipe;
 use ASAP\Recipe\Recipes\PreflightRecipe;
@@ -19,6 +21,7 @@ use ASAP\Recipe\Recipes\RoutingRecipe;
 use ASAP\Recipe\Recipes\TemplateRecipe;
 use ASAP\Recipe\Life\Scenarios\AclAccessLifecycleScenario;
 use ASAP\Recipe\Life\Scenarios\DatabaseLifecycleScenario;
+use ASAP\Recipe\Life\Scenarios\HttpMailLifeRobotScenario;
 use ASAP\Recipe\Life\Scenarios\I18nLifecycleScenario;
 use ASAP\Recipe\Life\Scenarios\LstsarBackgroundLifecycleScenario;
 use ASAP\Recipe\Life\Scenarios\LstsarConcurrencyLifecycleScenario;
@@ -32,18 +35,12 @@ use ASAP\Recipe\Life\Scenarios\PublicSiteLifecycleScenario;
  * Role:
  *   Declare the global ASAP recipe suite order.
  *
- * Responsibility:
- *   Keep technical and life-robotized checks registered explicitly so future
- *   features can add recipes without hidden discovery or accidental omissions.
- *
  * Contract:
- *   The manifest is the single registry for the global recipe suite. New ASAP
- *   features must register their technical recipe and, when they affect a user
- *   or runtime flow, their life scenario.
+ *   This is the single registry for the global recipe suite. No implicit test
+ *   discovery is accepted for validation-critical checks.
  */
 final class RecipeManifest
 {
-    /** PUBLIC API: create the full ordered suite. */
     public function createSuite(): RecipeSuite
     {
         $suite = new RecipeSuite();
@@ -63,6 +60,7 @@ final class RecipeManifest
             new NamingRecipe(),
             new PhpLintRecipe(),
             new DocsRecipe(),
+            new FeatureManifestRecipe(),
             new CoreAutoloadRecipe(),
             new DatabaseRecipe(),
             new FsmRecipe(),
@@ -70,6 +68,7 @@ final class RecipeManifest
             new I18nRecipe(),
             new RoutingRecipe(),
             new TemplateRecipe(),
+            new MailRecipe(),
             new LstsaRecipe(),
             new PublicSiteLifecycleScenario(),
             new AclAccessLifecycleScenario(),
@@ -79,6 +78,7 @@ final class RecipeManifest
             new LstsarFailureLifecycleScenario(),
             new LstsarConcurrencyLifecycleScenario(),
             new MaintenanceLifecycleScenario(),
+            new HttpMailLifeRobotScenario(),
         ];
     }
 }

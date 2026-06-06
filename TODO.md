@@ -1,4 +1,4 @@
-﻿# TODO Ã¢â‚¬â€ P112Q2I1 ASAP Site Multi-DB and Lstsa Contract
+# TODO Ã¢â‚¬â€ P112Q2I1 ASAP Site Multi-DB and Lstsa Contract
 
 ## Validate now
 - Run `TEST_P112Q2I1_ASAP_SITE_MULTI_DB_AND_Lstsa_CONTRACT.cmd`.
@@ -69,3 +69,26 @@
 - [x] Produire rapports JSON/Markdown runtime ignorés.
 - [ ] P112Q2J1 : brancher chaque futur palier à une recette obligatoire dans le manifest global.
 <!-- END MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
+
+
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE -->
+## P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE
+
+- [x] Ajouter un manifest anti-régression des fonctionnalités ASAP.
+- [x] Ajouter une recette mail technique.
+- [x] Ajouter une recette HTTP life avec vraie page dashboard visible.
+- [x] Ajouter un MailRobot send/receive sandboxé.
+- [x] Tester GET/POST, ACL, I18N, formulaire et LSTSAR via HTTP local.
+- [ ] Brancher plus tard un transport Mailpit réel si le projet décide de l'exiger comme dépendance locale.
+<!-- END MAESTRO_WORKSPACE P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE -->
+
+
+## P112Q2J3 follow-up
+
+- Later connect the movie dashboard to real production ASAP pages when the front routing contract is stable.
+- Add screenshots/video capture only after the dashboard contract is stable.
+## P112Q2J4 follow-up
+
+- Keep Mailpit ports configurable by environment variables for future non-default setups.
+- Extend visible dashboard with screenshots/Panther only after legacy browser recipe inventory is restored.
+

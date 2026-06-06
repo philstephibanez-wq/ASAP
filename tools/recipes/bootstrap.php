@@ -20,6 +20,7 @@ $requires = [
     'recipes/NamingRecipe.php',
     'recipes/PhpLintRecipe.php',
     'recipes/DocsRecipe.php',
+    'recipes/FeatureManifestRecipe.php',
     'recipes/CoreAutoloadRecipe.php',
     'recipes/DatabaseRecipe.php',
     'recipes/FsmRecipe.php',
@@ -27,6 +28,7 @@ $requires = [
     'recipes/I18nRecipe.php',
     'recipes/RoutingRecipe.php',
     'recipes/TemplateRecipe.php',
+    'recipes/MailRecipe.php',
     'recipes/LstsaRecipe.php',
     'life/scenarios/PublicSiteLifecycleScenario.php',
     'life/scenarios/AclAccessLifecycleScenario.php',
@@ -36,6 +38,7 @@ $requires = [
     'life/scenarios/LstsarFailureLifecycleScenario.php',
     'life/scenarios/LstsarConcurrencyLifecycleScenario.php',
     'life/scenarios/MaintenanceLifecycleScenario.php',
+    'life/scenarios/HttpMailLifeRobotScenario.php',
     'src/RecipeManifest.php',
 ];
 

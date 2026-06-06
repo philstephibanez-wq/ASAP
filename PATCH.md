@@ -1,4 +1,4 @@
-﻿# PATCH Ã¢â‚¬â€ P112Q2I1 ASAP Site Multi-DB and Lstsa Contract
+# PATCH Ã¢â‚¬â€ P112Q2I1 ASAP Site Multi-DB and Lstsa Contract
 
 ## Role
 Add the first ASAP contract layer for site multi-database declarations and Lstsa.
@@ -87,3 +87,53 @@ No long runner is started from Apache. The runner/scheduler must be introduced i
 - No mutation outside dedicated runtime sandboxes.
 - New features must register recipes in `RecipeManifest`.
 <!-- END MAESTRO_WORKSPACE P112Q2J_ASAP_GLOBAL_RECIPE_SUITE -->
+
+
+<!-- BEGIN MAESTRO_WORKSPACE P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE -->
+## P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE
+
+### Scope
+- Adds `tools/recipes/manifest/asap_feature_manifest.php`.
+- Adds `ASAP\Recipe\Recipes\FeatureManifestRecipe`.
+- Adds `ASAP\Recipe\Recipes\MailRecipe`.
+- Adds `ASAP\Recipe\Life\Scenarios\HttpMailLifeRobotScenario`.
+- Adds `tools/recipes/RUN_ASAP_FULL_RECIPE_VISIBLE_BROWSER.cmd`.
+- Updates the global recipe manifest and docs recipe.
+
+### Contract
+- The visible page must be a rich dashboard, never a blank OK page.
+- HTTP checks use real local GET/POST requests.
+- Mail is validated through a deterministic sandbox MailRobot inbox.
+- LSTSAR is only scheduled through HTTP; execution remains in the background runner.
+- New features must be declared in the feature manifest.
+<!-- END MAESTRO_WORKSPACE P112Q2J2_ASAP_GLOBAL_EVOLUTIVE_HTTP_MAIL_LIFE_RECIPE -->
+
+
+## P112Q2J3_ASAP_RECIPE_LIVE_MOVIE_DASHBOARD
+
+### Scope
+
+- Update visible HTTP/mail life recipe dashboard from static page to live movie dashboard.
+- Keep existing automatic P112Q2J2 assertions.
+- Extend docs and feature manifest.
+
+### Validation
+
+Run:
+
+```cmd
+tools\recipes\RUN_ASAP_FULL_RECIPE_VISIBLE_BROWSER.cmd
+```
+
+Expected:
+
+```text
+ASAP_LIVE_MOVIE_DASHBOARD_OK
+ASAP_GLOBAL_RECIPE_OK
+```
+## P112Q2J4_ASAP_REAL_MAILPIT_LIVE_RECIPE
+
+- Modified `tools/recipes/recipes/MailRecipe.php` to send a real SMTP message to Mailpit and verify it through Mailpit HTTP API.
+- Modified `tools/recipes/life/scenarios/HttpMailLifeRobotScenario.php` to use Mailpit SMTP/API instead of a fake JSON inbox.
+- Updated docs and feature manifest for real Mailpit life recipe coverage.
+

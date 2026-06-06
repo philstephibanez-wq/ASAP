@@ -6,7 +6,7 @@ Create the official global ASAP validation suite after the namespace, directory-
 
 ## Contract
 
-The suite is a background-safe, CLI-only validation system. It does not start a web server, does not open a browser, does not execute heavy work from HTTP and does not mutate business data outside its own runtime sandboxes.
+The suite is a background-safe validation system. The default command is CLI/headless, and the HTTP life robot starts only an isolated local PHP built-in server inside a runtime sandbox. Heavy work is still not executed inside HTTP: HTTP may enqueue, while background runners process jobs.
 
 Expected final marker:
 
@@ -32,6 +32,9 @@ The global suite validates:
 
 ## life robot scenarios
 
+P112Q2J1 adds an HTTP life robot scenario. It performs real local HTTP requests against a sandboxed PHP built-in server and can optionally open a visible browser when `ASAP_RECIPE_OPEN_BROWSER=1`.
+
+
 The suite also simulates living ASAP usage through robotized actors:
 
 - anonymous public site visitor;
@@ -41,7 +44,8 @@ The suite also simulates living ASAP usage through robotized actors:
 - scheduler robot and background runner robot;
 - failure robot for invalid LSTSAR data;
 - concurrent runner robots;
-- maintenance robot for purgeable runtime artifacts.
+- maintenance robot for purgeable runtime artifacts;
+- P112Q2J1 HTTP life robot for real local GET/POST, ACL, I18N, template and LSTSAR enqueue/status flows.
 
 ## manifest
 
@@ -57,6 +61,12 @@ Future ASAP features must register their technical recipe and, when they affect 
 
 ```cmd
 tools\recipes\RUN_ASAP_FULL_RECIPE.cmd
+
+Visible browser mode:
+
+```cmd
+tools\recipes\RUN_ASAP_FULL_RECIPE_VISIBLE_BROWSER.cmd
+```
 ```
 
 ## Reports
