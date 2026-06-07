@@ -7,6 +7,20 @@ namespace ASAP\Security;
 use ASAP\Fsm\StateMachine;
 use ASAP\Http\Request;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: SECURITY
+ *   role: Class FsmGuard belongs to the SECURITY ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the SECURITY domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - security-overview
+ *   diagrams:
+ *     - security-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC GUARD
  *

@@ -6,6 +6,20 @@ namespace ASAP\Contract;
 
 use RuntimeException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: CONTRACT
+ *   role: Class ContractException belongs to the CONTRACT ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the CONTRACT domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - contract-overview
+ *   diagrams:
+ *     - contract-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC EXCEPTION
  *

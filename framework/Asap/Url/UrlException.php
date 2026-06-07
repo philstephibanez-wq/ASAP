@@ -6,6 +6,20 @@ namespace ASAP\Url;
 
 use RuntimeException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: URL
+ *   role: Class UrlException belongs to the URL ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the URL domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - url-overview
+ *   diagrams:
+ *     - url-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC EXCEPTION
  *

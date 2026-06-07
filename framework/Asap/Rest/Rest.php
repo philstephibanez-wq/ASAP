@@ -6,6 +6,20 @@ namespace ASAP\Rest;
 
 use ASAP\Http\Response;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: REST
+ *   role: Class Rest belongs to the REST ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the REST domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - rest-overview
+ *   diagrams:
+ *     - rest-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED REST HELPER
  *

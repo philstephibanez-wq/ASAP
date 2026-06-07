@@ -6,6 +6,20 @@ namespace ASAP\Lstsa;
 
 use SimpleXMLElement;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: LSTSA
+ *   role: Class LstsaFieldMapping belongs to the LSTSA ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the LSTSA domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - lstsa-overview
+ *   diagrams:
+ *     - lstsa-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC Lstsa FIELD MAPPING
  *

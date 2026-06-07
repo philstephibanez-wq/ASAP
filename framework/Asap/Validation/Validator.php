@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Validation;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: VALIDATION
+ *   role: Class Validator belongs to the VALIDATION ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the VALIDATION domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - validation-overview
+ *   diagrams:
+ *     - validation-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED VALIDATOR
  *

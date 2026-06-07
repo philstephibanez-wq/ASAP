@@ -1,6 +1,20 @@
 <?php
 declare(strict_types=1);
 namespace ASAP\Directory;
+/*
+ * ASAP_REFBOOK:
+ *   domain: DIRECTORY
+ *   role: Class Directory belongs to the DIRECTORY ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the DIRECTORY domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - directory-overview
+ *   diagrams:
+ *     - directory-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * Legacy-aligned ASAP Directory domain.
  * No silent fallback. Single responsibility only.

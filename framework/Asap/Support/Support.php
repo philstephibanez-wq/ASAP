@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Support;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: SUPPORT
+ *   role: Class Support belongs to the SUPPORT ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the SUPPORT domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - support-overview
+ *   diagrams:
+ *     - support-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *

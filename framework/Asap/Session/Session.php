@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Session;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: SESSION
+ *   role: Class Session belongs to the SESSION ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the SESSION domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - session-overview
+ *   diagrams:
+ *     - session-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED SESSION
  *

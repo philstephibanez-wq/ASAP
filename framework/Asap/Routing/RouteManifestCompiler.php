@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Routing;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: ROUTING
+ *   role: Class RouteManifestCompiler belongs to the ROUTING ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the ROUTING domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - routing-overview
+ *   diagrams:
+ *     - routing-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC COMPILER
  *

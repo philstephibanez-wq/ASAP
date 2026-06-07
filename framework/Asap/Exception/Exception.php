@@ -6,6 +6,20 @@ namespace ASAP\Exception;
 
 use RuntimeException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: EXCEPTION
+ *   role: Class Exception belongs to the EXCEPTION ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the EXCEPTION domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - exception-overview
+ *   diagrams:
+ *     - exception-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED EXCEPTION
  *

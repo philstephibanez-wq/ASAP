@@ -8,6 +8,20 @@ use ASAP\Contract\ContractException;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: TEMPLATE
+ *   role: Class TwigTemplateRenderer belongs to the TEMPLATE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the TEMPLATE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - template-overview
+ *   diagrams:
+ *     - template-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC RENDERER
  *

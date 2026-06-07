@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Helper;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: HELPER
+ *   role: Class HtmlHelper belongs to the HELPER ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the HELPER domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - helper-overview
+ *   diagrams:
+ *     - helper-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC HELPER
  *

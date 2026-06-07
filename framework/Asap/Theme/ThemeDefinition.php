@@ -6,6 +6,20 @@ namespace ASAP\Theme;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: THEME
+ *   role: Class ThemeDefinition belongs to the THEME ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the THEME domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - theme-overview
+ *   diagrams:
+ *     - theme-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

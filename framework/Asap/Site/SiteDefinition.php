@@ -6,6 +6,20 @@ namespace ASAP\Site;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: SITE
+ *   role: Class SiteDefinition belongs to the SITE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the SITE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - site-overview
+ *   diagrams:
+ *     - site-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Debug;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: DEBUG
+ *   role: Class Debug belongs to the DEBUG ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the DEBUG domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - debug-overview
+ *   diagrams:
+ *     - debug-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED DEBUG UTILITY
  *

@@ -6,6 +6,20 @@ namespace ASAP\Routing;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: ROUTING
+ *   role: Class RouteDefinition belongs to the ROUTING ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the ROUTING domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - routing-overview
+ *   diagrams:
+ *     - routing-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

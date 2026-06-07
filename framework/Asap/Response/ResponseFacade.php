@@ -6,6 +6,20 @@ namespace ASAP\Response;
 
 use ASAP\Http\Response as HttpResponse;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: RESPONSE
+ *   role: Class ResponseFacade belongs to the RESPONSE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the RESPONSE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - response-overview
+ *   diagrams:
+ *     - response-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *

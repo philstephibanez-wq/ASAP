@@ -6,6 +6,20 @@ namespace ASAP\Http;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: HTTP
+ *   role: Class Request belongs to the HTTP ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the HTTP domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - http-overview
+ *   diagrams:
+ *     - http-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

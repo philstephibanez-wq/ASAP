@@ -6,6 +6,20 @@ namespace ASAP\View;
 
 use RuntimeException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: VIEW
+ *   role: Class ViewException belongs to the VIEW ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the VIEW domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - view-overview
+ *   diagrams:
+ *     - view-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED EXCEPTION
  *

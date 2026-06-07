@@ -6,6 +6,20 @@ namespace ASAP\Autoload;
 
 use RuntimeException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: AUTOLOAD
+ *   role: Class AutoloadCache belongs to the AUTOLOAD ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the AUTOLOAD domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - autoload-overview
+ *   diagrams:
+ *     - autoload-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC SERVICE
  *

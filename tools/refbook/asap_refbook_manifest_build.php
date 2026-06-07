@@ -1,16 +1,8 @@
 <?php
 declare(strict_types=1);
 
-/**
+/*
  * ASAP RefBook source manifest builder.
- *
- * Source of truth:
- * - ASAP source files
- * - ASAP_REFBOOK source tags embedded in docblocks
- *
- * Output:
- * - var/generated/refbook/api_reference.generated.json
- * - optional copy to ASAP_REF_BOOK/application/reference/data/api_reference.generated.json
  */
 
 $asapRoot = $argv[1] ?? dirname(__DIR__, 2);
@@ -39,7 +31,6 @@ $symbols = [];
 foreach (phpFiles($frameworkRoot) as $file) {
     $content = (string)file_get_contents($file);
     $symbol = symbolOf($content);
-
     if ($symbol === null) {
         continue;
     }
@@ -57,9 +48,9 @@ foreach (phpFiles($frameworkRoot) as $file) {
         'file' => relativePath($asapRoot, $file),
         'domain' => $tag['domain'],
         'role' => $tag['role'],
-        'contract' => $tag['contract'],
-        'examples' => $tag['examples'] ?? [],
-        'diagrams' => $tag['diagrams'] ?? [],
+        'contract' => normalizeList($tag['contract']),
+        'examples' => normalizeList($tag['examples'] ?? []),
+        'diagrams' => normalizeList($tag['diagrams'] ?? []),
         'methods' => publicMethods($content),
     ];
 }
@@ -70,10 +61,7 @@ $domains = [];
 foreach ($symbols as $symbol) {
     $domain = $symbol['domain'];
     if (!isset($domains[$domain])) {
-        $domains[$domain] = [
-            'name' => $domain,
-            'symbols' => [],
-        ];
+        $domains[$domain] = ['name' => $domain, 'symbols' => []];
     }
     $domains[$domain]['symbols'][] = $symbol['symbol'];
 }
@@ -82,9 +70,8 @@ ksort($domains);
 $manifest = [
     'schema' => 'ASAP_REFBOOK_SOURCE_MANIFEST_V1',
     'generated_at' => date(DATE_ATOM),
-    'source_root' => relativePath(dirname($asapRoot), $asapRoot),
-    'domain_count' => count($domains),
     'symbol_count' => count($symbols),
+    'domain_count' => count($domains),
     'domains' => array_values($domains),
     'symbols' => $symbols,
 ];
@@ -104,7 +91,6 @@ if ($refbookRoot !== null) {
         fwrite(STDERR, 'ASAP_REFBOOK_MANIFEST_REFBOOK_DATA_ROOT_CREATE_FAILED=' . $dataRoot . PHP_EOL);
         exit(1);
     }
-
     file_put_contents($dataRoot . DIRECTORY_SEPARATOR . 'api_reference.generated.json', $json . PHP_EOL);
 }
 
@@ -134,11 +120,9 @@ function symbolOf(string $content): ?array
     if (preg_match('/^\s*namespace\s+([^;{]+)[;{]/m', $content, $ns) !== 1) {
         return null;
     }
-
     if (preg_match('/^\s*(?:abstract\s+|final\s+)?(class|interface|trait|enum)\s+([A-Za-z_][A-Za-z0-9_]*)/m', $content, $name) !== 1) {
         return null;
     }
-
     return [
         'namespace' => trim($ns[1]),
         'name' => $name[2],
@@ -153,16 +137,13 @@ function extractRefbookTag(string $content): ?array
     if (preg_match('/ASAP_REFBOOK:\s*(.*?)END_ASAP_REFBOOK/s', $content, $m) !== 1) {
         return null;
     }
-
     $parsed = parseBlock(trim($m[1]));
-
     foreach (['domain', 'role', 'contract'] as $required) {
         if (!array_key_exists($required, $parsed)) {
             fwrite(STDERR, 'ASAP_REFBOOK_MANIFEST_TAG_MISSING_FIELD=' . $required . PHP_EOL);
             exit(1);
         }
     }
-
     return $parsed;
 }
 
@@ -171,19 +152,15 @@ function parseBlock(string $block): array
 {
     $result = [];
     $currentListKey = null;
-
     foreach (preg_split('/\R/', $block) ?: [] as $line) {
         $line = preg_replace('/^\s*\*\s?/', '', $line) ?? $line;
         $line = rtrim($line);
-
         if ($line === '') {
             continue;
         }
-
         if (preg_match('/^\s*([a-zA-Z_][a-zA-Z0-9_]*):\s*(.*?)\s*$/', $line, $m) === 1) {
             $key = $m[1];
             $value = $m[2];
-
             if ($value === '') {
                 $result[$key] = [];
                 $currentListKey = $key;
@@ -191,16 +168,22 @@ function parseBlock(string $block): array
                 $result[$key] = $value;
                 $currentListKey = null;
             }
-
             continue;
         }
-
         if ($currentListKey !== null && preg_match('/^\s*-\s+(.+?)\s*$/', $line, $m) === 1) {
             $result[$currentListKey][] = $m[1];
         }
     }
-
     return $result;
+}
+
+/** @return list<string> */
+function normalizeList(mixed $value): array
+{
+    if (is_array($value)) {
+        return array_values(array_map('strval', $value));
+    }
+    return [$value];
 }
 
 /** @return list<array{name:string,signature:string,static:bool}> */

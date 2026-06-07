@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Link;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: LINK
+ *   role: Class Link belongs to the LINK ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the LINK domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - link-overview
+ *   diagrams:
+ *     - link-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED LINK
  *

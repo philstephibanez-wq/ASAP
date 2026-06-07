@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Json;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: JSON
+ *   role: Class Json belongs to the JSON ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the JSON domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - json-overview
+ *   diagrams:
+ *     - json-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED JSON
  *

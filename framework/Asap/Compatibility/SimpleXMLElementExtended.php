@@ -6,6 +6,20 @@ namespace ASAP\Compatibility;
 
 use SimpleXMLElement;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: COMPATIBILITY
+ *   role: Class SimpleXMLElementExtended belongs to the COMPATIBILITY ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the COMPATIBILITY domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - compatibility-overview
+ *   diagrams:
+ *     - compatibility-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *

@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Mail;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: MAIL
+ *   role: Class Mail belongs to the MAIL ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the MAIL domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - mail-overview
+ *   diagrams:
+ *     - mail-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED MAIL MESSAGE
  *

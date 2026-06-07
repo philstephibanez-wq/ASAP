@@ -6,6 +6,20 @@ namespace ASAP\Database;
 
 use SimpleXMLElement;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: DATABASE
+ *   role: Class DatabaseMultiConfigLoader belongs to the DATABASE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the DATABASE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - database-overview
+ *   diagrams:
+ *     - database-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC MULTI DATABASE CONFIG LOADER
  *

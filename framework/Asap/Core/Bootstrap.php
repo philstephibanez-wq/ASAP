@@ -8,6 +8,20 @@ use ASAP\Application\Application;
 use ASAP\Http\Request;
 use ASAP\Http\Response as HttpResponse;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: CORE
+ *   role: Class Bootstrap belongs to the CORE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the CORE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - core-overview
+ *   diagrams:
+ *     - core-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *

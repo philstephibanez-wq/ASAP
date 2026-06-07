@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Database;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: DATABASE
+ *   role: Class SqlServer belongs to the DATABASE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the DATABASE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - database-overview
+ *   diagrams:
+ *     - database-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC SQL SERVER FACTORY
  */

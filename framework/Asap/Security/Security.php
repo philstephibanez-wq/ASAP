@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Security;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: SECURITY
+ *   role: Class Security belongs to the SECURITY ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the SECURITY domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - security-overview
+ *   diagrams:
+ *     - security-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-COLLISION RECONCILIATION
  *

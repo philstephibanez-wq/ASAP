@@ -9,6 +9,20 @@ use ASAP\Http\Response;
 use ASAP\Template\TemplateRendererInterface;
 use ASAP\View\Html;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: CONTROLLER
+ *   role: Class Controller belongs to the CONTROLLER ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the CONTROLLER domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - controller-overview
+ *   diagrams:
+ *     - controller-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED BASE CONTROLLER
  *

@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Asset;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: ASSET
+ *   role: Class AssetRegistry belongs to the ASSET ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the ASSET domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - asset-overview
+ *   diagrams:
+ *     - asset-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC REGISTRY
  *

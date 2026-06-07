@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Ftp;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: FTP
+ *   role: Class Ftp belongs to the FTP ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the FTP domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - ftp-overview
+ *   diagrams:
+ *     - ftp-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED FTP BOUNDARY
  *

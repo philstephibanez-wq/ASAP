@@ -6,6 +6,20 @@ namespace ASAP\Application;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: APPLICATION
+ *   role: Class ApplicationPaths belongs to the APPLICATION ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the APPLICATION domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - application-overview
+ *   diagrams:
+ *     - application-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

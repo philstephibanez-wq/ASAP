@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Template;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: TEMPLATE
+ *   role: Class Smarty belongs to the TEMPLATE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the TEMPLATE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - template-overview
+ *   diagrams:
+ *     - template-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED SMARTY ADAPTER PLACEHOLDER
  *

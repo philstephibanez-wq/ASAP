@@ -12,6 +12,20 @@ use ASAP\Contract\ContractException;
 use ASAP\Fsm\StateDefinition;
 use ASAP\Fsm\TransitionDefinition;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: SECURITY
+ *   role: Class SiteSecurityPolicy belongs to the SECURITY ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the SECURITY domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - security-overview
+ *   diagrams:
+ *     - security-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

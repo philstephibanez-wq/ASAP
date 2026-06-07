@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Core;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: CORE
+ *   role: Class Kernel belongs to the CORE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the CORE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - core-overview
+ *   diagrams:
+ *     - core-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *

@@ -15,6 +15,20 @@ use ASAP\Security\SiteSecurityPolicyLoader;
 use ASAP\Site\SiteResolver;
 use ASAP\Template\TwigTemplateRenderer;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: APPLICATION
+ *   role: Class Application belongs to the APPLICATION ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the APPLICATION domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - application-overview
+ *   diagrams:
+ *     - application-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC APPLICATION KERNEL
  *

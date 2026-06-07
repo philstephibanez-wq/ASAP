@@ -6,6 +6,20 @@ namespace ASAP\Documentation;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: DOCUMENTATION
+ *   role: Class MarkdownPageRepository belongs to the DOCUMENTATION ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the DOCUMENTATION domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - documentation-overview
+ *   diagrams:
+ *     - documentation-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC SERVICE
  *

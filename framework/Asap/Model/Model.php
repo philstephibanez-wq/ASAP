@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Model;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: MODEL
+ *   role: Class Model belongs to the MODEL ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the MODEL domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - model-overview
+ *   diagrams:
+ *     - model-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED MODEL
  *

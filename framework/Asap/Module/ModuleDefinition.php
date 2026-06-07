@@ -6,6 +6,20 @@ namespace ASAP\Module;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: MODULE
+ *   role: Class ModuleDefinition belongs to the MODULE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the MODULE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - module-overview
+ *   diagrams:
+ *     - module-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VALUE OBJECT
  *

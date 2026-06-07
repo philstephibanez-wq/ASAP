@@ -7,6 +7,20 @@ namespace ASAP\View;
 use ASAP\Http\Response;
 use ASAP\Template\TemplateRendererInterface;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: VIEW
+ *   role: Class Html belongs to the VIEW ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the VIEW domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - view-overview
+ *   diagrams:
+ *     - view-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY-ALIGNED VIEW
  *

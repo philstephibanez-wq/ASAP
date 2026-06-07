@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\Package;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: PACKAGE
+ *   role: Class Package belongs to the PACKAGE ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the PACKAGE domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - package-overview
+ *   diagrams:
+ *     - package-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *

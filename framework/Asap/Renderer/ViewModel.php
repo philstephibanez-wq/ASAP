@@ -6,6 +6,20 @@ namespace ASAP\Renderer;
 
 use ASAP\Contract\ContractException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: RENDERER
+ *   role: Class ViewModel belongs to the RENDERER ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the RENDERER domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - renderer-overview
+ *   diagrams:
+ *     - renderer-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC VIEW MODEL
  *

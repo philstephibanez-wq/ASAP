@@ -3,6 +3,20 @@
 declare(strict_types=1);
 
 namespace ASAP\Log;
+/*
+ * ASAP_REFBOOK:
+ *   domain: LOG
+ *   role: Class Log belongs to the LOG ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the LOG domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - log-overview
+ *   diagrams:
+ *     - log-runtime
+ * END_ASAP_REFBOOK
+ */
 
 final class Log
 {
