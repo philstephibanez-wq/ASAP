@@ -15,7 +15,6 @@ namespace ASAP\Fsm;
  *
  * Since:
  *   P112P1
- /**
  * ASAP_REFBOOK:
  *   domain: FSM
  *   role: Public facade for ASAP finite-state workflow services.
@@ -28,7 +27,6 @@ namespace ASAP\Fsm;
  *   diagrams:
  *     - fsm-runtime
  * END_ASAP_REFBOOK
- */
  */
 final class Fsm
 {

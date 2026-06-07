@@ -18,7 +18,6 @@ namespace ASAP\Fsm;
  *   A TransitionResult exists only for a successful transition.
  *
  * @package ASAP\Fsm
- /**
  * ASAP_REFBOOK:
  *   domain: FSM
  *   role: Structured result returned after transition evaluation.
@@ -31,7 +30,6 @@ namespace ASAP\Fsm;
  *   diagrams:
  *     - fsm-runtime
  * END_ASAP_REFBOOK
- */
  */
 final class TransitionResult
 {

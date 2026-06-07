@@ -18,7 +18,6 @@ namespace ASAP\Fsm;
  *   A transition is valid only when all identifiers are explicit.
  *
  * @package ASAP\Fsm
- /**
  * ASAP_REFBOOK:
  *   domain: FSM
  *   role: Immutable definition of a transition between two states.
@@ -31,7 +30,6 @@ namespace ASAP\Fsm;
  *   diagrams:
  *     - fsm-runtime
  * END_ASAP_REFBOOK
- */
  */
 final class TransitionDefinition
 {

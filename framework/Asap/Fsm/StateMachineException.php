@@ -20,7 +20,6 @@ use RuntimeException;
  *   No silent fallback. Every invalid FSM operation must fail with an explicit code.
  *
  * @package ASAP\Fsm
- /**
  * ASAP_REFBOOK:
  *   domain: FSM
  *   role: Explicit exception type for FSM contract and runtime failures.
@@ -33,7 +32,6 @@ use RuntimeException;
  *   diagrams:
  *     - fsm-runtime
  * END_ASAP_REFBOOK
- */
  */
 final class StateMachineException extends RuntimeException
 {
