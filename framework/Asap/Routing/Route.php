@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ASAP\Routing;
 
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 use Attribute;
 
 /**
@@ -28,7 +31,6 @@ use Attribute;
  * Since:
  *   P112Q1
  */
-#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 /*
  * ASAP_REFBOOK:
  *   domain: ROUTING
@@ -43,11 +45,54 @@ use Attribute;
  *     - routing-runtime
  * END_ASAP_REFBOOK
  */
-final class Route
+#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
+#[AsapRefBookClass(
+    domain: 'ROUTING',
+    role: 'Declare explicit route metadata on controller methods',
+    responsibility: 'Carry route metadata for explicit compilation without registering, authorizing or dispatching routes automatically.',
+    contracts: [
+        'Route attributes are data-only declarations.',
+        'Compilation is explicit and never triggered during autoload.',
+        'Path, name, methods and format must be valid before a route can be compiled.',
+    ],
+    examples: ['routing-overview', 'attribute-routing'],
+    diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+    introducedIn: 'P112Q3E3'
+)]
+final class Route implements RefBookInspectableInterface
 {
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for route attributes',
+        behavior: 'Returns the stable ROUTING domain used by RefBook scanners and snapshot consumers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is ROUTING.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-refbook-domain'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'ROUTING';
+    }
+
     /**
      * @param string[] $methods HTTP methods accepted by the route.
      */
+    #[AsapRefBookMethod(
+        role: 'Create a route attribute declaration',
+        behavior: 'Stores controller method route metadata after validating the explicit path, name, method list and format.',
+        preconditions: ['Path must start with /.', 'Name must not be empty.', 'At least one HTTP method must be declared.', 'Format must not be empty.'],
+        postconditions: ['The route attribute is ready for explicit RouteDefinition compilation.'],
+        sideEffects: ['none'],
+        errors: ['ASAP_ROUTE_ATTRIBUTE_PATH_INVALID', 'ASAP_ROUTE_ATTRIBUTE_NAME_EMPTY', 'ASAP_ROUTE_ATTRIBUTE_METHODS_EMPTY', 'ASAP_ROUTE_ATTRIBUTE_METHOD_INVALID', 'ASAP_ROUTE_ATTRIBUTE_FORMAT_EMPTY'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['attribute-routing'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function __construct(
         public readonly string $path,
         public readonly string $name,
@@ -83,6 +128,18 @@ final class Route
     }
 
     /** @return string[] */
+    #[AsapRefBookMethod(
+        role: 'Return normalized route attribute HTTP methods',
+        behavior: 'Returns unique uppercase HTTP methods sorted deterministically from the attribute method list.',
+        preconditions: ['The route attribute has been constructed successfully.'],
+        postconditions: ['Returns unique uppercase sorted HTTP methods.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['attribute-routing'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function normalizedMethods(): array
     {
         $methods = array_values(array_unique(array_map(

@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace ASAP\Routing;
 
 use ASAP\Contract\ContractException;
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 
 /*
  * ASAP_REFBOOK:
@@ -39,13 +42,40 @@ use ASAP\Contract\ContractException;
  * Extended:
  *   P112Q1 adds methods/host/locale/format/Acl/Fsm/source metadata while
  *   preserving the original constructor arguments.
+ *   P112Q3E3 exposes ROUTING functional metadata through RefBook attributes.
  */
-final class RouteDefinition
+#[AsapRefBookClass(
+    domain: 'ROUTING',
+    role: 'Represent one explicit route declaration',
+    responsibility: 'Carry path, controller target, defaults, HTTP methods and route-level metadata used by Router and SecureDispatchGate.',
+    contracts: [
+        'Route name, path, controller class and action must be explicit non-empty strings.',
+        'Route paths must begin with a slash.',
+        'HTTP methods must be explicit and normalized before matching.',
+        'Route metadata is data only and must not dispatch, authorize or render.',
+    ],
+    examples: ['routing-overview', 'secure-dispatch-gate'],
+    diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+    introducedIn: 'P112Q3E3'
+)]
+final class RouteDefinition implements RefBookInspectableInterface
 {
     /**
      * @param array<string,string> $defaults Route defaults.
      * @param string[] $methods HTTP methods.
      */
+    #[AsapRefBookMethod(
+        role: 'Create one explicit route definition',
+        behavior: 'Stores route identity, target, defaults, HTTP methods and metadata after validating required route invariants.',
+        preconditions: ['Route name, path, controller class and action are provided explicitly.'],
+        postconditions: ['The route definition is immutable and ready for Router matching.'],
+        sideEffects: ['none'],
+        errors: ['ASAP_ROUTE_DEFINITION_INVALID', 'ASAP_ROUTE_PATH_INVALID', 'ASAP_ROUTE_METHODS_EMPTY', 'ASAP_ROUTE_METHOD_INVALID', 'ASAP_ROUTE_FORMAT_EMPTY'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview', 'secure-dispatch-gate'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function __construct(
         public readonly string $name,
         public readonly string $path,
@@ -86,7 +116,36 @@ final class RouteDefinition
         }
     }
 
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for route definitions',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is ROUTING.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-refbook-domain'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'ROUTING';
+    }
+
     /** @return string[] */
+    #[AsapRefBookMethod(
+        role: 'Return normalized HTTP methods for matching',
+        behavior: 'Normalizes configured HTTP method names by trimming, uppercasing, deduplicating and sorting them.',
+        preconditions: ['The route definition contains its declared methods.'],
+        postconditions: ['The returned methods are stable uppercase values suitable for exact comparison.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function normalizedMethods(): array
     {
         $methods = array_values(array_unique(array_map(
@@ -99,6 +158,18 @@ final class RouteDefinition
     }
 
     /** @return array<string,mixed> */
+    #[AsapRefBookMethod(
+        role: 'Export the route definition as a manifest row',
+        behavior: 'Returns a machine-readable row containing route target, defaults, methods and security metadata for manifest/debug consumers.',
+        preconditions: ['The route definition was validated successfully.'],
+        postconditions: ['The returned row contains normalized methods and all route metadata fields.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview', 'secure-dispatch-gate'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function toManifestRow(): array
     {
         return [

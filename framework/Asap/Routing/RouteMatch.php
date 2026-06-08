@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace ASAP\Routing;
 
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
+
 /*
  * ASAP_REFBOOK:
  *   domain: ROUTING
@@ -38,8 +42,22 @@ namespace ASAP\Routing;
  *
  * Extended:
  *   P112Q3B carries route-aware ACL and FSM metadata.
+ *   P112Q3E3 exposes ROUTING functional metadata through RefBook attributes.
  */
-final class RouteMatch
+#[AsapRefBookClass(
+    domain: 'ROUTING',
+    role: 'Carry one successful route match',
+    responsibility: 'Transport controller target, action, route params and route-level security metadata after matching succeeds.',
+    contracts: [
+        'RouteMatch is immutable data only.',
+        'RouteMatch must not dispatch controllers, authorize access or render output.',
+        'Route-level ACL and FSM metadata must remain explicit and inspectable.',
+    ],
+    examples: ['routing-overview', 'secure-dispatch-gate'],
+    diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+    introducedIn: 'P112Q3E3'
+)]
+final class RouteMatch implements RefBookInspectableInterface
 {
     /**
      * PUBLIC DTO CONSTRUCTOR
@@ -51,6 +69,18 @@ final class RouteMatch
      * @param string|null $acl Optional route ACL override, using `resource:privilege` or `role:resource:privilege`.
      * @param string|null $fsmGuard Optional route FSM signal override.
      */
+    #[AsapRefBookMethod(
+        role: 'Create one immutable route match result',
+        behavior: 'Stores the matched route name, explicit controller target, action, parameters and route-level security metadata.',
+        preconditions: ['Router matched an explicit route and validated the HTTP method.'],
+        postconditions: ['The match result is ready for secure dispatch without guessing route metadata.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview', 'secure-dispatch-gate'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function __construct(
         public readonly string $name,
         public readonly string $controllerClass,
@@ -59,5 +89,22 @@ final class RouteMatch
         public readonly ?string $acl = null,
         public readonly ?string $fsmGuard = null
     ) {
+    }
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for route matches',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is ROUTING.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-refbook-domain'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'ROUTING';
     }
 }

@@ -6,6 +6,9 @@ namespace ASAP\Routing;
 
 use ASAP\Contract\ContractException;
 use ASAP\Http\Request;
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 use ASAP\Site\SiteDefinition;
 use SimpleXMLElement;
 
@@ -44,17 +47,61 @@ use SimpleXMLElement;
  *   P112Q3B hydrates explicit route-level ACL/FSM metadata used by SecureDispatchGate.
  *   P112Q3B4 enforces explicit HTTP methods before secure dispatch, so form POST
  *   contracts cannot be reached through an implicit GET fallback.
+ *   P112Q3E3 exposes ROUTING functional metadata through RefBook attributes.
  */
-final class Router
+#[AsapRefBookClass(
+    domain: 'ROUTING',
+    role: 'Match normalized requests against explicit route definitions',
+    responsibility: 'Load declared routes, normalize request matching and return route matches carrying controller and route-level security metadata.',
+    contracts: [
+        'A Router must be built from an explicit non-empty route table.',
+        'Missing route files, invalid XML, missing targets and invalid route metadata fail explicitly.',
+        'Route matching must not silently fall back to a default controller or implicit route.',
+        'HTTP method mismatches fail with ASAP_ROUTE_METHOD_NOT_ALLOWED instead of dispatching by fallback.',
+    ],
+    examples: ['routing-overview', 'secure-dispatch-gate'],
+    diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+    introducedIn: 'P112Q3E3'
+)]
+final class Router implements RefBookInspectableInterface
 {
     /**
      * @param RouteDefinition[] $routes
      */
+    #[AsapRefBookMethod(
+        role: 'Build a router from an explicit route table',
+        behavior: 'Stores the provided route definitions and rejects an empty table before any request matching can occur.',
+        preconditions: ['The route table is already parsed into RouteDefinition instances.'],
+        postconditions: ['The router owns the explicit route table for future match calls.'],
+        sideEffects: ['none'],
+        errors: ['ASAP_ROUTE_TABLE_EMPTY'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function __construct(private readonly array $routes)
     {
         if ($this->routes === []) {
             throw ContractException::because('ASAP_ROUTE_TABLE_EMPTY');
         }
+    }
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for the routing engine',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is ROUTING.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-refbook-domain'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'ROUTING';
     }
 
     /**
@@ -64,6 +111,18 @@ final class Router
      *
      * @return self Router.
      */
+    #[AsapRefBookMethod(
+        role: 'Build a router from the official XML route contract',
+        behavior: 'Reads a route XML file, validates declared route targets and hydrates RouteDefinition objects including HTTP method, ACL and FSM metadata.',
+        preconditions: ['The route XML file path is explicit and must exist.', 'Every route must declare a target controller class and action.'],
+        postconditions: ['A Router is returned with an explicit non-empty route table.'],
+        sideEffects: ['Reads the route XML file from disk.'],
+        errors: ['ASAP_ROUTES_FILE_MISSING', 'ASAP_ROUTES_XML_INVALID', 'ASAP_ROUTE_TARGET_MISSING', 'ASAP_ROUTE_DEFAULT_PARAM_NAME_EMPTY', 'ASAP_ROUTE_ACL_METADATA_INVALID', 'ASAP_ROUTE_FSM_METADATA_INVALID'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview', 'secure-dispatch-gate'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public static function fromXml(string $routesFile): self
     {
         if (!is_file($routesFile)) {
@@ -127,6 +186,18 @@ final class Router
      *
      * @return RouteMatch Match.
      */
+    #[AsapRefBookMethod(
+        role: 'Match one request inside one resolved site',
+        behavior: 'Converts the request path to a site-local path, finds an explicit route, verifies the HTTP method and returns a RouteMatch carrying controller, action, params and route security metadata.',
+        preconditions: ['The Request path is normalized.', 'The SiteDefinition base path is already resolved.', 'The route table was built from explicit RouteDefinition objects.'],
+        postconditions: ['A RouteMatch is returned only when the path and HTTP method match an explicit route.'],
+        sideEffects: ['none'],
+        errors: ['ASAP_REQUEST_OUTSIDE_SITE_BASE_PATH', 'ASAP_ROUTE_METHOD_NOT_ALLOWED', 'ASAP_ROUTE_NOT_FOUND'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview', 'secure-dispatch-gate'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function match(Request $request, SiteDefinition $site): RouteMatch
     {
         $localPath = $this->toLocalPath($request->path, $site->basePath);

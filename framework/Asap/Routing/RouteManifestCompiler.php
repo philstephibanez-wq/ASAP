@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace ASAP\Routing;
 
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
+
 /*
  * ASAP_REFBOOK:
  *   domain: ROUTING
@@ -35,12 +39,54 @@ namespace ASAP\Routing;
  * Since:
  *   P112Q1
  */
-final class RouteManifestCompiler
+#[AsapRefBookClass(
+    domain: 'ROUTING',
+    role: 'Compile explicit route definitions into a runtime manifest',
+    responsibility: 'Sort route definitions, detect route conflicts, write PHP route manifests and load existing manifests explicitly.',
+    contracts: [
+        'Compilation must be explicitly invoked by a build/runtime boundary.',
+        'Duplicate route names and method/path signatures fail explicitly.',
+        'Manifest writing and loading never create implicit fallback routes.',
+    ],
+    examples: ['routing-overview', 'attribute-routing'],
+    diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+    introducedIn: 'P112Q3E3'
+)]
+final class RouteManifestCompiler implements RefBookInspectableInterface
 {
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for route manifest compilers',
+        behavior: 'Returns the stable ROUTING domain used by RefBook scanners and snapshot consumers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is ROUTING.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-refbook-domain'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'ROUTING';
+    }
+
     /**
      * @param RouteDefinition[] $routes
      * @return array<string,array<string,mixed>>
      */
+    #[AsapRefBookMethod(
+        role: 'Compile route definitions into a deterministic manifest array',
+        behavior: 'Sorts route definitions by priority/name, validates each route object and rejects duplicate names or path/method signatures.',
+        preconditions: ['At least one RouteDefinition is provided.', 'Every route item is a RouteDefinition instance.'],
+        postconditions: ['Returns a manifest indexed by route name with normalized route rows.'],
+        sideEffects: ['none'],
+        errors: ['ASAP_ROUTE_COMPILER_NO_ROUTES', 'ASAP_ROUTE_COMPILER_INVALID_ROUTE_OBJECT', 'ASAP_ROUTE_NAME_DUPLICATE', 'ASAP_ROUTE_PATH_METHOD_DUPLICATE'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['routing-overview', 'attribute-routing'],
+        diagrams: ['routing-runtime', 'secure-dispatch-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function compile(array $routes): array
     {
         if ($routes === []) {
@@ -91,6 +137,18 @@ final class RouteManifestCompiler
     /**
      * @param array<string,array<string,mixed>> $manifest
      */
+    #[AsapRefBookMethod(
+        role: 'Write a compiled route manifest as a PHP file',
+        behavior: 'Writes a non-empty compiled manifest to an explicit PHP file, creating the target directory when needed.',
+        preconditions: ['The manifest array must not be empty.', 'The target path must be writable or its directory creatable.'],
+        postconditions: ['The target PHP manifest file exists and returns the compiled manifest.'],
+        sideEffects: ['Creates the target directory when missing.', 'Writes the target manifest file.'],
+        errors: ['ASAP_ROUTE_MANIFEST_EMPTY', 'ASAP_ROUTE_MANIFEST_DIR_CREATE_FAILED', 'ASAP_ROUTE_MANIFEST_WRITE_FAILED'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['attribute-routing'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function writePhpManifest(array $manifest, string $targetFile): void
     {
         if ($manifest === []) {
@@ -111,6 +169,18 @@ final class RouteManifestCompiler
     }
 
     /** @return array<string,array<string,mixed>> */
+    #[AsapRefBookMethod(
+        role: 'Load a compiled PHP route manifest',
+        behavior: 'Requires an explicit PHP manifest file and validates that it returns a non-empty array.',
+        preconditions: ['The manifest file must exist.', 'The manifest file must return a non-empty array.'],
+        postconditions: ['Returns the manifest array loaded from the file.'],
+        sideEffects: ['Requires the target PHP manifest file.'],
+        errors: ['ASAP_ROUTE_MANIFEST_MISSING', 'ASAP_ROUTE_MANIFEST_INVALID'],
+        testRefs: ['tests/Contract/RefBookRoutingMetadataContractTest.php'],
+        examples: ['attribute-routing'],
+        diagrams: ['routing-runtime'],
+        introducedIn: 'P112Q3E3'
+    )]
     public function loadPhpManifest(string $manifestFile): array
     {
         if (!is_file($manifestFile)) {
