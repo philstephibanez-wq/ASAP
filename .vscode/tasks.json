@@ -102,6 +102,33 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "ASAP · Smoke P112Q3C Public API Coverage Matrix",
+      "type": "shell",
+      "command": "tools/smoke/run_p112q3c_public_api_coverage_matrix_smoke.cmd",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "ASAP · Coverage P112Q3C Public API Matrix",
+      "type": "shell",
+      "command": "tools/coverage/run_p112q3c_public_api_coverage_matrix.cmd",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "ASAP · Coverage P112Q3C Strict No Missing Unit",
+      "type": "shell",
+      "command": "tools/coverage/run_p112q3c_public_api_coverage_matrix_strict.cmd",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }
