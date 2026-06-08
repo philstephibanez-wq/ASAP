@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace ASAP\Fsm;
+
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC DTO
@@ -31,9 +34,39 @@ namespace ASAP\Fsm;
  *     - fsm-runtime
  * END_ASAP_REFBOOK
  */
-final class SignalDefinition
+#[AsapRefBookClass(
+    domain: 'FSM',
+    role: 'Define one explicit finite-state machine signal',
+    responsibility: 'Carry a stable signal identifier used to select declared transitions from the current FSM state.',
+    contracts: [
+        'The signal identifier is non-empty after trimming.',
+        'The signal definition does not mutate state.',
+        'The object is immutable after construction.',
+    ],
+    examples: ['fsm-definition'],
+    diagrams: ['fsm-runtime'],
+    introducedIn: 'P112Q3E1'
+)]
+final class SignalDefinition implements RefBookInspectableInterface
 {
     private string $id;
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for FSM signal definitions',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-refbook-domain'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'FSM';
+    }
 
     /**
      * PUBLIC API
@@ -42,6 +75,21 @@ final class SignalDefinition
      *
      * @throws StateMachineException When the signal identifier is empty.
      */
+    #[AsapRefBookMethod(
+        role: 'Create an immutable FSM signal definition',
+        behavior: 'Trims and validates a signal identifier before storing it as explicit transition-selection metadata.',
+        preconditions: ['The provided signal identifier is a string.'],
+        postconditions: [
+            'The stored signal identifier is non-empty.',
+            'The object remains immutable after construction.',
+        ],
+        sideEffects: ['Initializes this value object only.'],
+        errors: ['FSM_SIGNAL_UNKNOWN'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-definition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function __construct(string $id)
     {
         $id = trim($id);
@@ -58,6 +106,18 @@ final class SignalDefinition
      *
      * @return string Stable signal identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the stable FSM signal identifier',
+        behavior: 'Returns the validated signal identifier carried by this immutable definition.',
+        preconditions: ['The SignalDefinition has been successfully constructed.'],
+        postconditions: ['The returned identifier is non-empty.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-definition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function id(): string
     {
         return $this->id;

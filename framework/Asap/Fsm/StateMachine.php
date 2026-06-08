@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace ASAP\Fsm;
+
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC CLASS
@@ -31,7 +34,21 @@ namespace ASAP\Fsm;
  *     - fsm-runtime
  * END_ASAP_REFBOOK
  */
-final class StateMachine
+#[AsapRefBookClass(
+    domain: 'FSM',
+    role: 'Execute explicit finite-state machine transitions',
+    responsibility: 'Own the current state, validate incoming signals and apply only declared transitions.',
+    contracts: [
+        'No fallback state is created.',
+        'No implicit transition is accepted.',
+        'Transition actions are explicit StateActionInterface objects.',
+        'The current state changes only after a declared transition has been validated.',
+    ],
+    examples: ['fsm-basic-transition'],
+    diagrams: ['fsm-runtime'],
+    introducedIn: 'P112Q3E1'
+)]
+final class StateMachine implements RefBookInspectableInterface
 {
     /** @var array<string,StateDefinition> */
     private array $states = [];
@@ -42,6 +59,23 @@ final class StateMachine
     private string $currentState;
     private StateMemory $memory;
 
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for the FSM runtime',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-refbook-domain'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'FSM';
+    }
+
     /**
      * PUBLIC API
      *
@@ -51,6 +85,26 @@ final class StateMachine
      *
      * @throws StateMachineException When the initial state is not declared.
      */
+    #[AsapRefBookMethod(
+        role: 'Create a state machine from declared states and transitions',
+        behavior: 'Indexes state and transition definitions, validates the initial state and creates isolated FSM memory for this runtime instance.',
+        preconditions: [
+            'Every state entry is a StateDefinition instance.',
+            'Every transition entry is a TransitionDefinition instance.',
+            'The initial state identifier exists in the declared state set.',
+        ],
+        postconditions: [
+            'The current state equals the validated initial state.',
+            'The state machine owns a fresh StateMemory instance.',
+            'Declared transitions are addressable by their stable key.',
+        ],
+        sideEffects: ['Initializes runtime state and memory for this object only.'],
+        errors: ['FSM_CONTRACT_FAILED', 'FSM_STATE_UNKNOWN'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function __construct(array $states, array $transitions, string $initialState)
     {
         foreach ($states as $state) {
@@ -82,6 +136,18 @@ final class StateMachine
      *
      * @return string Current state identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the current FSM state identifier',
+        behavior: 'Returns the validated state identifier currently owned by this StateMachine instance.',
+        preconditions: ['The StateMachine has been successfully constructed.'],
+        postconditions: ['The returned value is one of the declared state identifiers.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function currentState(): string
     {
         return $this->currentState;
@@ -92,6 +158,18 @@ final class StateMachine
      *
      * @return StateMemory FSM memory object.
      */
+    #[AsapRefBookMethod(
+        role: 'Expose the FSM memory object for declared actions',
+        behavior: 'Returns the controlled memory container owned by this StateMachine instance.',
+        preconditions: ['The StateMachine has been successfully constructed.'],
+        postconditions: ['The same StateMemory instance is returned for this runtime object.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-action'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function memory(): StateMemory
     {
         return $this->memory;
@@ -115,6 +193,28 @@ final class StateMachine
      * Contract:
      *   No implicit transition. Unknown signal/state fails explicitly.
      */
+    #[AsapRefBookMethod(
+        role: 'Apply one signal to the current state',
+        behavior: 'Looks up the declared transition for current state and signal, executes its optional action, updates the current state and returns a TransitionResult.',
+        preconditions: [
+            'The signal is a declared transition signal for the current state.',
+            'The target state exists in the declared state set.',
+        ],
+        postconditions: [
+            'The current state equals the transition target state.',
+            'The returned TransitionResult reports previous state, signal and next state.',
+            'No state is changed when the transition is not allowed.',
+        ],
+        sideEffects: [
+            'Mutates the current state on success.',
+            'May execute the declared StateActionInterface action.',
+        ],
+        errors: ['FSM_TRANSITION_NOT_ALLOWED', 'FSM_STATE_UNKNOWN'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function apply(string $signal): TransitionResult
     {
         $key = $this->currentState . '::' . $signal;

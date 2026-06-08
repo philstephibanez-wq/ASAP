@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace ASAP\Fsm;
+
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC DTO
@@ -31,10 +34,40 @@ namespace ASAP\Fsm;
  *     - fsm-runtime
  * END_ASAP_REFBOOK
  */
-final class StateDefinition
+#[AsapRefBookClass(
+    domain: 'FSM',
+    role: 'Define one explicit finite-state machine state',
+    responsibility: 'Carry a stable state identifier and human-readable label used by StateMachine definitions.',
+    contracts: [
+        'The state identifier is non-empty after trimming.',
+        'The label never participates in transition selection.',
+        'The object is immutable after construction.',
+    ],
+    examples: ['fsm-definition'],
+    diagrams: ['fsm-runtime'],
+    introducedIn: 'P112Q3E1'
+)]
+final class StateDefinition implements RefBookInspectableInterface
 {
     private string $id;
     private string $label;
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for FSM state definitions',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-refbook-domain'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'FSM';
+    }
 
     /**
      * PUBLIC API
@@ -44,6 +77,21 @@ final class StateDefinition
      *
      * @throws StateMachineException When the state identifier is empty.
      */
+    #[AsapRefBookMethod(
+        role: 'Create an immutable FSM state definition',
+        behavior: 'Normalizes the state identifier, validates that it is not empty and stores a label for human-readable documentation.',
+        preconditions: ['The provided state identifier must not be empty after trimming.'],
+        postconditions: [
+            'The state identifier is stable and non-empty.',
+            'The label equals the provided label or the state identifier when no label is provided.',
+        ],
+        sideEffects: ['none'],
+        errors: ['FSM_STATE_UNKNOWN'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-definition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function __construct(string $id, ?string $label = null)
     {
         $id = trim($id);
@@ -61,6 +109,18 @@ final class StateDefinition
      *
      * @return string Stable state identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the stable FSM state identifier',
+        behavior: 'Returns the normalized identifier used by TransitionDefinition and StateMachine transition lookup.',
+        preconditions: ['The StateDefinition has been successfully constructed.'],
+        postconditions: ['The returned identifier is non-empty.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-definition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function id(): string
     {
         return $this->id;
@@ -71,6 +131,18 @@ final class StateDefinition
      *
      * @return string Human-readable state label.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the human-readable FSM state label',
+        behavior: 'Returns the label used for documentation, diagnostics or UI display without changing transition semantics.',
+        preconditions: ['The StateDefinition has been successfully constructed.'],
+        postconditions: ['The returned label is stable for this object.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-definition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function label(): string
     {
         return $this->label;

@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace ASAP\Fsm;
 
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 use RuntimeException;
 
 /**
@@ -33,7 +35,20 @@ use RuntimeException;
  *     - fsm-runtime
  * END_ASAP_REFBOOK
  */
-final class StateMachineException extends RuntimeException
+#[AsapRefBookClass(
+    domain: 'FSM',
+    role: 'Represent explicit FSM contract and runtime failures',
+    responsibility: 'Carry stable FSM error codes and human-readable failure details without silent fallback.',
+    contracts: [
+        'Invalid FSM operations fail explicitly.',
+        'Stable FSM error codes remain distinguishable from generic exceptions.',
+        'The exception builder keeps the stable code as message prefix.',
+    ],
+    examples: ['fsm-error'],
+    diagrams: ['fsm-runtime'],
+    introducedIn: 'P112Q3E1'
+)]
+final class StateMachineException extends RuntimeException implements RefBookInspectableInterface
 {
     public const SIGNAL_UNKNOWN = 'FSM_SIGNAL_UNKNOWN';
     public const STATE_UNKNOWN = 'FSM_STATE_UNKNOWN';
@@ -43,6 +58,23 @@ final class StateMachineException extends RuntimeException
     public const TIMEOUT_REACHED = 'FSM_TIMEOUT_REACHED';
     public const SERIALIZATION_FORBIDDEN = 'FSM_SERIALIZATION_FORBIDDEN';
     public const CONTRACT_FAILED = 'FSM_CONTRACT_FAILED';
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for FSM exceptions',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-refbook-domain'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'FSM';
+    }
 
     /**
      * PUBLIC API
@@ -61,6 +93,21 @@ final class StateMachineException extends RuntimeException
      * Contract:
      *   The returned exception must keep the stable error code as message prefix.
      */
+    #[AsapRefBookMethod(
+        role: 'Create an explicit FSM contract exception',
+        behavior: 'Builds a StateMachineException whose message starts with a stable FSM error code followed by the failure detail.',
+        preconditions: [
+            'The code name is a stable FSM error code.',
+            'The detail explains the human-readable failure cause.',
+        ],
+        postconditions: ['The returned exception message begins with the stable error code.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-error'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public static function contract(string $codeName, string $detail): self
     {
         return new self($codeName . ': ' . $detail);

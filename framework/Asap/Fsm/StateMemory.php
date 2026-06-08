@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace ASAP\Fsm;
+
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC DTO
@@ -31,10 +34,40 @@ namespace ASAP\Fsm;
  *     - fsm-runtime
  * END_ASAP_REFBOOK
  */
-final class StateMemory
+#[AsapRefBookClass(
+    domain: 'FSM',
+    role: 'Hold explicit memory values for one FSM runtime instance',
+    responsibility: 'Provide controlled key/value storage for StateMachine actions without owning transition selection.',
+    contracts: [
+        'Memory keys must be explicit non-empty strings.',
+        'Missing keys fail explicitly.',
+        'The memory object does not decide transitions or create fallback states.',
+    ],
+    examples: ['fsm-basic-transition', 'fsm-action'],
+    diagrams: ['fsm-runtime'],
+    introducedIn: 'P112Q3E1'
+)]
+final class StateMemory implements RefBookInspectableInterface
 {
     /** @var array<string,mixed> */
     private array $values = [];
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for FSM memory',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-refbook-domain'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'FSM';
+    }
 
     /**
      * PUBLIC API
@@ -46,6 +79,18 @@ final class StateMemory
      *
      * @throws StateMachineException When the key is empty.
      */
+    #[AsapRefBookMethod(
+        role: 'Set one explicit FSM memory value',
+        behavior: 'Validates the memory key and stores the provided value for later retrieval by declared FSM actions.',
+        preconditions: ['The memory key must not be empty after trimming.'],
+        postconditions: ['The key exists in memory and maps to the provided value.'],
+        sideEffects: ['Mutates this StateMemory instance.'],
+        errors: ['FSM_MEMORY_CONTRACT_FAILED'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-action'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function set(string $key, mixed $value): void
     {
         $key = trim($key);
@@ -66,6 +111,18 @@ final class StateMemory
      *
      * @throws StateMachineException When the key does not exist.
      */
+    #[AsapRefBookMethod(
+        role: 'Read one explicit FSM memory value',
+        behavior: 'Returns the value stored under an existing memory key and fails explicitly when the key is absent.',
+        preconditions: ['The requested key exists in memory.'],
+        postconditions: ['The stored value is returned without modifying memory.'],
+        sideEffects: ['none'],
+        errors: ['FSM_MEMORY_CONTRACT_FAILED'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-action'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function get(string $key): mixed
     {
         if (!array_key_exists($key, $this->values)) {
@@ -80,6 +137,18 @@ final class StateMemory
      *
      * @return array<string,mixed> Memory values for controlled export.
      */
+    #[AsapRefBookMethod(
+        role: 'Export explicit FSM memory values',
+        behavior: 'Returns the current memory map for diagnostics, reports or controlled consumers.',
+        preconditions: ['The StateMemory instance exists.'],
+        postconditions: ['The returned array mirrors current memory values.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-action'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function export(): array
     {
         return $this->values;

@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0..\.."
-php "tools\refbook\p112q3e_refbook_reflection_contract.php"
+php "tools\recipes\p112q3e1_delivery_recipe.php"
 set "EXITCODE=%ERRORLEVEL%"
 echo.
 echo ExitCode=%EXITCODE%

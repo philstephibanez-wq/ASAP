@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-
 namespace ASAP\Fsm;
+
+use ASAP\RefBook\Attribute\AsapRefBookClass;
+use ASAP\RefBook\Attribute\AsapRefBookMethod;
+use ASAP\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC DTO
@@ -31,11 +34,41 @@ namespace ASAP\Fsm;
  *     - fsm-runtime
  * END_ASAP_REFBOOK
  */
-final class TransitionResult
+#[AsapRefBookClass(
+    domain: 'FSM',
+    role: 'Represent a successful FSM transition outcome',
+    responsibility: 'Carry previous state, applied signal and next state after StateMachine validation.',
+    contracts: [
+        'A TransitionResult is created only for a successful transition.',
+        'It contains no hidden fallback state.',
+        'It is immutable after construction.',
+    ],
+    examples: ['fsm-basic-transition'],
+    diagrams: ['fsm-runtime'],
+    introducedIn: 'P112Q3E1'
+)]
+final class TransitionResult implements RefBookInspectableInterface
 {
     private string $fromState;
     private string $signal;
     private string $toState;
+
+    #[AsapRefBookMethod(
+        role: 'Expose the RefBook domain for FSM transition results',
+        behavior: 'Returns the stable RefBook domain used by scanners, snapshots and ASAP_REF_BOOK renderers.',
+        preconditions: ['none'],
+        postconditions: ['The returned domain is FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-refbook-domain'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
+    public static function refBookDomain(): string
+    {
+        return 'FSM';
+    }
 
     /**
      * PUBLIC API
@@ -44,6 +77,18 @@ final class TransitionResult
      * @param string $signal Signal identifier.
      * @param string $toState Next state identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Create an immutable FSM transition result',
+        behavior: 'Stores previous state, applied signal and next state after a successful StateMachine transition.',
+        preconditions: ['The caller has already validated and applied the transition.'],
+        postconditions: ['The result exposes transition outcome values without mutating the FSM.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function __construct(string $fromState, string $signal, string $toState)
     {
         $this->fromState = $fromState;
@@ -56,6 +101,18 @@ final class TransitionResult
      *
      * @return string Previous state identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the previous FSM state identifier',
+        behavior: 'Returns the state from which the successful transition started.',
+        preconditions: ['The TransitionResult has been successfully constructed.'],
+        postconditions: ['The returned value is stable for this result object.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function fromState(): string
     {
         return $this->fromState;
@@ -66,6 +123,18 @@ final class TransitionResult
      *
      * @return string Signal identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the applied FSM signal identifier',
+        behavior: 'Returns the signal that triggered the successful transition.',
+        preconditions: ['The TransitionResult has been successfully constructed.'],
+        postconditions: ['The returned value is stable for this result object.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function signal(): string
     {
         return $this->signal;
@@ -76,6 +145,18 @@ final class TransitionResult
      *
      * @return string Next state identifier.
      */
+    #[AsapRefBookMethod(
+        role: 'Read the next FSM state identifier',
+        behavior: 'Returns the state reached by the successful transition.',
+        preconditions: ['The TransitionResult has been successfully constructed.'],
+        postconditions: ['The returned value is stable for this result object.'],
+        sideEffects: ['none'],
+        errors: ['none'],
+        testRefs: ['tests/Contract/RefBookFsmMetadataContractTest.php'],
+        examples: ['fsm-basic-transition'],
+        diagrams: ['fsm-runtime'],
+        introducedIn: 'P112Q3E1'
+    )]
     public function toState(): string
     {
         return $this->toState;
