@@ -1,0 +1,3 @@
+- Added reviewed FSM first-batch source documentation translations.
+- Added idempotent catalog apply script.
+- Added smoke for visible FSM facade strings.
