@@ -38,6 +38,7 @@ $steps = [
     ['id' => 'P112Q3E4_UNIT', 'command' => ['php', 'tests/Contract/RefBookHttpMetadataContractTest.php']],
     ['id' => 'P112Q3E4_SMOKE', 'command' => ['php', 'tools/smoke/p112q3e4_refbook_http_metadata_smoke.php']],
     ['id' => 'P112Q3E5A_SMOKE', 'command' => ['php', 'tools/smoke/p112q3e5a_router_legacy_vs_routing_canonical_smoke.php']],
+    ['id' => 'P112Q3F_SMOKE', 'command' => ['php', 'tools/smoke/p112q3f_asap_global_robot_chrome_extension_smoke.php']],
 ];
 
 $results = [];
