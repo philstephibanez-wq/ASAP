@@ -1,14 +1,14 @@
-# P112Q3E3B_ASAP_REFBOOK_ROUTING_SELF_RETURN_TYPE_TEST_FIX
+# P112Q3E3C_ASAP_GLOBAL_REGRESSION_WRAPPER_OBSERVABILITY_FIX
 
 Target root: `H:\ASAP`
 
 Files:
 
-- `tests/Contract/RefBookRoutingMetadataContractTest.php`
-- `DOC/P112Q3E3B_ASAP_REFBOOK_ROUTING_SELF_RETURN_TYPE_TEST_FIX.md`
-- `DOC/P112Q3E3B_CHANGELOG.md`
-- `DOC/P112Q3E3B_PATCH.md`
-- `DOC/P112Q3E3B_TODO.md`
+- `tools/recipes/run_asap_global_regression_recipe.cmd`
+- `DOC/P112Q3E3C_ASAP_GLOBAL_REGRESSION_WRAPPER_OBSERVABILITY_FIX.md`
+- `DOC/P112Q3E3C_CHANGELOG.md`
+- `DOC/P112Q3E3C_PATCH.md`
+- `DOC/P112Q3E3C_TODO.md`
 
 No generated `var/` artifact is included.
-No framework runtime code is modified.
+No PHP framework code is modified.
