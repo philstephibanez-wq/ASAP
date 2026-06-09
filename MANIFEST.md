@@ -1,14 +1,12 @@
-# P112Q3E3C_ASAP_GLOBAL_REGRESSION_WRAPPER_OBSERVABILITY_FIX
+# P112Q3E4C_ASAP_REFBOOK_HTTP_SMOKE_MARKER_ALIGNMENT
 
 Target root: `H:\ASAP`
 
-Files:
+This full-files patch aligns the P112Q3E4 HTTP smoke script with the stable P112Q3E4 delivery marker after Response metadata alignment.
 
-- `tools/recipes/run_asap_global_regression_recipe.cmd`
-- `DOC/P112Q3E3C_ASAP_GLOBAL_REGRESSION_WRAPPER_OBSERVABILITY_FIX.md`
-- `DOC/P112Q3E3C_CHANGELOG.md`
-- `DOC/P112Q3E3C_PATCH.md`
-- `DOC/P112Q3E3C_TODO.md`
+Included files:
+
+- `tools/smoke/p112q3e4_refbook_http_metadata_smoke.php`
+- `DOC/P112Q3E4C_*`
 
 No generated `var/` artifact is included.
-No PHP framework code is modified.

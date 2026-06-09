@@ -35,6 +35,8 @@ $steps = [
     ['id' => 'P112Q3E2_SMOKE', 'command' => ['php', 'tools/smoke/p112q3e2_refbook_acl_metadata_smoke.php']],
     ['id' => 'P112Q3E3_UNIT', 'command' => ['php', 'tests/Contract/RefBookRoutingMetadataContractTest.php']],
     ['id' => 'P112Q3E3_SMOKE', 'command' => ['php', 'tools/smoke/p112q3e3_refbook_routing_metadata_smoke.php']],
+    ['id' => 'P112Q3E4_UNIT', 'command' => ['php', 'tests/Contract/RefBookHttpMetadataContractTest.php']],
+    ['id' => 'P112Q3E4_SMOKE', 'command' => ['php', 'tools/smoke/p112q3e4_refbook_http_metadata_smoke.php']],
 ];
 
 $results = [];
@@ -80,35 +82,14 @@ function runStep(string $root, string $id, array $command): array
 {
     $relative = $command[1] ?? '';
     if ($relative === '' || !is_file($root . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relative))) {
-        return [
-            'id' => $id,
-            'status' => 'FAILED',
-            'exit_code' => 127,
-            'command' => implode(' ', $command),
-            'output' => 'REQUIRED_STEP_FILE_MISSING: ' . $relative,
-        ];
+        return ['id' => $id, 'status' => 'FAILED', 'exit_code' => 127, 'command' => implode(' ', $command), 'output' => 'REQUIRED_STEP_FILE_MISSING: ' . $relative];
     }
-
     $parts = [];
-    foreach ($command as $part) {
-        $parts[] = escapeshellarg($part);
-    }
+    foreach ($command as $part) { $parts[] = escapeshellarg($part); }
     $cmd = implode(' ', $parts);
-    $descriptor = [
-        0 => ['pipe', 'r'],
-        1 => ['pipe', 'w'],
-        2 => ['pipe', 'w'],
-    ];
+    $descriptor = [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']];
     $process = proc_open($cmd, $descriptor, $pipes, $root);
-    if (!is_resource($process)) {
-        return [
-            'id' => $id,
-            'status' => 'FAILED',
-            'exit_code' => 126,
-            'command' => $cmd,
-            'output' => 'PROCESS_START_FAILED',
-        ];
-    }
+    if (!is_resource($process)) { return ['id' => $id, 'status' => 'FAILED', 'exit_code' => 126, 'command' => $cmd, 'output' => 'PROCESS_START_FAILED']; }
     fclose($pipes[0]);
     $stdout = stream_get_contents($pipes[1]);
     $stderr = stream_get_contents($pipes[2]);
@@ -116,53 +97,33 @@ function runStep(string $root, string $id, array $command): array
     fclose($pipes[2]);
     $exitCode = proc_close($process);
     $output = trim((is_string($stdout) ? $stdout : '') . PHP_EOL . (is_string($stderr) ? $stderr : ''));
-
-    return [
-        'id' => $id,
-        'status' => $exitCode === 0 ? 'OK' : 'FAILED',
-        'exit_code' => $exitCode,
-        'command' => $cmd,
-        'output' => $output,
-    ];
+    return ['id' => $id, 'status' => $exitCode === 0 ? 'OK' : 'FAILED', 'exit_code' => $exitCode, 'command' => $cmd, 'output' => $output];
 }
 
 function ensureDirectory(string $path): void
 {
-    if (is_dir($path)) {
-        return;
-    }
-    if (!mkdir($path, 0775, true) && !is_dir($path)) {
-        fwrite(STDERR, 'ASAP_GLOBAL_REGRESSION_RECIPE_DIRECTORY_FAILED: ' . $path . PHP_EOL);
-        exit(1);
-    }
+    if (is_dir($path)) { return; }
+    if (!mkdir($path, 0775, true) && !is_dir($path)) { fwrite(STDERR, 'ASAP_GLOBAL_REGRESSION_RECIPE_DIRECTORY_FAILED: ' . $path . PHP_EOL); exit(1); }
 }
 
 /** @param array<string,mixed> $data */
 function writeJson(string $path, array $data): void
 {
     $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-    if (!is_string($json)) {
-        fwrite(STDERR, 'ASAP_GLOBAL_REGRESSION_RECIPE_JSON_FAILED: ' . $path . PHP_EOL);
-        exit(1);
-    }
+    if (!is_string($json)) { fwrite(STDERR, 'ASAP_GLOBAL_REGRESSION_RECIPE_JSON_FAILED: ' . $path . PHP_EOL); exit(1); }
     writeText($path, $json . PHP_EOL);
 }
 
 function writeText(string $path, string $content): void
 {
-    if (file_put_contents($path, $content) === false) {
-        fwrite(STDERR, 'ASAP_GLOBAL_REGRESSION_RECIPE_WRITE_FAILED: ' . $path . PHP_EOL);
-        exit(1);
-    }
+    if (file_put_contents($path, $content) === false) { fwrite(STDERR, 'ASAP_GLOBAL_REGRESSION_RECIPE_WRITE_FAILED: ' . $path . PHP_EOL); exit(1); }
 }
 
 /** @param array<string,mixed> $report */
 function buildMarkdown(array $report): string
 {
     $lines = ['# ASAP Global Regression Recipe', '', 'Status: **' . $report['summary']['status'] . '**', '', '## Steps', ''];
-    foreach ($report['steps'] as $step) {
-        $lines[] = '- ' . $step['status'] . ' — ' . $step['id'] . ' — ExitCode=' . (string) $step['exit_code'];
-    }
+    foreach ($report['steps'] as $step) { $lines[] = '- ' . $step['status'] . ' — ' . $step['id'] . ' — ExitCode=' . (string) $step['exit_code']; }
     return implode(PHP_EOL, $lines) . PHP_EOL;
 }
 
