@@ -55,8 +55,8 @@ use Opus\Template\ScoreTemplateRenderer;
  *
  * Extended:
  *   P112Q3B routes requests through SecureDispatchGate before controller dispatch.
- *   P116B2 uses the native ScoreTemplate renderer. No Twig or Symfony runtime
- *   dependency is allowed in the application pipeline.
+ *   P116B2 uses the native ScoreTemplate renderer. No external templating framework
+ *   runtime dependency is allowed in the application pipeline.
  */
 final class Application
 {
