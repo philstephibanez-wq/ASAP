@@ -15,7 +15,19 @@ if ($classes === []) {
     exit(1);
 }
 
+$diagnostics = $catalog->diagnostics();
+if ($diagnostics !== []) {
+    foreach ($diagnostics as $diagnostic) {
+        fwrite(STDERR, $diagnostic . PHP_EOL);
+    }
+    fwrite(STDERR, 'P116B2_LIVE_CLASS_CATALOG_DIAGNOSTICS_FOUND=' . count($diagnostics) . PHP_EOL);
+    exit(1);
+}
+
 $foundCatalog = false;
+$foundLegacySimpleXml = false;
+$foundLegacySingleton = false;
+
 foreach ($classes as $class) {
     $data = $class->toArray();
     if (($data['domain'] ?? '') === 'unclassified') {
@@ -33,10 +45,21 @@ foreach ($classes as $class) {
     if (($data['name'] ?? '') === RuntimeClassCatalog::class) {
         $foundCatalog = true;
     }
+    if (($data['name'] ?? '') === 'OPUS_SimpleXMLElementExtended' && ($data['domain'] ?? '') === 'Compatibility') {
+        $foundLegacySimpleXml = true;
+    }
+    if (($data['name'] ?? '') === 'OPUS_Singleton' && ($data['domain'] ?? '') === 'Compatibility') {
+        $foundLegacySingleton = true;
+    }
 }
 
 if (!$foundCatalog) {
     fwrite(STDERR, 'P116B2_RUNTIME_CLASS_CATALOG_NOT_DISCOVERED' . PHP_EOL);
+    exit(1);
+}
+
+if (!$foundLegacySimpleXml || !$foundLegacySingleton) {
+    fwrite(STDERR, 'P116B2_LEGACY_GLOBAL_COMPATIBILITY_SYMBOLS_NOT_DISCOVERED' . PHP_EOL);
     exit(1);
 }
 
@@ -53,4 +76,4 @@ if (stripos(json_encode($classes, JSON_THROW_ON_ERROR), 'unclassified') !== fals
 
 echo 'P116B2_LIVE_CLASS_CATALOG_SMOKE_OK' . PHP_EOL;
 echo 'live_classes=' . count($classes) . PHP_EOL;
-echo 'diagnostics=' . count($catalog->diagnostics()) . PHP_EOL;
+echo 'diagnostics=0' . PHP_EOL;
