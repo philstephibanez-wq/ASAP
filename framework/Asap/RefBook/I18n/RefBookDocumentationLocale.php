@@ -6,6 +6,20 @@ namespace ASAP\RefBook\I18n;
 
 use InvalidArgumentException;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: REFBOOK
+ *   role: Class RefBookDocumentationLocale belongs to the REFBOOK ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the REFBOOK domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - refbook-overview
+ *   diagrams:
+ *     - refbook-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC RefBook documentation locale contract.
  *

@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace ASAP\RefBook\Model;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: REFBOOK
+ *   role: Class RefBookScanResult belongs to the REFBOOK ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the REFBOOK domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - refbook-overview
+ *   diagrams:
+ *     - refbook-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC immutable RefBook scan result.
  *

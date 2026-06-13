@@ -8,6 +8,20 @@ use ASAP\RefBook\Model\RefBookClassEntry;
 use ASAP\RefBook\Model\RefBookMethodEntry;
 use ASAP\RefBook\Model\RefBookScanResult;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: REFBOOK
+ *   role: Class RefBookContractValidator belongs to the REFBOOK ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the REFBOOK domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - refbook-overview
+ *   diagrams:
+ *     - refbook-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC RefBook contract validator.
  *

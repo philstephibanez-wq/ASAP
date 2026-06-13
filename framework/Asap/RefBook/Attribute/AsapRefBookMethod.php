@@ -20,6 +20,20 @@ use Attribute;
  *   - method-level metadata is never inherited silently from class metadata.
  */
 #[Attribute(Attribute::TARGET_METHOD)]
+/*
+ * ASAP_REFBOOK:
+ *   domain: REFBOOK
+ *   role: Class AsapRefBookMethod belongs to the REFBOOK ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the REFBOOK domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - refbook-overview
+ *   diagrams:
+ *     - refbook-runtime
+ * END_ASAP_REFBOOK
+ */
 final class AsapRefBookMethod
 {
     private string $role;

@@ -19,6 +19,20 @@ use ReflectionType;
 use ReflectionUnionType;
 use Throwable;
 
+/*
+ * ASAP_REFBOOK:
+ *   domain: REFBOOK
+ *   role: Class RefBookReflectionScanner belongs to the REFBOOK ASAP framework domain.
+ *   contract:
+ *     - keeps responsibility limited to the REFBOOK domain
+ *     - exposes explicit behavior for the RefBook extractor
+ *     - must not rely on silent fallback behavior
+ *   examples:
+ *     - refbook-overview
+ *   diagrams:
+ *     - refbook-runtime
+ * END_ASAP_REFBOOK
+ */
 /**
  * PUBLIC RefBook Reflection scanner.
  *
