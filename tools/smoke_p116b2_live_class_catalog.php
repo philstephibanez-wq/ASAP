@@ -2,11 +2,37 @@
 
 declare(strict_types=1);
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+$projectRoot = dirname(__DIR__);
+$composerPath = $projectRoot . '/composer.json';
+$composer = json_decode((string) file_get_contents($composerPath), true, 512, JSON_THROW_ON_ERROR);
+$requires = $composer['require'] ?? [];
+foreach (array_keys($requires) as $packageName) {
+    if (stripos((string) $packageName, 'twig') !== false || stripos((string) $packageName, 'symfony') !== false) {
+        fwrite(STDERR, 'P116B2_FORBIDDEN_COMPOSER_DEPENDENCY=' . $packageName . PHP_EOL);
+        exit(1);
+    }
+}
+
+$forbiddenTemplateFiles = [
+    'framework/Opus/Template/Adapter.php',
+    'framework/Opus/Template/Smarty.php',
+    'framework/Opus/Template/Twig.php',
+    'framework/Opus/Template/TwigTemplateRenderer.php',
+    'framework/Opus/Template/X64.php',
+];
+
+foreach ($forbiddenTemplateFiles as $relativePath) {
+    if (is_file($projectRoot . '/' . $relativePath)) {
+        fwrite(STDERR, 'P116B2_FORBIDDEN_TEMPLATE_ENGINE_FILE_PRESENT=' . $relativePath . PHP_EOL);
+        exit(1);
+    }
+}
+
+require_once $projectRoot . '/vendor/autoload.php';
 
 use Opus\Documentation\RuntimeClassCatalog;
 
-$root = dirname(__DIR__) . '/framework/Opus';
+$root = $projectRoot . '/framework/Opus';
 $catalog = new RuntimeClassCatalog($root);
 $classes = $catalog->all();
 
@@ -69,11 +95,18 @@ if ($matches === []) {
     exit(1);
 }
 
-if (stripos(json_encode($classes, JSON_THROW_ON_ERROR), 'unclassified') !== false) {
+$encodedClasses = json_encode($classes, JSON_THROW_ON_ERROR);
+if (stripos($encodedClasses, 'unclassified') !== false) {
     fwrite(STDERR, 'P116B2_FORBIDDEN_UNCLASSIFIED_TEXT_FOUND' . PHP_EOL);
+    exit(1);
+}
+
+if (stripos($encodedClasses, 'TwigTemplateRenderer') !== false || stripos($encodedClasses, 'Opus\\Template\\Smarty') !== false) {
+    fwrite(STDERR, 'P116B2_FORBIDDEN_LEGACY_TEMPLATE_SYMBOL_FOUND' . PHP_EOL);
     exit(1);
 }
 
 echo 'P116B2_LIVE_CLASS_CATALOG_SMOKE_OK' . PHP_EOL;
 echo 'live_classes=' . count($classes) . PHP_EOL;
 echo 'diagnostics=0' . PHP_EOL;
+echo 'composer_forbidden_dependencies=0' . PHP_EOL;
