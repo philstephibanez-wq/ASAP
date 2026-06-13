@@ -9,6 +9,17 @@ function Fail([string]$Message) {
     exit 1
 }
 
+function Get-ItemParentPath($Item) {
+    if ($Item.PSIsContainer) {
+        if ($null -eq $Item.Parent) {
+            return $null
+        }
+        return $Item.Parent.FullName
+    }
+
+    return $Item.DirectoryName
+}
+
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 Set-Location $Root
 
@@ -23,39 +34,56 @@ if (-not (Test-Path (Join-Path $Root '.git'))) {
     Fail 'RENAMING_CONTRACT_FAILED: .git directory not found. Run from a real framework clone.'
 }
 
+$asapDir = Join-Path $Root 'framework\Asap'
+$opusDir = Join-Path $Root 'framework\Opus'
+$asapExists = Test-Path $asapDir
+$opusExists = Test-Path $opusDir
+$partialResume = (-not $asapExists) -and $opusExists
+
 $gitStatus = (& git status --short 2>$null)
 if ($LASTEXITCODE -ne 0) {
     Fail 'RENAMING_CONTRACT_FAILED: git status failed.'
 }
 
-if (($gitStatus | Measure-Object).Count -gt 0) {
+if ((($gitStatus | Measure-Object).Count -gt 0) -and (-not $partialResume)) {
     Fail 'RENAMING_CONTRACT_FAILED: working tree is not clean. Commit/stash before renaming.'
 }
 
-$asapDir = Join-Path $Root 'framework\Asap'
-$opusDir = Join-Path $Root 'framework\Opus'
+if ($partialResume) {
+    Write-Host 'RESUME_PARTIAL_RENAME: framework\Opus already exists and framework\Asap is absent.'
+}
 
-if ((Test-Path $asapDir) -and (Test-Path $opusDir)) {
+if ($asapExists -and $opusExists) {
     Fail 'RENAMING_CONTRACT_FAILED: both framework\Asap and framework\Opus exist.'
 }
 
-if (-not (Test-Path $asapDir)) {
-    Fail 'RENAMING_CONTRACT_FAILED: framework\Asap not found. Nothing official to rename.'
+if ((-not $asapExists) -and (-not $opusExists)) {
+    Fail 'RENAMING_CONTRACT_FAILED: neither framework\Asap nor framework\Opus exists.'
 }
 
 if (-not $Apply) {
     Write-Host 'DRY_RUN_ONLY'
-    Write-Host 'Run again with -Apply to perform the filesystem rename and text replacements.'
+    if ($partialResume) {
+        Write-Host 'Partial rename detected. Run again with -Apply to resume text/package normalization.'
+    } else {
+        Write-Host 'Run again with -Apply to perform the filesystem rename and text replacements.'
+    }
     exit 0
 }
 
 Write-Host 'STEP 1/4 Rename framework directory'
-Rename-Item -LiteralPath $asapDir -NewName 'Opus'
+if ($asapExists) {
+    Rename-Item -LiteralPath $asapDir -NewName 'Opus'
+} else {
+    Write-Host 'STEP 1/4 SKIP: framework directory already renamed.'
+}
 
 Write-Host 'STEP 2/4 Rename file and directory names containing ASAP/Asap/asap'
+$scriptPath = $PSCommandPath
 $items = Get-ChildItem -LiteralPath $Root -Recurse -Force |
     Where-Object {
         $_.FullName -notmatch '\\.git(\\|$)' -and
+        $_.FullName -ne $scriptPath -and
         ($_.Name -cmatch 'ASAP|Asap|asap')
     } |
     Sort-Object { $_.FullName.Length } -Descending
@@ -63,7 +91,12 @@ $items = Get-ChildItem -LiteralPath $Root -Recurse -Force |
 foreach ($item in $items) {
     $newName = $item.Name.Replace('ASAP', 'OPUS').Replace('Asap', 'Opus').Replace('asap', 'opus')
     if ($newName -ne $item.Name) {
-        $target = Join-Path $item.DirectoryName $newName
+        $parentPath = Get-ItemParentPath $item
+        if ([string]::IsNullOrWhiteSpace($parentPath)) {
+            Fail ('RENAMING_CONTRACT_FAILED: parent path could not be resolved for: ' + $item.FullName)
+        }
+
+        $target = Join-Path $parentPath $newName
         if (Test-Path -LiteralPath $target) {
             Fail ('RENAMING_CONTRACT_FAILED: target already exists: ' + $target)
         }
@@ -76,6 +109,7 @@ $extensions = @('.php', '.md', '.json', '.xml', '.yml', '.yaml', '.cmd', '.bat',
 $files = Get-ChildItem -LiteralPath $Root -Recurse -File -Force |
     Where-Object {
         $_.FullName -notmatch '\\.git(\\|$)' -and
+        $_.FullName -ne $scriptPath -and
         $extensions -contains $_.Extension.ToLowerInvariant()
     }
 
