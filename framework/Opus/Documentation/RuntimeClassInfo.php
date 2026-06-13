@@ -9,6 +9,26 @@ namespace Opus\Documentation;
  */
 final class RuntimeClassInfo
 {
+    private string $name;
+    private string $namespace;
+    private string $shortName;
+    private string $domain;
+    private string $type;
+    private string $file;
+    private int $mtime;
+    private ?string $parentClass;
+    /** @var list<string> */
+    private array $interfaces;
+    /** @var list<string> */
+    private array $traits;
+    /** @var list<string> */
+    private array $attributes;
+    private ?string $docComment;
+    /** @var list<RuntimeMethodInfo> */
+    private array $publicMethods;
+    /** @var list<string> */
+    private array $diagnostics;
+
     /**
      * @param list<RuntimeMethodInfo> $publicMethods
      * @param list<string> $interfaces
@@ -17,21 +37,35 @@ final class RuntimeClassInfo
      * @param list<string> $diagnostics
      */
     public function __construct(
-        private readonly string $name,
-        private readonly string $namespace,
-        private readonly string $shortName,
-        private readonly string $domain,
-        private readonly string $type,
-        private readonly string $file,
-        private readonly int $mtime,
-        private readonly ?string $parentClass,
-        private readonly array $interfaces,
-        private readonly array $traits,
-        private readonly array $attributes,
-        private readonly ?string $docComment,
-        private readonly array $publicMethods,
-        private readonly array $diagnostics = []
+        string $name,
+        string $namespace,
+        string $shortName,
+        string $domain,
+        string $type,
+        string $file,
+        int $mtime,
+        ?string $parentClass,
+        array $interfaces,
+        array $traits,
+        array $attributes,
+        ?string $docComment,
+        array $publicMethods,
+        array $diagnostics = []
     ) {
+        $this->name = $name;
+        $this->namespace = $namespace;
+        $this->shortName = $shortName;
+        $this->domain = $domain;
+        $this->type = $type;
+        $this->file = $file;
+        $this->mtime = $mtime;
+        $this->parentClass = $parentClass;
+        $this->interfaces = $interfaces;
+        $this->traits = $traits;
+        $this->attributes = $attributes;
+        $this->docComment = $docComment;
+        $this->publicMethods = $publicMethods;
+        $this->diagnostics = $diagnostics;
     }
 
     public function name(): string
