@@ -44,7 +44,7 @@ if ($html !== $expected) {
 }
 
 assertFails($renderer, 'main.score', ['user' => ['enabled' => true], 'items' => []], 'OPUS_SCORE_TEMPLATE_DATA_MISSING');
-assertFails($renderer, '../main.score', [], 'OPUS_SCORE_TEMPLATE_PATH_INVALID');
+assertFails($renderer, '../main.score', [], 'OPUS_SCORE_TEMPLATE_PATH_FORBIDDEN');
 file_put_contents($root . '/bad.score', '[[ unknown:thing ]]');
 assertFails($renderer, 'bad.score', [], 'OPUS_SCORE_TEMPLATE_DIRECTIVE_UNKNOWN');
 file_put_contents($root . '/php.score', '<?php echo "no"; ?>');
