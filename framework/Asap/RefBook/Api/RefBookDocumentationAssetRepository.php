@@ -20,7 +20,7 @@ use ASAP\RefBook\Contract\RefBookInspectableInterface;
  *   arbitrary paths and without falling back to generated placeholders.
  *
  * Contract:
- *   - only examples/*.php and diagrams/*.mmd under DOC/refbook are exposed;
+ *   - only examples/*.php and diagrams/*.mmd under resources/refbook are exposed;
  *   - asset identifiers are stable file basenames, not file-system paths;
  *   - duplicate identifiers are explicit contract errors;
  *   - missing assets are returned as null and converted to 404 by the API.
@@ -28,9 +28,9 @@ use ASAP\RefBook\Contract\RefBookInspectableInterface;
 #[AsapRefBookClass(
     domain: 'RefBook',
     role: 'Expose official RefBook examples and diagrams by stable identifier',
-    responsibility: 'Read documentation assets from DOC/refbook for the RefBook REST API without path traversal or placeholder fallback.',
+    responsibility: 'Read documentation assets from resources/refbook for the RefBook REST API without path traversal or placeholder fallback.',
     contracts: [
-        'Only DOC/refbook/examples/*.php and DOC/refbook/diagrams/*.mmd are exposed.',
+        'Only resources/refbook/examples/*.php and resources/refbook/diagrams/*.mmd are exposed.',
         'Asset identifiers are validated and must not contain path separators.',
         'Duplicate asset identifiers fail explicitly.',
     ],
@@ -81,8 +81,8 @@ final class RefBookDocumentationAssetRepository implements RefBookInspectableInt
 
     #[AsapRefBookMethod(
         role: 'Return all official RefBook documentation assets',
-        behavior: 'Scans the official DOC/refbook examples and diagrams directories and returns a deterministic asset index.',
-        preconditions: ['DOC/refbook exists.', 'Asset identifiers are unique.'],
+        behavior: 'Scans the official resources/refbook examples and diagrams directories and returns a deterministic asset index.',
+        preconditions: ['resources/refbook exists.', 'Asset identifiers are unique.'],
         postconditions: ['Examples and diagrams are returned as machine-readable arrays.'],
         sideEffects: ['Reads documentation files from disk.'],
         errors: ['ASAP_REFBOOK_ASSET_ROOT_MISSING', 'ASAP_REFBOOK_ASSET_DUPLICATE'],
@@ -204,7 +204,7 @@ final class RefBookDocumentationAssetRepository implements RefBookInspectableInt
         $root = rtrim(str_replace('\\', '/', $this->assetRoot), '/');
         $normalized = str_replace('\\', '/', $path);
         if (str_starts_with($normalized, $root . '/')) {
-            return 'DOC/refbook/' . substr($normalized, strlen($root) + 1);
+            return 'resources/refbook/' . substr($normalized, strlen($root) + 1);
         }
 
         return $normalized;

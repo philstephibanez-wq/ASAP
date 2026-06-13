@@ -29,7 +29,7 @@ use ASAP\RefBook\RefBookSnapshotBuilder;
     contracts: [
         'Reflection remains the only technical signature source.',
         'Attributes remain the functional documentation source.',
-        'Examples and diagrams are official DOC/refbook assets referenced by id.',
+        'Examples and diagrams are official resources/refbook assets referenced by id.',
         'The provider does not render HTML and does not mutate source files.',
     ],
     examples: ['refbook-rest-api-client'],
@@ -82,7 +82,7 @@ final class RefBookRestSnapshotProvider implements RefBookInspectableInterface
     #[AsapRefBookMethod(
         role: 'Build the full REST snapshot',
         behavior: 'Scans framework classes through Reflection, validates RefBook metadata and adds REST endpoints, examples and diagrams.',
-        preconditions: ['The ASAP project root exists.', 'framework/Asap exists.', 'DOC/refbook exists.'],
+        preconditions: ['The ASAP project root exists.', 'framework/Asap exists.', 'resources/refbook exists.'],
         postconditions: ['Returns a versioned JSON-serializable RefBook REST payload.'],
         sideEffects: ['Reads PHP source files and documentation assets from disk.'],
         errors: ['ASAP_REFBOOK_PROJECT_ROOT_MISSING', 'ASAP_REFBOOK_SOURCE_ROOT_MISSING', 'ASAP_REFBOOK_ASSET_ROOT_MISSING'],
@@ -94,7 +94,7 @@ final class RefBookRestSnapshotProvider implements RefBookInspectableInterface
     public function snapshot(): array
     {
         $sourceRoot = $this->path('framework/Asap');
-        $assetRoot = $this->path('DOC/refbook');
+        $assetRoot = $this->path('resources/refbook');
 
         $scanner = new RefBookReflectionScanner();
         $scan = $scanner->scan($sourceRoot, 'ASAP');
