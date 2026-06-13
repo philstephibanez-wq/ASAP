@@ -24,6 +24,9 @@
 # Runtime state
 /var/*
 !/var/.gitkeep
+/var/generated/
+/var/lstsa/
+/var/recipes/
 
 # SQLite runtime sidecars
 *.sqlite-wal
@@ -44,4 +47,3 @@
 # OS / editor noise
 .DS_Store
 Thumbs.db
-/var/generated/
