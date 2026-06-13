@@ -16,7 +16,7 @@
       "search": "Buscar"
     },
     "home": {
-      "kicker": "AplicaciÃ³n MVC ASAP",
+      "kicker": "AplicaciÃ³n MVC Opus",
       "symbols": "sÃ­mbolos extraÃ­dos",
       "domains": "dominios detectados",
       "pipeline_title": "Canal documental",
@@ -78,7 +78,7 @@
       "message": "Slug rechazado explÃ­citamente"
     },
     "topbar": {
-      "subtitle": "DocumentaciÃ³n ASAP",
+      "subtitle": "DocumentaciÃ³n Opus",
       "controls": "Controles del sitio"
     },
     "breadcrumb": {
@@ -207,7 +207,7 @@
     },
     {
       "slug": "guide-mvc",
-      "title": "Contrato MVC ASAP",
+      "title": "Contrato MVC Opus",
       "kicker": "MVC",
       "summary": "Ruta oficial, controlador fino, servicio de negocio, ViewModel, template.",
       "sections": [

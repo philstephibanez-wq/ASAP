@@ -12,13 +12,13 @@ require_once __DIR__ . '/../../framework/Opus/Routing/RouteManifestCompiler.php'
 require_once __DIR__ . '/../fixtures/P112Q1/DemoRouteController.php';
 require_once __DIR__ . '/../fixtures/P112Q1/DuplicateRouteController.php';
 
-use ASAP\Routing\AttributeRouteProvider;
-use ASAP\Routing\ClassIndex;
-use ASAP\Routing\RouteCompilerException;
-use ASAP\Routing\RouteDefinition;
-use ASAP\Routing\RouteManifestCompiler;
-use ASAP\Tests\Fixtures\P112Q1\DemoRouteController;
-use ASAP\Tests\Fixtures\P112Q1\DuplicateRouteController;
+use Opus\Routing\AttributeRouteProvider;
+use Opus\Routing\ClassIndex;
+use Opus\Routing\RouteCompilerException;
+use Opus\Routing\RouteDefinition;
+use Opus\Routing\RouteManifestCompiler;
+use Opus\Tests\Fixtures\P112Q1\DemoRouteController;
+use Opus\Tests\Fixtures\P112Q1\DuplicateRouteController;
 
 function recipeAssert(bool $condition, string $message): void
 {
@@ -32,16 +32,16 @@ function recipeStep(string $message): void
     echo 'PASS ' . $message . PHP_EOL;
 }
 
-$asapRoot = dirname(__DIR__, 2);
+$opusRoot = dirname(__DIR__, 2);
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
 
 $requiredFiles = [
-    $asapRoot . '/framework/Opus/Routing/Route.php',
-    $asapRoot . '/framework/Opus/Routing/ClassIndex.php',
-    $asapRoot . '/framework/Opus/Routing/AttributeRouteProvider.php',
-    $asapRoot . '/framework/Opus/Routing/RouteManifestCompiler.php',
-    $asapRoot . '/DOC/ROUTER_ATTRIBUTE_COMPILER.md',
-    $asapRoot . '/DOC/P112Q1_OPUS_ROUTER_ATTRIBUTE_COMPILER_CONTRACT.md',
+    $opusRoot . '/framework/Opus/Routing/Route.php',
+    $opusRoot . '/framework/Opus/Routing/ClassIndex.php',
+    $opusRoot . '/framework/Opus/Routing/AttributeRouteProvider.php',
+    $opusRoot . '/framework/Opus/Routing/RouteManifestCompiler.php',
+    $opusRoot . '/DOC/ROUTER_ATTRIBUTE_COMPILER.md',
+    $opusRoot . '/DOC/P112Q1_OPUS_ROUTER_ATTRIBUTE_COMPILER_CONTRACT.md',
     $refBookRoot . '/content/markdown/router-attribute-compiler.md',
 ];
 
@@ -89,7 +89,7 @@ recipeAssert($manifest['kb.item']['priority'] === 10, 'Manifest priority preserv
 
 recipeStep('ROUTE_COMPILER_MANIFEST_OK');
 
-$target = $asapRoot . '/var/cache/asap/routes/p112q1_recipe_routes.manifest.php';
+$target = $opusRoot . '/var/cache/opus/routes/p112q1_recipe_routes.manifest.php';
 $compiler->writePhpManifest($manifest, $target);
 $loaded = $compiler->loadPhpManifest($target);
 

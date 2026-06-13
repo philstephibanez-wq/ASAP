@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Opus\Fsm;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *
  * Role:
- *   Restore the small top-level `ASAP\Fsm` demo surface.
+ *   Restore the small top-level `Opus\Fsm` demo surface.
  *
  * Contract:
- *   Demo data only. Runtime FSM execution belongs to `ASAP\Fsm\StateMachine`.
+ *   Demo data only. Runtime FSM execution belongs to `Opus\Fsm\StateMachine`.
  *
  * Since:
  *   P112P1

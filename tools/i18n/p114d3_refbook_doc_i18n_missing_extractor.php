@@ -40,9 +40,9 @@ spl_autoload_register(static function (string $class) use ($root): void {
     }
 });
 
-use ASAP\RefBook\Api\RefBookRestSnapshotProvider;
-use ASAP\RefBook\I18n\RefBookDocumentationI18nCatalog;
-use ASAP\RefBook\I18n\RefBookDocumentationLocale;
+use Opus\RefBook\Api\RefBookRestSnapshotProvider;
+use Opus\RefBook\I18n\RefBookDocumentationI18nCatalog;
+use Opus\RefBook\I18n\RefBookDocumentationLocale;
 
 function p114d3_fail(string $message): never
 {

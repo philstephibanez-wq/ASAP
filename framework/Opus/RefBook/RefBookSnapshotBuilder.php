@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\RefBook;
 
-use ASAP\RefBook\Model\RefBookScanResult;
+use Opus\RefBook\Model\RefBookScanResult;
 
 /*
  * OPUS_REFBOOK:

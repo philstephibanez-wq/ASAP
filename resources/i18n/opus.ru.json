@@ -2,7 +2,7 @@
   "locale": "ru",
   "messages": {
     "opus.title": "Opus Framework",
-    "opus.reference": "Ð¡Ð¿Ñ€Ð°Ð²Ð¾Ñ‡Ð½Ð¸Ðº ASAP",
+    "opus.reference": "Ð¡Ð¿Ñ€Ð°Ð²Ð¾Ñ‡Ð½Ð¸Ðº Opus",
     "opus.portage": "ÐŸÐ¾Ñ€Ñ‚ PHP 8",
     "opus.renderer": "ÐœÐµÑ…Ð°Ð½Ð¸Ð·Ð¼ Ñ€ÐµÐ½Ð´ÐµÑ€Ð¸Ð½Ð³Ð°",
     "opus.controller": "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð»ÐµÑ€ Ð¸ Ð´Ð¸ÑÐ¿ÐµÑ‚Ñ‡ÐµÑ€",

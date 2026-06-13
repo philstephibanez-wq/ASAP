@@ -20,11 +20,11 @@ $snapshotRoot = $root . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'ref
 ensureDirectory($reportRoot);
 ensureDirectory($snapshotRoot);
 
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($routingRoot, 'Opus\\Routing');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
-$builder = new ASAP\RefBook\RefBookSnapshotBuilder();
+$builder = new Opus\RefBook\RefBookSnapshotBuilder();
 $snapshot = $builder->build($result, $routingRoot);
 
 $timestamp = date('Ymd_His');

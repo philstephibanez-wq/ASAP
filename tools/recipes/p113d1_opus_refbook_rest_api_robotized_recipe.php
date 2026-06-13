@@ -25,15 +25,15 @@ spl_autoload_register(static function (string $class) use ($root): void {
     }
 });
 
-$provider = new ASAP\RefBook\Api\RefBookRestSnapshotProvider($root);
-$assets = new ASAP\RefBook\Api\RefBookDocumentationAssetRepository($root . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'refbook');
-$api = new ASAP\RefBook\Api\RefBookRestApi($provider, $assets);
+$provider = new Opus\RefBook\Api\RefBookRestSnapshotProvider($root);
+$assets = new Opus\RefBook\Api\RefBookDocumentationAssetRepository($root . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'refbook');
+$api = new Opus\RefBook\Api\RefBookRestApi($provider, $assets);
 
 $checks = [];
 $checks[] = checkEndpoint($api, '/api/refbook/health', 'GET', 200, 'health');
 $checks[] = checkEndpoint($api, '/api/refbook/snapshot', 'GET', 200, 'snapshot');
 $checks[] = checkEndpoint($api, '/api/refbook/domains', 'GET', 200, 'domains');
-$checks[] = checkEndpoint($api, '/api/refbook/classes/ASAP%5CHttp%5CRequest', 'GET', 200, 'class_request');
+$checks[] = checkEndpoint($api, '/api/refbook/classes/Opus%5CHttp%5CRequest', 'GET', 200, 'class_request');
 $checks[] = checkEndpoint($api, '/api/refbook/examples/fsm-state-machine-runtime', 'GET', 200, 'fsm_example');
 $checks[] = checkEndpoint($api, '/api/refbook/diagrams/framework-fsm-runtime', 'GET', 200, 'fsm_diagram');
 $checks[] = checkEndpoint($api, '/api/refbook/snapshot', 'POST', 405, 'post_denied');
@@ -68,7 +68,7 @@ exit(0);
 
 function checkEndpoint(Opus\RefBook\Api\RefBookRestApi $api, string $path, string $method, int $expectedStatus, string $id): array
 {
-    $response = $api->handle(new ASAP\Http\Request($path, $method));
+    $response = $api->handle(new Opus\Http\Request($path, $method));
     $body = $response->body;
     $json = json_decode($body, true);
     return [

@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions
 
-set "ASAP=H:\ASAP"
+set "Opus=H:\OPUS"
 set "PHP=H:\UwAmp\bin\php\php-8.5.6\php.exe"
-set "SMOKE=%ASAP%\tests\smoke\p112o_safe_medium_compat_shims_smoke.php"
+set "SMOKE=%Opus%\tests\smoke\p112o_safe_medium_compat_shims_smoke.php"
 
 echo P112O_SAFE_MEDIUM_COMPAT_SMOKE_START
 
-if not exist "%ASAP%" goto opus_missing
+if not exist "%Opus%" goto opus_missing
 if not exist "%PHP%" goto php_missing
 if not exist "%SMOKE%" goto smoke_missing
 

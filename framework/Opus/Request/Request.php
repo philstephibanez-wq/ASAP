@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Opus\Request;
-use ASAP\Http\Request as HttpRequest;
+use Opus\Http\Request as HttpRequest;
 /*
  * OPUS_REFBOOK:
  *   domain: REQUEST

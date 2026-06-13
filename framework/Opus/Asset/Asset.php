@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Asset;
 
-use ASAP\Contract\ContractException;
+use Opus\Contract\ContractException;
 
 /*
  * OPUS_REFBOOK:
@@ -25,7 +25,7 @@ use ASAP\Contract\ContractException;
  *
  * Role:
  *   Preserve the Opus ASSET concept inside the canonical Windows-safe
- *   `ASAP\Asset` namespace/directory.
+ *   `Opus\Asset` namespace/directory.
  *
  * Responsibility:
  *   Carry one public asset reference.

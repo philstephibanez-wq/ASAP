@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  * Reads:
  *   - vendor/autoload.php when present
- *   - optional OPUS_P112Q3B_PANTHER_AUTOLOAD when Panther lives outside H:\ASAP
+ *   - optional OPUS_P112Q3B_PANTHER_AUTOLOAD when Panther lives outside H:\OPUS
  *   - environment variables OPUS_P112Q3B_PANTHER_URL,
  *     OPUS_P112Q3B_EXPECT_TEXT and OPUS_P112Q3B_PANTHER_REQUIRED
  *

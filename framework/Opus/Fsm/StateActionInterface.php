@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Fsm;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
 
 /**
  * PUBLIC INTERFACE
@@ -19,7 +19,7 @@ use ASAP\RefBook\Attribute\OpusRefBookMethod;
  * Contract:
  *   Actions are declared objects. No arbitrary function name fallback is allowed.
  *
- * @package ASAP\Fsm
+ * @package Opus\Fsm
  * OPUS_REFBOOK:
  *   domain: FSM
  *   role: Contract for state or transition actions executed by the FSM runtime.

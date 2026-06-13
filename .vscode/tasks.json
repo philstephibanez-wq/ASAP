@@ -24,7 +24,7 @@
         "cwd": "${workspaceFolder}",
         "env": {
           "OPUS_P112Q3B_PANTHER_URL": "http://127.0.0.1/OPUS_REF_BOOK/?lang=fr",
-          "OPUS_P112Q3B_EXPECT_TEXT": "ASAP"
+          "OPUS_P112Q3B_EXPECT_TEXT": "Opus"
         }
       },
       "problemMatcher": []
@@ -40,7 +40,7 @@
         "cwd": "${workspaceFolder}",
         "env": {
           "OPUS_P112Q3B_PANTHER_URL": "http://127.0.0.1/OPUS_REF_BOOK/?lang=fr",
-          "OPUS_P112Q3B_EXPECT_TEXT": "ASAP",
+          "OPUS_P112Q3B_EXPECT_TEXT": "Opus",
           "OPUS_P112Q3B_PANTHER_REQUIRED": "1"
         }
       },

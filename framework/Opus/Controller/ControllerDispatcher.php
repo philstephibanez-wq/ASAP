@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Opus\Controller;
 
-use ASAP\Application\ApplicationPaths;
-use ASAP\Http\Request;
-use ASAP\Http\Response;
-use ASAP\Renderer\HtmlRenderer;
-use ASAP\Renderer\ViewModel;
-use ASAP\Routing\RouteMatch;
-use ASAP\Template\TemplateRendererInterface;
-use ASAP\View\Html;
+use Opus\Application\ApplicationPaths;
+use Opus\Http\Request;
+use Opus\Http\Response;
+use Opus\Renderer\HtmlRenderer;
+use Opus\Renderer\ViewModel;
+use Opus\Routing\RouteMatch;
+use Opus\Template\TemplateRendererInterface;
+use Opus\View\Html;
 use ReflectionClass;
 use ReflectionNamedType;
 
@@ -39,7 +39,7 @@ use ReflectionNamedType;
  *   Convert controller results into HTTP responses through official renderers.
  *
  * Legacy alignment:
- *   Lives in `ASAP\Controller`, matching the original framework domain.
+ *   Lives in `Opus\Controller`, matching the original framework domain.
  *
  * Contract:
  *   Dispatcher does not route, does not authorize, does not read content and

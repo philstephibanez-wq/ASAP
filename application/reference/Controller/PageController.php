@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace OpusRefBook\Reference\Controller;
 
-use ASAP\Http\Request;
-use ASAP\Renderer\ViewModel;
+use Opus\Http\Request;
+use Opus\Renderer\ViewModel;
 
 /**
  * PUBLIC CONTROLLER

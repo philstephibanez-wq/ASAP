@@ -8,10 +8,10 @@ require_once __DIR__ . '/../../framework/Opus/RefBook/I18n/RefBookDocumentationI
 require_once __DIR__ . '/../../framework/Opus/RefBook/Api/LocalizedRefBookDocumentationProvider.php';
 require_once __DIR__ . '/../../framework/Opus/RefBook/Api/RefBookDocumentationI18nRestRouter.php';
 
-use ASAP\RefBook\Api\LocalizedRefBookDocumentationProvider;
-use ASAP\RefBook\Api\RefBookDocumentationI18nRestRouter;
-use ASAP\RefBook\I18n\RefBookDocumentationI18nCatalog;
-use ASAP\RefBook\I18n\RefBookDocumentationTranslationMissingException;
+use Opus\RefBook\Api\LocalizedRefBookDocumentationProvider;
+use Opus\RefBook\Api\RefBookDocumentationI18nRestRouter;
+use Opus\RefBook\I18n\RefBookDocumentationI18nCatalog;
+use Opus\RefBook\I18n\RefBookDocumentationTranslationMissingException;
 
 $failures = [];
 

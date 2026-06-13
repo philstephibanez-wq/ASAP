@@ -95,13 +95,13 @@ final class RecipeContext
             require_once $classMapBuilder;
             require_once $autoloadCache;
 
-            $cacheFile = \ASAP\Autoload\AutoloadCache::defaultCacheFile($root);
+            $cacheFile = \Opus\Autoload\AutoloadCache::defaultCacheFile($root);
             if (!is_file($cacheFile)) {
-                $builder = new \ASAP\Autoload\ClassMapBuilder();
+                $builder = new \Opus\Autoload\ClassMapBuilder();
                 $builder->write($builder->build($root), $cacheFile);
             }
 
-            (new \ASAP\Autoload\AutoloadCache($root, $cacheFile))->register();
+            (new \Opus\Autoload\AutoloadCache($root, $cacheFile))->register();
             return;
         }
 

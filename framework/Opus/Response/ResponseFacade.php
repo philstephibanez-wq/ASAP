@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Response;
 
-use ASAP\Http\Response as HttpResponse;
+use Opus\Http\Response as HttpResponse;
 
 /*
  * OPUS_REFBOOK:
@@ -24,7 +24,7 @@ use ASAP\Http\Response as HttpResponse;
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *
  * Role:
- *   Restore the top-level `ASAP\Response` facade.
+ *   Restore the top-level `Opus\Response` facade.
  *
  * Contract:
  *   Delegates to the modern immutable Http\Response object.

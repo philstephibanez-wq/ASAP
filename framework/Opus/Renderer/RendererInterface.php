@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Renderer;
 
-use ASAP\Http\Response;
+use Opus\Http\Response;
 
 /*
  * OPUS_REFBOOK:

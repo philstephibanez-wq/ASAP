@@ -31,18 +31,18 @@ require_once __DIR__ . '/../../framework/Opus/Package/PackageRepository.php';
 require_once __DIR__ . '/../../framework/Opus/Core/Kernel.php';
 require_once __DIR__ . '/../../framework/Opus/Core/Bootstrap.php';
 
-use ASAP\Core\Bootstrap;
-use ASAP\Config\ConfigLoader;
-use ASAP\I18n\I18n;
-use ASAP\Core\Kernel;
-use ASAP\Package\Package;
-use ASAP\Package\PackageRepository;
-use ASAP\Response\ResponseFacade;
-use ASAP\Compatibility\SimpleXMLElementExtended;
-use ASAP\Compatibility\Singleton;
-use ASAP\Support\Support;
-use ASAP\Url\Url;
-use ASAP\Validation\Validator;
+use Opus\Core\Bootstrap;
+use Opus\Config\ConfigLoader;
+use Opus\I18n\I18n;
+use Opus\Core\Kernel;
+use Opus\Package\Package;
+use Opus\Package\PackageRepository;
+use Opus\Response\ResponseFacade;
+use Opus\Compatibility\SimpleXMLElementExtended;
+use Opus\Compatibility\Singleton;
+use Opus\Support\Support;
+use Opus\Url\Url;
+use Opus\Validation\Validator;
 
 function assertTrue(bool $condition, string $message): void
 {
@@ -77,9 +77,9 @@ assertTrue(Validator::isCleanHtml('<p>ok</p>'), 'Validator isCleanHtml');
 assertTrue(!Validator::isCleanHtml('<script>x</script>'), 'Validator blocks script');
 
 $configFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'p112o_opus_config.php';
-file_put_contents($configFile, '<?php return ["name" => "asap", "enabled" => true];');
+file_put_contents($configFile, '<?php return ["name" => "opus", "enabled" => true];');
 $config = (new ConfigLoader($configFile))->getConfig();
-assertTrue($config->get('name') === 'asap', 'ConfigLoader getConfig');
+assertTrue($config->get('name') === 'opus', 'ConfigLoader getConfig');
 @unlink($configFile);
 
 $i18n = new I18n(__DIR__ . '/../../resources/i18n', 'fr');

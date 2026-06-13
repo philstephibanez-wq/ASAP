@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace Opus\Response;
-use ASAP\Http\Response as HttpResponse;
+use Opus\Http\Response as HttpResponse;
 /*
  * OPUS_REFBOOK:
  *   domain: RESPONSE

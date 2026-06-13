@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeAssertionFailedException;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeAssertionFailedException;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate mail domain plus real Mailpit SMTP/API delivery. */
 final class MailRecipe implements RecipeInterface
@@ -15,19 +15,19 @@ final class MailRecipe implements RecipeInterface
 
     public function run(RecipeContext $context): array
     {
-        $mail = new \ASAP\Mail\Mail('recipe@example.org', 'Opus recipe mail', 'OPUS_MAIL_BODY_OK');
+        $mail = new \Opus\Mail\Mail('recipe@example.org', 'Opus recipe mail', 'OPUS_MAIL_BODY_OK');
         $context->assert($mail->to === 'recipe@example.org', 'OPUS_MAIL_TO_INVALID_AFTER_CONSTRUCT');
         $context->assert($mail->subject === 'Opus recipe mail', 'OPUS_MAIL_SUBJECT_INVALID_AFTER_CONSTRUCT');
         $context->assert(str_contains($mail->body, 'OPUS_MAIL_BODY_OK'), 'OPUS_MAIL_BODY_INVALID_AFTER_CONSTRUCT');
 
         try {
-            new \ASAP\Mail\Mail('invalid-address', 'bad', 'bad');
+            new \Opus\Mail\Mail('invalid-address', 'bad', 'bad');
             $context->assert(false, 'OPUS_MAIL_INVALID_ADDRESS_DID_NOT_FAIL');
         } catch (\InvalidArgumentException) {
         }
 
         try {
-            (new \ASAP\Mail\PhpMailer())->send($mail);
+            (new \Opus\Mail\PhpMailer())->send($mail);
             $context->assert(false, 'OPUS_MAIL_UNCONFIGURED_TRANSPORT_DID_NOT_FAIL');
         } catch (\RuntimeException $exception) {
             $context->assert($exception->getMessage() === 'OPUS_PHPMAILER_RUNTIME_NOT_CONFIGURED', 'OPUS_MAIL_TRANSPORT_FAILURE_CODE_INVALID', $exception->getMessage());

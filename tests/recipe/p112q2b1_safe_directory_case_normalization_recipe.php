@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$frameworkRoot = 'H:\\Opus\\framework\\ASAP';
+$frameworkRoot = 'H:\\Opus\\framework\\Opus';
 
 if (!is_dir($frameworkRoot)) {
     throw new RuntimeException('OPUS_FRAMEWORK_ROOT_MISSING');
@@ -70,11 +70,11 @@ require_once $frameworkRoot . '/Routing/ClassIndex.php';
 require_once $frameworkRoot . '/Routing/AttributeRouteProvider.php';
 require_once $frameworkRoot . '/Routing/RouteManifestCompiler.php';
 
-if (!class_exists(\ASAP\Routing\RouteDefinition::class)) {
+if (!class_exists(\Opus\Routing\RouteDefinition::class)) {
     throw new RuntimeException('ROUTING_CLASS_NOT_LOADABLE_AFTER_DIRECTORY_NORMALIZATION');
 }
 
-if (!class_exists(\ASAP\Routing\RouteManifestCompiler::class)) {
+if (!class_exists(\Opus\Routing\RouteManifestCompiler::class)) {
     throw new RuntimeException('ROUTING_COMPILER_NOT_LOADABLE_AFTER_DIRECTORY_NORMALIZATION');
 }
 

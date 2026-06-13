@@ -44,8 +44,8 @@ require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . '
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaBatchExecutor.php';
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaRunner.php';
 
-use ASAP\Lstsa\LstsaRunStore;
-use ASAP\Lstsa\LstsaRunner;
+use Opus\Lstsa\LstsaRunStore;
+use Opus\Lstsa\LstsaRunner;
 
 $action = $argv[1] ?? 'run-once';
 $runnerId = $argv[2] ?? 'lstsa_cli_runner';

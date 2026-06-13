@@ -17,12 +17,12 @@ spl_autoload_register(static function (string $class) use ($root): void {
 });
 
 try {
-    $provider = new ASAP\RefBook\Api\RefBookRestSnapshotProvider($root);
-    $assets = new ASAP\RefBook\Api\RefBookDocumentationAssetRepository($root . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'refbook');
-    $api = new ASAP\RefBook\Api\RefBookRestApi($provider, $assets);
+    $provider = new Opus\RefBook\Api\RefBookRestSnapshotProvider($root);
+    $assets = new Opus\RefBook\Api\RefBookDocumentationAssetRepository($root . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'refbook');
+    $api = new Opus\RefBook\Api\RefBookRestApi($provider, $assets);
     $api->handle(Opus\Http\Request::fromGlobals())->send();
 } catch (Throwable $error) {
-    ASAP\Http\Response::json([
+    Opus\Http\Response::json([
         'ok' => false,
         'error' => [
             'code' => 'OPUS_REFBOOK_REST_BOOT_FAILED',

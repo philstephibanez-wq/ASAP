@@ -34,10 +34,10 @@ final class Kernel
 {
     public function __construct(
         private readonly string $rootDir,
-        private readonly \ASAP\Package\PackageRepository $packages = new \ASAP\Package\PackageRepository()
+        private readonly \Opus\Package\PackageRepository $packages = new \Opus\Package\PackageRepository()
     ) {
         if (trim($this->rootDir) === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_KERNEL_ROOT_EMPTY');
+            throw \Opus\Exception\Exception::because('OPUS_KERNEL_ROOT_EMPTY');
         }
     }
 
@@ -46,7 +46,7 @@ final class Kernel
         return rtrim(str_replace('\\', '/', $this->rootDir), '/');
     }
 
-    public function getPackage(string $id): \ASAP\Package\Package
+    public function getPackage(string $id): \Opus\Package\Package
     {
         return $this->packages->get($id);
     }
@@ -81,7 +81,7 @@ final class Kernel
     private function buildLocalUrl(string $path): string
     {
         if ($path === '' || $path[0] !== '/') {
-            throw \ASAP\Exception\Exception::because('OPUS_KERNEL_URL_PATH_INVALID', $path);
+            throw \Opus\Exception\Exception::because('OPUS_KERNEL_URL_PATH_INVALID', $path);
         }
 
         return $path;

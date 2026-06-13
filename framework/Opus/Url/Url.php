@@ -23,7 +23,7 @@ namespace Opus\Url;
  *
  * Role:
  *   Preserve the Opus URL concept inside the canonical Windows-safe
- *   `ASAP\Url` namespace/directory.
+ *   `Opus\Url` namespace/directory.
  *
  * Responsibility:
  *   Generate local application URLs and expose legacy URL getters/setters.

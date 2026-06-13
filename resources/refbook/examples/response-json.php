@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ASAP\Http\Response;
+use Opus\Http\Response;
 
 $response = Response::json([
     'ok' => true,

@@ -17,12 +17,12 @@ declare(strict_types=1);
  * No file is moved, renamed, deleted, or edited by this tool.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 $reportRoot = $refBookRoot . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'reports';
 
-if (!is_dir($asapRoot)) {
+if (!is_dir($opusRoot)) {
     fwrite(STDERR, "OPUS_ROOT_MISSING\n");
     exit(1);
 }
@@ -345,7 +345,7 @@ foreach ($entries as $entry) {
             }
         }
 
-        $usageRows = array_merge($usageRows, collectUsageRows([$asapRoot, $refBookRoot], $entry, $tokens));
+        $usageRows = array_merge($usageRows, collectUsageRows([$opusRoot, $refBookRoot], $entry, $tokens));
         continue;
     }
 
@@ -388,10 +388,10 @@ foreach ($entries as $entry) {
                 'framework/Opus/' . $entry,
                 'framework\\Opus\\' . $entry,
                 'framework\\\\Opus\\\\' . $entry,
-                'ASAP/' . $entry,
+                'Opus/' . $entry,
             ];
 
-            $usageRows = array_merge($usageRows, collectUsageRows([$asapRoot, $refBookRoot], $entry, $tokens));
+            $usageRows = array_merge($usageRows, collectUsageRows([$opusRoot, $refBookRoot], $entry, $tokens));
         }
     }
 }

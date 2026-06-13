@@ -51,10 +51,10 @@ foreach ($requires as $relative) {
     require_once $root . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relative);
 }
 
-use ASAP\Lstsa\LstsaRunStatus;
-use ASAP\Lstsa\LstsaRunStore;
-use ASAP\Lstsa\LstsaRunner;
-use ASAP\Lstsa\LstsaScheduler;
+use Opus\Lstsa\LstsaRunStatus;
+use Opus\Lstsa\LstsaRunStore;
+use Opus\Lstsa\LstsaRunner;
+use Opus\Lstsa\LstsaScheduler;
 
 function p112q2i5_fail(string $message): void
 {

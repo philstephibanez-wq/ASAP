@@ -1,6 +1,6 @@
-# ASAP repository ignore rules
+# Opus repository ignore rules
 #
-# ASAP is a reusable PHP framework. The repository must not track generated
+# Opus is a reusable PHP framework. The repository must not track generated
 # dependencies, local secrets, runtime state, reports, caches, temporary files,
 # or machine-specific artifacts.
 

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Life\Scenarios;
 
-use ASAP\Recipe\Life\LifeScenarioRunner;
-use ASAP\Recipe\Life\RobotActor;
-use ASAP\Recipe\Life\RobotScenario;
-use ASAP\Recipe\Life\RobotSession;
-use ASAP\Recipe\Life\RobotStep;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\Life\LifeScenarioRunner;
+use Opus\Recipe\Life\RobotActor;
+use Opus\Recipe\Life\RobotScenario;
+use Opus\Recipe\Life\RobotSession;
+use Opus\Recipe\Life\RobotStep;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC LIFE RECIPE: an admin robot uses two declared database providers. */
 final class DatabaseLifecycleScenario implements RecipeInterface, RobotScenario
@@ -28,8 +28,8 @@ final class DatabaseLifecycleScenario implements RecipeInterface, RobotScenario
             $target = $sandbox . DIRECTORY_SEPARATOR . 'target.sqlite';
             @unlink($source); @unlink($target);
             $xml = simplexml_load_string('<databases default="source"><connection name="source" provider="sqlite"><path>' . htmlspecialchars($source, ENT_XML1) . '</path></connection><connection name="target" provider="sqlite"><path>' . htmlspecialchars($target, ENT_XML1) . '</path></connection></databases>');
-            $config = (new \ASAP\Database\DatabaseMultiConfigLoader())->fromXml($xml, 'life_database');
-            $connector = new \ASAP\Database\PdoDatabaseConnector();
+            $config = (new \Opus\Database\DatabaseMultiConfigLoader())->fromXml($xml, 'life_database');
+            $connector = new \Opus\Database\PdoDatabaseConnector();
             $src = $connector->connect($config->get('source'))->pdo();
             $dst = $connector->connect($config->get('target'))->pdo();
             $src->exec('CREATE TABLE source_probe (id INTEGER PRIMARY KEY, value TEXT NOT NULL)');

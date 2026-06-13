@@ -8,8 +8,8 @@ declare(strict_types=1);
  *   Apply one explicit signal and read the resulting state.
  */
 
-use ASAP\Fsm\Fsm;
-use ASAP\Fsm\StateMemory;
+use Opus\Fsm\Fsm;
+use Opus\Fsm\StateMemory;
 
 $memory = new StateMemory('DRAFT');
 

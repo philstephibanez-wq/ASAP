@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate evolutive anti-regression feature manifest coverage. */
 final class FeatureManifestRecipe implements RecipeInterface

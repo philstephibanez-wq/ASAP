@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate active documentation and changelog contract markers. */
 final class DocsRecipe implements RecipeInterface
@@ -53,7 +53,7 @@ final class DocsRecipe implements RecipeInterface
         foreach (['OPUS_REF_BOOK', 'real feature binding', 'opus-mail-recipe.php', 'auto-recipe', 'OPUS_REAL_FEATURE_BINDING_OK'] as $needle) {
             $context->assert(str_contains($realFeaturesDoc, $needle), 'OPUS_Q2K_DOC_SECTION_MISSING', $needle);
         }
-        foreach (['OPUS_AUTOLOADER_CACHE_OK', 'class index', 'var/cache/asap/autoload'] as $needle) {
+        foreach (['OPUS_AUTOLOADER_CACHE_OK', 'class index', 'var/cache/opus/autoload'] as $needle) {
             $context->assert(str_contains($autoloadCacheDoc, $needle), 'OPUS_Q2K1_DOC_SECTION_MISSING', $needle);
         }
         foreach (['OPUS_REAL_FEATURE_BINDING_DIAGNOSTICS_OK', 'diagnostic JSON', 'body excerpt', 'opaque 500'] as $needle) {

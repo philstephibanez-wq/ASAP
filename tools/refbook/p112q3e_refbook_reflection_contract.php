@@ -29,11 +29,11 @@ $snapshotRoot = $root . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'ref
 ensureDirectory($reportRoot);
 ensureDirectory($snapshotRoot);
 
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
-$result = $scanner->scan($sourceRoot, 'ASAP');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
+$result = $scanner->scan($sourceRoot, 'Opus');
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
-$builder = new ASAP\RefBook\RefBookSnapshotBuilder();
+$builder = new Opus\RefBook\RefBookSnapshotBuilder();
 $snapshot = $builder->build($result, $sourceRoot);
 
 $timestamp = date('Ymd_His');

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Security;
 
-use ASAP\Fsm\StateMachine;
-use ASAP\Http\Request;
+use Opus\Fsm\StateMachine;
+use Opus\Http\Request;
 
 /*
  * OPUS_REFBOOK:

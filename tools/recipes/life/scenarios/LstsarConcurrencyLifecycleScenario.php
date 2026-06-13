@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Life\Scenarios;
 
-use ASAP\Recipe\Life\LifeScenarioRunner;
-use ASAP\Recipe\Life\RobotActor;
-use ASAP\Recipe\Life\RobotScenario;
-use ASAP\Recipe\Life\RobotSession;
-use ASAP\Recipe\Life\RobotStep;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\Life\LifeScenarioRunner;
+use Opus\Recipe\Life\RobotActor;
+use Opus\Recipe\Life\RobotScenario;
+use Opus\Recipe\Life\RobotSession;
+use Opus\Recipe\Life\RobotStep;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC LIFE RECIPE: two runner robots cannot process the same LSTSAR job twice. */
 final class LstsarConcurrencyLifecycleScenario implements RecipeInterface, RobotScenario
@@ -30,13 +30,13 @@ final class LstsarConcurrencyLifecycleScenario implements RecipeInterface, Robot
             $source = new \PDO('sqlite:' . $sourceDb, null, null, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
             $source->exec('CREATE TABLE raw_users (email TEXT NOT NULL, status TEXT NOT NULL)');
             $source->exec("INSERT INTO raw_users (email, status) VALUES ('one@example.org', 'active')");
-            $store = new \ASAP\Lstsa\LstsaRunStore($context->rootPath());
-            (new \ASAP\Lstsa\LstsaScheduler($store))->enqueueDatabaseStagingSmokeRun($sourceDb, $targetDb);
-            $runnerA = new \ASAP\Lstsa\LstsaRunner($store);
-            $runnerB = new \ASAP\Lstsa\LstsaRunner($store);
+            $store = new \Opus\Lstsa\LstsaRunStore($context->rootPath());
+            (new \Opus\Lstsa\LstsaScheduler($store))->enqueueDatabaseStagingSmokeRun($sourceDb, $targetDb);
+            $runnerA = new \Opus\Lstsa\LstsaRunner($store);
+            $runnerB = new \Opus\Lstsa\LstsaRunner($store);
             $first = $runnerA->runOnce('life_runner_a');
             $second = $runnerB->runOnce('life_runner_b');
-            $context->assert(is_array($first) && $first['status'] === \ASAP\Lstsa\LstsaRunStatus::DONE, 'OPUS_LIFE_LSTSAR_CONCURRENCY_FIRST_NOT_DONE');
+            $context->assert(is_array($first) && $first['status'] === \Opus\Lstsa\LstsaRunStatus::DONE, 'OPUS_LIFE_LSTSAR_CONCURRENCY_FIRST_NOT_DONE');
             $context->assert($second === null, 'OPUS_LIFE_LSTSAR_CONCURRENCY_DOUBLE_RUN_DETECTED');
             $target = new \PDO('sqlite:' . $targetDb, null, null, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
             $context->assert((int)$target->query('SELECT COUNT(*) FROM users')->fetchColumn() === 1, 'OPUS_LIFE_LSTSAR_CONCURRENCY_DOUBLE_COMMIT_DETECTED');

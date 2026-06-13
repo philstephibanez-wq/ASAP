@@ -26,17 +26,17 @@ declare(strict_types=1);
  *   aborts with a clear P112Q3B_* error.
  */
 
-use ASAP\Acl\AccessRule;
-use ASAP\Acl\PrivilegeDefinition;
-use ASAP\Acl\ResourceDefinition;
-use ASAP\Acl\RoleDefinition;
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\TransitionDefinition;
-use ASAP\Http\Request;
-use ASAP\Routing\Router;
-use ASAP\Security\SecureDispatchGate;
-use ASAP\Security\SiteSecurityPolicy;
-use ASAP\Site\SiteDefinition;
+use Opus\Acl\AccessRule;
+use Opus\Acl\PrivilegeDefinition;
+use Opus\Acl\ResourceDefinition;
+use Opus\Acl\RoleDefinition;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\TransitionDefinition;
+use Opus\Http\Request;
+use Opus\Routing\Router;
+use Opus\Security\SecureDispatchGate;
+use Opus\Security\SiteSecurityPolicy;
+use Opus\Site\SiteDefinition;
 
 $root = dirname(__DIR__, 2);
 
@@ -138,8 +138,8 @@ try {
 XML);
     file_put_contents($securityFile, '<security />');
 
-    $site = new SiteDefinition('p112q3b', '/asap', $routesFile, $securityFile);
-    $match = Router::fromXml($routesFile)->match(new Request('/asap/demo', 'GET'), $site);
+    $site = new SiteDefinition('p112q3b', '/opus', $routesFile, $securityFile);
+    $match = Router::fromXml($routesFile)->match(new Request('/opus/demo', 'GET'), $site);
 
     p112q3b_assert($match->name === 'demo', 'P112Q3B_ROUTE_MATCH_NAME_INVALID');
     p112q3b_assert($match->acl === 'page:read', 'P112Q3B_ROUTE_MATCH_ACL_INVALID', (string) $match->acl);
@@ -176,7 +176,7 @@ XML);
         ]
     );
 
-    $secureDecision = (new SecureDispatchGate())->assertAllowed(new Request('/asap/demo', 'GET'), $policy, $match);
+    $secureDecision = (new SecureDispatchGate())->assertAllowed(new Request('/opus/demo', 'GET'), $policy, $match);
 
     p112q3b_assert($secureDecision->routeName === 'demo', 'P112Q3B_DECISION_ROUTE_INVALID');
     p112q3b_assert($secureDecision->fsmSignal === 'ROUTE_DEMO', 'P112Q3B_DECISION_SIGNAL_INVALID');

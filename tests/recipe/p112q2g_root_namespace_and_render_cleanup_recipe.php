@@ -6,8 +6,8 @@ declare(strict_types=1);
  * P112Q2G recipe.
  */
 
-$asapRoot = 'H:\\ASAP';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$opusRoot = 'H:\\Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
 if (!is_dir($frameworkRoot)) {
     throw new RuntimeException('OPUS_FRAMEWORK_ROOT_MISSING');
@@ -162,22 +162,22 @@ requireFramework($frameworkRoot, 'Compatibility/LegacySimpleXMLElementExtended.p
 requireFramework($frameworkRoot, 'Compatibility/LegacySingleton.php');
 
 $classes = [
-    \ASAP\Exception\Exception::class,
-    \ASAP\Package\Package::class,
-    \ASAP\Package\PackageRepository::class,
-    \ASAP\Core\Kernel::class,
-    \ASAP\Core\Bootstrap::class,
-    \ASAP\Config\Configuration::class,
-    \ASAP\Config\ConfigLoader::class,
-    \ASAP\Debug\Debug::class,
-    \ASAP\Acl\Acl::class,
-    \ASAP\Fsm\Fsm::class,
-    \ASAP\Response\ResponseFacade::class,
-    \ASAP\View\View::class,
-    \ASAP\Support\Support::class,
-    \ASAP\Validation\Validator::class,
-    \ASAP\Compatibility\SimpleXMLElementExtended::class,
-    \ASAP\Compatibility\Singleton::class,
+    \Opus\Exception\Exception::class,
+    \Opus\Package\Package::class,
+    \Opus\Package\PackageRepository::class,
+    \Opus\Core\Kernel::class,
+    \Opus\Core\Bootstrap::class,
+    \Opus\Config\Configuration::class,
+    \Opus\Config\ConfigLoader::class,
+    \Opus\Debug\Debug::class,
+    \Opus\Acl\Acl::class,
+    \Opus\Fsm\Fsm::class,
+    \Opus\Response\ResponseFacade::class,
+    \Opus\View\View::class,
+    \Opus\Support\Support::class,
+    \Opus\Validation\Validator::class,
+    \Opus\Compatibility\SimpleXMLElementExtended::class,
+    \Opus\Compatibility\Singleton::class,
     'OPUS_SimpleXMLElementExtended',
     'OPUS_Singleton',
 ];
@@ -186,36 +186,36 @@ foreach ($classes as $class) {
     assertClassExistsRecipe($class);
 }
 
-$package = new \ASAP\Package\Package('demo', 'H:/demo');
-$repository = new \ASAP\Package\PackageRepository([$package]);
-$kernel = new \ASAP\Core\Kernel('H:/root', $repository);
+$package = new \Opus\Package\Package('demo', 'H:/demo');
+$repository = new \Opus\Package\PackageRepository([$package]);
+$kernel = new \Opus\Core\Kernel('H:/root', $repository);
 
 if ($kernel->getPackage('demo')->id() !== 'demo') {
     throw new RuntimeException('KERNEL_PACKAGE_LOOKUP_FAILED');
 }
 
-if ((new \ASAP\Acl\Acl())->canView(true) !== true) {
+if ((new \Opus\Acl\Acl())->canView(true) !== true) {
     throw new RuntimeException('ACL_FACADE_FAILED');
 }
 
-if (\ASAP\Fsm\Fsm::demoFlow()['initial'] !== 'START') {
+if (\Opus\Fsm\Fsm::demoFlow()['initial'] !== 'START') {
     throw new RuntimeException('FSM_FACADE_FAILED');
 }
 
-if (!\ASAP\Validation\Validator::isEmail('demo@example.com')) {
+if (!\Opus\Validation\Validator::isEmail('demo@example.com')) {
     throw new RuntimeException('VALIDATOR_FAILED');
 }
 
-$response = \ASAP\Response\ResponseFacade::html('ok', 201);
+$response = \Opus\Response\ResponseFacade::html('ok', 201);
 
-if (!$response instanceof \ASAP\Http\Response || $response->status !== 201) {
+if (!$response instanceof \Opus\Http\Response || $response->status !== 201) {
     throw new RuntimeException('RESPONSE_FACADE_FAILED');
 }
 
 echo 'PASS RUNTIME_COMPAT_CLASSES' . PHP_EOL;
 
 assertPhpFilesLintInRoot($frameworkRoot);
-assertPhpFilesLintInRoot($asapRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'recipe');
-assertPhpFilesLintInRoot($asapRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures');
+assertPhpFilesLintInRoot($opusRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'recipe');
+assertPhpFilesLintInRoot($opusRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures');
 
 echo 'P112Q2G_ROOT_NAMESPACE_AND_RENDER_CLEANUP_RECIPE_OK' . PHP_EOL;

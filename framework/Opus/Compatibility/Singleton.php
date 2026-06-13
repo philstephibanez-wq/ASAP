@@ -58,6 +58,6 @@ class Singleton
      */
     public function __call(string $name, array $arguments): mixed
     {
-        throw \ASAP\Exception\Exception::because('OPUS_SINGLETON_METHOD_NOT_FOUND', static::class . '::' . $name);
+        throw \Opus\Exception\Exception::because('OPUS_SINGLETON_METHOD_NOT_FOUND', static::class . '::' . $name);
     }
 }

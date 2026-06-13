@@ -5,7 +5,7 @@ declare(strict_types=1);
  * Opus RefBook source manifest builder.
  */
 
-$asapRoot = $argv[1] ?? dirname(__DIR__, 2);
+$opusRoot = $argv[1] ?? dirname(__DIR__, 2);
 $refbookRoot = null;
 
 foreach ($argv as $arg) {
@@ -14,8 +14,8 @@ foreach ($argv as $arg) {
     }
 }
 
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
-$outputRoot = $asapRoot . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'generated' . DIRECTORY_SEPARATOR . 'refbook';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$outputRoot = $opusRoot . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'generated' . DIRECTORY_SEPARATOR . 'refbook';
 
 if (!is_dir($frameworkRoot)) {
     fwrite(STDERR, 'OPUS_REFBOOK_MANIFEST_FRAMEWORK_ROOT_NOT_FOUND=' . $frameworkRoot . PHP_EOL);
@@ -45,7 +45,7 @@ foreach (phpFiles($frameworkRoot) as $file) {
         'name' => $symbol['name'],
         'namespace' => $symbol['namespace'],
         'kind' => $symbol['kind'],
-        'file' => relativePath($asapRoot, $file),
+        'file' => relativePath($opusRoot, $file),
         'domain' => $tag['domain'],
         'role' => $tag['role'],
         'contract' => normalizeList($tag['contract']),

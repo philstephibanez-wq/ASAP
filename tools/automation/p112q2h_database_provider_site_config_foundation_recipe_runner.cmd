@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 
-set "OPUS_ROOT=H:\ASAP"
+set "OPUS_ROOT=H:\OPUS"
 set "PHP=H:\UwAmp\bin\php\php-8.5.6\php.exe"
 set "RECIPE=%OPUS_ROOT%\tests\recipe\p112q2h_database_provider_site_config_foundation_recipe.php"
 

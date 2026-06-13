@@ -57,7 +57,7 @@ final class Configuration
     public function get(string $key): mixed
     {
         if (!$this->has($key)) {
-            throw \ASAP\Exception\Exception::because('OPUS_CONFIGURATION_KEY_MISSING', $key);
+            throw \Opus\Exception\Exception::because('OPUS_CONFIGURATION_KEY_MISSING', $key);
         }
 
         return $this->values[$key];
@@ -66,7 +66,7 @@ final class Configuration
     public function set(string $key, mixed $value): void
     {
         if (trim($key) === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_CONFIGURATION_KEY_EMPTY');
+            throw \Opus\Exception\Exception::because('OPUS_CONFIGURATION_KEY_EMPTY');
         }
 
         $this->values[$key] = $value;
@@ -85,7 +85,7 @@ final class Configuration
     public function setEnv(string $env): void
     {
         if (trim($env) === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_CONFIGURATION_ENV_EMPTY');
+            throw \Opus\Exception\Exception::because('OPUS_CONFIGURATION_ENV_EMPTY');
         }
 
         $this->set('env', $env);
@@ -132,7 +132,7 @@ final class Configuration
             }
         }
 
-        throw \ASAP\Exception\Exception::because('OPUS_CONFIGURATION_USER_AGENT_MISSING');
+        throw \Opus\Exception\Exception::because('OPUS_CONFIGURATION_USER_AGENT_MISSING');
     }
 
     private function detectBrowser(string $userAgent): string

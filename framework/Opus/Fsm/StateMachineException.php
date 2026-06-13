@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Fsm;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 use RuntimeException;
 
 /**
@@ -21,7 +21,7 @@ use RuntimeException;
  * Contract:
  *   No silent fallback. Every invalid FSM operation must fail with an explicit code.
  *
- * @package ASAP\Fsm
+ * @package Opus\Fsm
  * OPUS_REFBOOK:
  *   domain: FSM
  *   role: Explicit exception type for FSM contract and runtime failures.

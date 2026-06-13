@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Life\Scenarios;
 
-use ASAP\Recipe\Life\LifeScenarioRunner;
-use ASAP\Recipe\Life\RobotActor;
-use ASAP\Recipe\Life\RobotScenario;
-use ASAP\Recipe\Life\RobotSession;
-use ASAP\Recipe\Life\RobotStep;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\Life\LifeScenarioRunner;
+use Opus\Recipe\Life\RobotActor;
+use Opus\Recipe\Life\RobotScenario;
+use Opus\Recipe\Life\RobotSession;
+use Opus\Recipe\Life\RobotStep;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC LIFE RECIPE: robots validate public/admin/denied access rules. */
 final class AclAccessLifecycleScenario implements RecipeInterface, RobotScenario
@@ -23,11 +23,11 @@ final class AclAccessLifecycleScenario implements RecipeInterface, RobotScenario
     public function steps(): array
     {
         return [new RobotStep('simulate_access_matrix', function (RecipeContext $context, RobotSession $session): void {
-            $acl = new \ASAP\Acl\AccessControl(
-                [new \ASAP\Acl\RoleDefinition('anonymous'), new \ASAP\Acl\RoleDefinition('admin'), new \ASAP\Acl\RoleDefinition('denied')],
-                [new \ASAP\Acl\ResourceDefinition('public'), new \ASAP\Acl\ResourceDefinition('admin')],
-                [new \ASAP\Acl\PrivilegeDefinition('view')],
-                [new \ASAP\Acl\AccessRule('anonymous', 'public', 'view', true), new \ASAP\Acl\AccessRule('admin', 'admin', 'view', true), new \ASAP\Acl\AccessRule('denied', 'admin', 'view', false)]
+            $acl = new \Opus\Acl\AccessControl(
+                [new \Opus\Acl\RoleDefinition('anonymous'), new \Opus\Acl\RoleDefinition('admin'), new \Opus\Acl\RoleDefinition('denied')],
+                [new \Opus\Acl\ResourceDefinition('public'), new \Opus\Acl\ResourceDefinition('admin')],
+                [new \Opus\Acl\PrivilegeDefinition('view')],
+                [new \Opus\Acl\AccessRule('anonymous', 'public', 'view', true), new \Opus\Acl\AccessRule('admin', 'admin', 'view', true), new \Opus\Acl\AccessRule('denied', 'admin', 'view', false)]
             );
             $context->assert($acl->decide('anonymous', 'public', 'view')->allowed(), 'OPUS_LIFE_ACL_PUBLIC_DENIED');
             $context->assert(!$acl->decide('anonymous', 'admin', 'view')->allowed(), 'OPUS_LIFE_ACL_ANONYMOUS_ADMIN_ALLOWED');

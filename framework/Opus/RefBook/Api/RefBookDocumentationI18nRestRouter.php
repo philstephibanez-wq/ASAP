@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\RefBook\Api;
 
-use ASAP\RefBook\I18n\RefBookDocumentationLocale;
+use Opus\RefBook\I18n\RefBookDocumentationLocale;
 use Throwable;
 
 /*

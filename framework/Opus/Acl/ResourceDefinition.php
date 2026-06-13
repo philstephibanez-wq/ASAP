@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Acl;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 
 /*
  * OPUS_REFBOOK:
@@ -34,7 +34,7 @@ use ASAP\RefBook\Contract\RefBookInspectableInterface;
  * Contract:
  *   Resource identifiers must be explicit non-empty strings.
  *
- * @package ASAP\Acl
+ * @package Opus\Acl
  */
 #[OpusRefBookClass(
     domain: 'ACL',

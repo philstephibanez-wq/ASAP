@@ -14,9 +14,9 @@ $root = dirname(__DIR__, 2);
 requireRefBookCore($root);
 
 $aclRoot = $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Acl';
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($aclRoot, 'Opus\\Acl');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
 $summary = $validation['summary'];
 
@@ -94,11 +94,11 @@ $roleId = findMethod($roleDefinition['methods'], 'id');
 assertSame('string', $roleId['return_type'], 'RoleDefinition::id return type must come from Reflection.');
 assertContains('acl-overview', $roleId['metadata']['examples'] ?? [], 'RoleDefinition::id must link ACL overview example.');
 
-$acl = new ASAP\Acl\AccessControl(
-    [new ASAP\Acl\RoleDefinition('admin'), new ASAP\Acl\RoleDefinition('guest')],
-    [new ASAP\Acl\ResourceDefinition('page.admin')],
-    [new ASAP\Acl\PrivilegeDefinition('read')],
-    [new ASAP\Acl\AccessRule('admin', 'page.admin', 'read', true)]
+$acl = new Opus\Acl\AccessControl(
+    [new Opus\Acl\RoleDefinition('admin'), new Opus\Acl\RoleDefinition('guest')],
+    [new Opus\Acl\ResourceDefinition('page.admin')],
+    [new Opus\Acl\PrivilegeDefinition('read')],
+    [new Opus\Acl\AccessRule('admin', 'page.admin', 'read', true)]
 );
 $allowed = $acl->decide('admin', 'page.admin', 'read');
 assertSame(true, $allowed->allowed(), 'ACL runtime sanity: admin read must be allowed.');
@@ -114,7 +114,7 @@ try {
     assertContains('ACL_ROLE_UNKNOWN', $exception->getMessage(), 'ACL runtime sanity: unknown role code mismatch.');
 }
 
-$context = new ASAP\Acl\AccessContext(['tenant' => 'logandplay']);
+$context = new Opus\Acl\AccessContext(['tenant' => 'logandplay']);
 assertSame(true, $context->has('tenant'), 'ACL context sanity: tenant key must exist.');
 assertSame('logandplay', $context->get('tenant'), 'ACL context sanity: tenant value mismatch.');
 try {

@@ -50,9 +50,9 @@ require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . '
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'RefBook' . DIRECTORY_SEPARATOR . 'RefBookReflectionScanner.php';
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'RefBook' . DIRECTORY_SEPARATOR . 'RefBookContractValidator.php';
 
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Fsm', 'Opus\\Fsm');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
 $summary = $validation['summary'];
 

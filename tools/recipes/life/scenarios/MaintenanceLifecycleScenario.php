@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Life\Scenarios;
 
-use ASAP\Recipe\Life\LifeScenarioRunner;
-use ASAP\Recipe\Life\RobotActor;
-use ASAP\Recipe\Life\RobotScenario;
-use ASAP\Recipe\Life\RobotSession;
-use ASAP\Recipe\Life\RobotStep;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\Life\LifeScenarioRunner;
+use Opus\Recipe\Life\RobotActor;
+use Opus\Recipe\Life\RobotScenario;
+use Opus\Recipe\Life\RobotSession;
+use Opus\Recipe\Life\RobotStep;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC LIFE RECIPE: maintenance robot cleans reports/archives without touching business DBs. */
 final class MaintenanceLifecycleScenario implements RecipeInterface, RobotScenario

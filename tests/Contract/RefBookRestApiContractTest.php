@@ -23,9 +23,9 @@ spl_autoload_register(static function (string $class) use ($root): void {
     }
 });
 
-$provider = new ASAP\RefBook\Api\RefBookRestSnapshotProvider($root);
-$assets = new ASAP\RefBook\Api\RefBookDocumentationAssetRepository($root . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'refbook');
-$api = new ASAP\RefBook\Api\RefBookRestApi($provider, $assets);
+$provider = new Opus\RefBook\Api\RefBookRestSnapshotProvider($root);
+$assets = new Opus\RefBook\Api\RefBookDocumentationAssetRepository($root . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'refbook');
+$api = new Opus\RefBook\Api\RefBookRestApi($provider, $assets);
 
 $snapshot = $provider->snapshot();
 assertEquals('opus-refbook-snapshot/v1', $snapshot['schema_version'] ?? null, 'Snapshot schema version mismatch.');
@@ -36,22 +36,22 @@ assertAssetExists($snapshot, 'examples', 'refbook-rest-api-client');
 assertAssetExists($snapshot, 'examples', 'fsm-state-machine-runtime');
 assertAssetExists($snapshot, 'diagrams', 'framework-fsm-runtime');
 
-$health = decodeJsonResponse($api->handle(new ASAP\Http\Request('/api/refbook/health', 'GET')), 200);
+$health = decodeJsonResponse($api->handle(new Opus\Http\Request('/api/refbook/health', 'GET')), 200);
 assertEquals(true, $health['ok'] ?? null, 'Health endpoint must return ok=true.');
 
-$example = decodeJsonResponse($api->handle(new ASAP\Http\Request('/api/refbook/examples/fsm-state-machine-runtime', 'GET')), 200);
+$example = decodeJsonResponse($api->handle(new Opus\Http\Request('/api/refbook/examples/fsm-state-machine-runtime', 'GET')), 200);
 assertContains('TransitionDefinition', $example['example']['content'] ?? '', 'FSM example must include TransitionDefinition usage.');
 
-$diagram = decodeJsonResponse($api->handle(new ASAP\Http\Request('/api/refbook/diagrams/framework-fsm-runtime', 'GET')), 200);
+$diagram = decodeJsonResponse($api->handle(new Opus\Http\Request('/api/refbook/diagrams/framework-fsm-runtime', 'GET')), 200);
 assertContains('stateDiagram-v2', $diagram['diagram']['content'] ?? '', 'FSM diagram must be Mermaid stateDiagram-v2.');
 
-$classPayload = decodeJsonResponse($api->handle(new ASAP\Http\Request('/api/refbook/classes/ASAP%5CHttp%5CRequest', 'GET')), 200);
+$classPayload = decodeJsonResponse($api->handle(new Opus\Http\Request('/api/refbook/classes/Opus%5CHttp%5CRequest', 'GET')), 200);
 assertEquals('Opus\\Http\\Request', $classPayload['class']['name'] ?? null, 'Class endpoint must expose Opus\\Http\\Request.');
 
-$missing = decodeJsonResponse($api->handle(new ASAP\Http\Request('/api/refbook/examples/does-not-exist', 'GET')), 404);
+$missing = decodeJsonResponse($api->handle(new Opus\Http\Request('/api/refbook/examples/does-not-exist', 'GET')), 404);
 assertEquals('OPUS_REFBOOK_REST_ASSET_NOT_FOUND', $missing['error']['code'] ?? null, 'Missing example must be explicit 404.');
 
-$methodDenied = decodeJsonResponse($api->handle(new ASAP\Http\Request('/api/refbook/snapshot', 'POST')), 405);
+$methodDenied = decodeJsonResponse($api->handle(new Opus\Http\Request('/api/refbook/snapshot', 'POST')), 405);
 assertEquals('OPUS_REFBOOK_REST_METHOD_NOT_ALLOWED', $methodDenied['error']['code'] ?? null, 'POST must be rejected.');
 
 echo 'P113D1_REFBOOK_REST_API_CONTRACT_UNIT_OK' . PHP_EOL;

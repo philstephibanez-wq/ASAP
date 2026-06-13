@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\RefBook\Api;
 
-use ASAP\RefBook\I18n\RefBookDocumentationI18nCatalog;
-use ASAP\RefBook\I18n\RefBookDocumentationLocale;
+use Opus\RefBook\I18n\RefBookDocumentationI18nCatalog;
+use Opus\RefBook\I18n\RefBookDocumentationLocale;
 
 /*
  * OPUS_REFBOOK:

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\View;
 
-use ASAP\Http\Response;
-use ASAP\Template\TemplateRendererInterface;
+use Opus\Http\Response;
+use Opus\Template\TemplateRendererInterface;
 
 /*
  * OPUS_REFBOOK:

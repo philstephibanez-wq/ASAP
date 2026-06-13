@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Http;
 
-use ASAP\Contract\ContractException;
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
+use Opus\Contract\ContractException;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
 
 /*
  * OPUS_REFBOOK:

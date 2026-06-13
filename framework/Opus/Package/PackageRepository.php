@@ -52,7 +52,7 @@ final class PackageRepository
     public function get(string $id): Package
     {
         if (!isset($this->packages[$id])) {
-            throw \ASAP\Exception\Exception::because('OPUS_PACKAGE_NOT_FOUND', $id);
+            throw \Opus\Exception\Exception::because('OPUS_PACKAGE_NOT_FOUND', $id);
         }
 
         return $this->packages[$id];

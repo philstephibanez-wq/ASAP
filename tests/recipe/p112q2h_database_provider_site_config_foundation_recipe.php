@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$root = 'H:\\ASAP';
+$root = 'H:\\Opus';
 $framework = $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
 if (!is_dir($framework)) {
@@ -20,13 +20,13 @@ require_once $framework . '/Database/DatabaseDsnFactory.php';
 require_once $framework . '/Database/DatabaseConfigLoader.php';
 
 $requiredClasses = [
-    \ASAP\Database\DatabaseException::class,
-    \ASAP\Database\DatabaseProvider::class,
-    \ASAP\Database\DatabaseConnectionConfig::class,
-    \ASAP\Database\DatabaseDsnFactory::class,
-    \ASAP\Database\DatabaseConfigLoader::class,
-    \ASAP\Site\SiteDefinition::class,
-    \ASAP\Site\SiteResolver::class,
+    \Opus\Database\DatabaseException::class,
+    \Opus\Database\DatabaseProvider::class,
+    \Opus\Database\DatabaseConnectionConfig::class,
+    \Opus\Database\DatabaseDsnFactory::class,
+    \Opus\Database\DatabaseConfigLoader::class,
+    \Opus\Site\SiteDefinition::class,
+    \Opus\Site\SiteResolver::class,
 ];
 
 foreach ($requiredClasses as $class) {
@@ -37,9 +37,9 @@ foreach ($requiredClasses as $class) {
 
 echo 'PASS DATABASE_CLASSES_LOADABLE' . PHP_EOL;
 
-$factory = new \ASAP\Database\DatabaseDsnFactory();
+$factory = new \Opus\Database\DatabaseDsnFactory();
 
-$mysql = new \ASAP\Database\DatabaseConnectionConfig('mysql', null, 'user', 'secret', [
+$mysql = new \Opus\Database\DatabaseConnectionConfig('mysql', null, 'user', 'secret', [
     'host' => '127.0.0.1',
     'database' => 'maestro',
     'port' => '3306',
@@ -49,7 +49,7 @@ if ($factory->build($mysql) !== 'mysql:host=127.0.0.1;port=3306;dbname=maestro;c
     throw new RuntimeException('MYSQL_DSN_FAILED');
 }
 
-$pgsql = new \ASAP\Database\DatabaseConnectionConfig('postgresql', null, 'user', 'secret', [
+$pgsql = new \Opus\Database\DatabaseConnectionConfig('postgresql', null, 'user', 'secret', [
     'host' => '127.0.0.1',
     'database' => 'maestro',
     'port' => '5432',
@@ -59,7 +59,7 @@ if ($factory->build($pgsql) !== 'pgsql:host=127.0.0.1;port=5432;dbname=maestro')
     throw new RuntimeException('POSTGRESQL_DSN_FAILED');
 }
 
-$sqlite = new \ASAP\Database\DatabaseConnectionConfig('sqlite3', null, null, null, [
+$sqlite = new \Opus\Database\DatabaseConnectionConfig('sqlite3', null, null, null, [
     'path' => 'H:/OPUS_REF_BOOK/var/data/opus.sqlite',
 ]);
 
@@ -67,7 +67,7 @@ if ($factory->build($sqlite) !== 'sqlite:H:/OPUS_REF_BOOK/var/data/opus.sqlite')
     throw new RuntimeException('SQLITE_DSN_FAILED');
 }
 
-$oracle = new \ASAP\Database\DatabaseConnectionConfig('oracle', null, 'user', 'secret', [
+$oracle = new \Opus\Database\DatabaseConnectionConfig('oracle', null, 'user', 'secret', [
     'host' => '127.0.0.1',
     'service' => 'XE',
 ]);
@@ -76,7 +76,7 @@ if ($factory->build($oracle) !== 'oci:dbname=//127.0.0.1:1521/XE;charset=AL32UTF
     throw new RuntimeException('ORACLE_DSN_FAILED');
 }
 
-$odbc = new \ASAP\Database\DatabaseConnectionConfig('odbc', null, null, null, [
+$odbc = new \Opus\Database\DatabaseConnectionConfig('odbc', null, null, null, [
     'name' => 'OPUS_DSN',
 ]);
 
@@ -84,7 +84,7 @@ if ($factory->build($odbc) !== 'odbc:OPUS_DSN') {
     throw new RuntimeException('ODBC_DSN_FAILED');
 }
 
-$sqlserver = new \ASAP\Database\DatabaseConnectionConfig('sqlsrv', null, 'user', 'secret', [
+$sqlserver = new \Opus\Database\DatabaseConnectionConfig('sqlsrv', null, 'user', 'secret', [
     'host' => '127.0.0.1',
     'database' => 'maestro',
     'port' => '1433',
@@ -114,8 +114,8 @@ file_put_contents(
     '<site id="demo"><basePath>/demo</basePath><routes file="routes.xml"/><security file="security.xml"/><database file="database.xml"/></site>'
 );
 
-$resolver = new \ASAP\Site\SiteResolver($tmp);
-$definition = $resolver->resolve(new \ASAP\Http\Request('/demo/page', 'GET'));
+$resolver = new \Opus\Site\SiteResolver($tmp);
+$definition = $resolver->resolve(new \Opus\Http\Request('/demo/page', 'GET'));
 
 if (!$definition->hasDatabase()) {
     throw new RuntimeException('SITE_DATABASE_NOT_DECLARED');
@@ -125,9 +125,9 @@ if (basename($definition->requireDatabaseFile()) !== 'database.xml') {
     throw new RuntimeException('SITE_DATABASE_FILE_FAILED');
 }
 
-$config = (new \ASAP\Database\DatabaseConfigLoader())->loadXmlFile($definition->requireDatabaseFile());
+$config = (new \Opus\Database\DatabaseConfigLoader())->loadXmlFile($definition->requireDatabaseFile());
 
-if ($config->normalizedProvider() !== \ASAP\Database\DatabaseProvider::SQLITE) {
+if ($config->normalizedProvider() !== \Opus\Database\DatabaseProvider::SQLITE) {
     throw new RuntimeException('SITE_DATABASE_PROVIDER_FAILED');
 }
 
@@ -138,9 +138,9 @@ if ($factory->build($config) !== 'sqlite:H:/OPUS_REF_BOOK/var/data/opus.sqlite')
 echo 'PASS SITE_DATABASE_CONFIG' . PHP_EOL;
 
 try {
-    new \ASAP\Database\DatabaseConnectionConfig('unknown-provider');
+    new \Opus\Database\DatabaseConnectionConfig('unknown-provider');
     throw new RuntimeException('UNSUPPORTED_PROVIDER_DID_NOT_FAIL');
-} catch (\ASAP\Database\DatabaseException) {
+} catch (\Opus\Database\DatabaseException) {
     echo 'PASS UNSUPPORTED_PROVIDER_FAILS' . PHP_EOL;
 }
 

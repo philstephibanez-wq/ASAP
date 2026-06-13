@@ -33,11 +33,11 @@ foreach ($required as $relative) {
 }
 
 $fixtureRoot = $root . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'refbook';
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($fixtureRoot, 'Opus\\Tests\\Fixtures\\RefBook');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
-$builder = new ASAP\RefBook\RefBookSnapshotBuilder();
+$builder = new Opus\RefBook\RefBookSnapshotBuilder();
 $snapshot = $builder->build($result, $fixtureRoot);
 
 assertEquals(1, $snapshot['summary']['classes'], 'Expected one fixture class.');

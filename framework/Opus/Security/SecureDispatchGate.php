@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Security;
 
-use ASAP\Acl\AccessContext;
-use ASAP\Acl\AccessControl;
-use ASAP\Acl\AccessControlException;
-use ASAP\Contract\ContractException;
-use ASAP\Fsm\StateMachine;
-use ASAP\Http\Request;
-use ASAP\Routing\RouteMatch;
+use Opus\Acl\AccessContext;
+use Opus\Acl\AccessControl;
+use Opus\Acl\AccessControlException;
+use Opus\Contract\ContractException;
+use Opus\Fsm\StateMachine;
+use Opus\Http\Request;
+use Opus\Routing\RouteMatch;
 
 /*
  * OPUS_REFBOOK:

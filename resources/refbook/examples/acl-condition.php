@@ -8,8 +8,8 @@ declare(strict_types=1);
  *   Show how a rule can stay explicit while accepting a contextual condition.
  */
 
-use ASAP\Acl\AccessContext;
-use ASAP\Acl\AccessRule;
+use Opus\Acl\AccessContext;
+use Opus\Acl\AccessRule;
 
 $rule = AccessRule::allow(
     role: 'admin',

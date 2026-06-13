@@ -17,16 +17,16 @@ require_once __DIR__ . '/../../framework/Opus/Template/TemplateRendererInterface
 require_once __DIR__ . '/../../framework/Opus/View/View.php';
 require_once __DIR__ . '/../../framework/Opus/Link/Link.php';
 
-use ASAP\Acl\Acl;
-use ASAP\Config\Configuration;
-use ASAP\Debug\Debug;
-use ASAP\Fsm\Fsm;
-use ASAP\Link\Link;
-use ASAP\Template\Smarty;
-use ASAP\Template\TemplateException;
-use ASAP\Template\X64;
-use ASAP\Validation\Validator;
-use ASAP\View\View;
+use Opus\Acl\Acl;
+use Opus\Config\Configuration;
+use Opus\Debug\Debug;
+use Opus\Fsm\Fsm;
+use Opus\Link\Link;
+use Opus\Template\Smarty;
+use Opus\Template\TemplateException;
+use Opus\Template\X64;
+use Opus\Validation\Validator;
+use Opus\View\View;
 
 function assertTrue(bool $condition, string $message): void
 {
@@ -63,7 +63,7 @@ assertTrue(Validator::isPasswd('abcde'), 'Validator isPasswd');
 assertTrue(!Validator::isPasswd("abc\n"), 'Validator isPasswd rejects newline');
 
 $smarty = new Smarty();
-$smarty->assign('name', 'ASAP');
+$smarty->assign('name', 'Opus');
 $smarty->assignAll(['version' => 'P112P1']);
 
 try {
@@ -74,7 +74,7 @@ try {
 }
 
 $x64 = new X64();
-$x64->assign('name', 'ASAP');
+$x64->assign('name', 'Opus');
 
 try {
     $x64->loadTemplate('missing.tpl');
@@ -90,8 +90,8 @@ assertTrue($acl->canView(true), 'Acl canView explicit true');
 $flow = Fsm::demoFlow();
 assertTrue($flow['initial'] === 'START', 'Fsm demoFlow');
 
-$view = new View('demo.twig', ['name' => 'ASAP']);
-assertTrue($view->render(static fn (string $template, array $data): string => $template . ':' . $data['name']) === 'demo.twig:ASAP', 'View render callable');
+$view = new View('demo.twig', ['name' => 'Opus']);
+assertTrue($view->render(static fn (string $template, array $data): string => $template . ':' . $data['name']) === 'demo.twig:Opus', 'View render callable');
 
 $link = new Link('Home', '/home', 'main', 'default');
 $link->changeClass('btn')->changeId('home-link');

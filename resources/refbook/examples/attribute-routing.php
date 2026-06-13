@@ -8,7 +8,7 @@ declare(strict_types=1);
  *   Show how an explicit route can be declared with metadata.
  */
 
-use ASAP\Routing\Route;
+use Opus\Routing\Route;
 
 final class RefBookController
 {

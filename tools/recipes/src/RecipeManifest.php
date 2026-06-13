@@ -4,32 +4,32 @@ declare(strict_types=1);
 
 namespace Opus\Recipe;
 
-use ASAP\Recipe\Recipes\AclRecipe;
-use ASAP\Recipe\Recipes\AutoloadCacheRecipe;
-use ASAP\Recipe\Recipes\CoreAutoloadRecipe;
-use ASAP\Recipe\Recipes\DatabaseRecipe;
-use ASAP\Recipe\Recipes\DocsRecipe;
-use ASAP\Recipe\Recipes\FeatureManifestRecipe;
-use ASAP\Recipe\Recipes\FsmRecipe;
-use ASAP\Recipe\Recipes\GitStructureRecipe;
-use ASAP\Recipe\Recipes\I18nRecipe;
-use ASAP\Recipe\Recipes\LstsaRecipe;
-use ASAP\Recipe\Recipes\MailRecipe;
-use ASAP\Recipe\Recipes\NamingRecipe;
-use ASAP\Recipe\Recipes\PhpLintRecipe;
-use ASAP\Recipe\Recipes\PreflightRecipe;
-use ASAP\Recipe\Recipes\RealFeatureBindingRecipe;
-use ASAP\Recipe\Recipes\RoutingRecipe;
-use ASAP\Recipe\Recipes\TemplateRecipe;
-use ASAP\Recipe\Life\Scenarios\AclAccessLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\DatabaseLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\HttpMailLifeRobotScenario;
-use ASAP\Recipe\Life\Scenarios\I18nLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\LstsarBackgroundLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\LstsarConcurrencyLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\LstsarFailureLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\MaintenanceLifecycleScenario;
-use ASAP\Recipe\Life\Scenarios\PublicSiteLifecycleScenario;
+use Opus\Recipe\Recipes\AclRecipe;
+use Opus\Recipe\Recipes\AutoloadCacheRecipe;
+use Opus\Recipe\Recipes\CoreAutoloadRecipe;
+use Opus\Recipe\Recipes\DatabaseRecipe;
+use Opus\Recipe\Recipes\DocsRecipe;
+use Opus\Recipe\Recipes\FeatureManifestRecipe;
+use Opus\Recipe\Recipes\FsmRecipe;
+use Opus\Recipe\Recipes\GitStructureRecipe;
+use Opus\Recipe\Recipes\I18nRecipe;
+use Opus\Recipe\Recipes\LstsaRecipe;
+use Opus\Recipe\Recipes\MailRecipe;
+use Opus\Recipe\Recipes\NamingRecipe;
+use Opus\Recipe\Recipes\PhpLintRecipe;
+use Opus\Recipe\Recipes\PreflightRecipe;
+use Opus\Recipe\Recipes\RealFeatureBindingRecipe;
+use Opus\Recipe\Recipes\RoutingRecipe;
+use Opus\Recipe\Recipes\TemplateRecipe;
+use Opus\Recipe\Life\Scenarios\AclAccessLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\DatabaseLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\HttpMailLifeRobotScenario;
+use Opus\Recipe\Life\Scenarios\I18nLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\LstsarBackgroundLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\LstsarConcurrencyLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\LstsarFailureLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\MaintenanceLifecycleScenario;
+use Opus\Recipe\Life\Scenarios\PublicSiteLifecycleScenario;
 
 /**
  * PUBLIC MANIFEST

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Security;
 
-use ASAP\Acl\AccessRule;
-use ASAP\Acl\PrivilegeDefinition;
-use ASAP\Acl\ResourceDefinition;
-use ASAP\Acl\RoleDefinition;
-use ASAP\Contract\ContractException;
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\TransitionDefinition;
+use Opus\Acl\AccessRule;
+use Opus\Acl\PrivilegeDefinition;
+use Opus\Acl\ResourceDefinition;
+use Opus\Acl\RoleDefinition;
+use Opus\Contract\ContractException;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\TransitionDefinition;
 
 /*
  * OPUS_REFBOOK:

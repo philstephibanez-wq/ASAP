@@ -15,9 +15,9 @@ requireRefBookCore($root);
 requireHttpRuntime($root);
 
 $httpRoot = $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Http';
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($httpRoot, 'Opus\\Http');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
 $summary = $validation['summary'];
 
@@ -84,38 +84,38 @@ $sendMethod = findMethod($responseClass['methods'], 'send');
 assertSame('void', $sendMethod['return_type'], 'Response::send return type must come from Reflection.');
 assertContains('Calls header() for each response header.', $sendMethod['metadata']['side_effects'] ?? [], 'Response::send must declare header side effect.');
 
-$request = new ASAP\Http\Request('/demo', 'post');
+$request = new Opus\Http\Request('/demo', 'post');
 assertSame('/demo', $request->path, 'HTTP runtime sanity: path mismatch.');
 assertSame('post', $request->method, 'HTTP runtime sanity: method mismatch.');
 
 try {
-    new ASAP\Http\Request('demo', 'GET');
+    new Opus\Http\Request('demo', 'GET');
     fail('HTTP runtime sanity: invalid path must fail explicitly.');
 } catch (Opus\Contract\ContractException $exception) {
     assertContains('OPUS_REQUEST_PATH_INVALID', $exception->getMessage(), 'HTTP runtime sanity: invalid path code mismatch.');
 }
 
 try {
-    new ASAP\Http\Request('/demo', '');
+    new Opus\Http\Request('/demo', '');
     fail('HTTP runtime sanity: empty method must fail explicitly.');
 } catch (Opus\Contract\ContractException $exception) {
     assertContains('OPUS_REQUEST_METHOD_EMPTY', $exception->getMessage(), 'HTTP runtime sanity: empty method code mismatch.');
 }
 
-$response = new ASAP\Http\Response('ok', 201, ['Content-Type' => 'text/plain']);
+$response = new Opus\Http\Response('ok', 201, ['Content-Type' => 'text/plain']);
 assertSame('ok', $response->body, 'HTTP runtime sanity: response body mismatch.');
 assertSame(201, $response->status, 'HTTP runtime sanity: response status mismatch.');
 assertSame('text/plain', $response->headers['Content-Type'] ?? '', 'HTTP runtime sanity: response header mismatch.');
 
-$htmlResponse = ASAP\Http\Response::html('<p>ok</p>');
+$htmlResponse = Opus\Http\Response::html('<p>ok</p>');
 assertSame('text/html; charset=utf-8', $htmlResponse->headers['Content-Type'] ?? '', 'HTTP runtime sanity: HTML content-type mismatch.');
 
-$jsonResponse = ASAP\Http\Response::json(['ok' => true]);
+$jsonResponse = Opus\Http\Response::json(['ok' => true]);
 assertSame('{"ok":true}', $jsonResponse->body, 'HTTP runtime sanity: JSON body mismatch.');
 assertSame('application/json; charset=utf-8', $jsonResponse->headers['Content-Type'] ?? '', 'HTTP runtime sanity: JSON content-type mismatch.');
 
 try {
-    new ASAP\Http\Response('bad', 99);
+    new Opus\Http\Response('bad', 99);
     fail('HTTP runtime sanity: invalid response status must fail explicitly.');
 } catch (Opus\Contract\ContractException $exception) {
     assertContains('OPUS_RESPONSE_STATUS_INVALID', $exception->getMessage(), 'HTTP runtime sanity: invalid status code mismatch.');
@@ -125,7 +125,7 @@ $oldServer = $_SERVER;
 try {
     $_SERVER['REQUEST_URI'] = '/alpha/beta?x=1';
     $_SERVER['REQUEST_METHOD'] = 'post';
-    $fromGlobalsRequest = ASAP\Http\Request::fromGlobals();
+    $fromGlobalsRequest = Opus\Http\Request::fromGlobals();
     assertSame('/alpha/beta', $fromGlobalsRequest->path, 'HTTP runtime sanity: fromGlobals path mismatch.');
     assertSame('POST', $fromGlobalsRequest->method, 'HTTP runtime sanity: fromGlobals method mismatch.');
 } finally {

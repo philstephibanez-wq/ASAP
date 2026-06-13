@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Opus\RefBook\Api;
 
-use ASAP\Http\Request;
-use ASAP\Http\Response;
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\Http\Request;
+use Opus\Http\Response;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 use Throwable;
 
 /**

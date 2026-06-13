@@ -14,10 +14,10 @@ require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . '
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaBatchExecutor.php';
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaRunner.php';
 
-use ASAP\Lstsa\LstsaRunStatus;
-use ASAP\Lstsa\LstsaRunStore;
-use ASAP\Lstsa\LstsaScheduler;
-use ASAP\Lstsa\LstsaRunner;
+use Opus\Lstsa\LstsaRunStatus;
+use Opus\Lstsa\LstsaRunStore;
+use Opus\Lstsa\LstsaScheduler;
+use Opus\Lstsa\LstsaRunner;
 
 function p112q2i3_fail(string $message): void
 {

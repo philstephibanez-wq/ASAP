@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Opus\Application;
 
-use ASAP\Controller\ControllerDispatcher;
-use ASAP\Http\Request;
-use ASAP\Http\Response;
-use ASAP\Renderer\HtmlRenderer;
-use ASAP\Routing\Router;
-use ASAP\Security\SecureDispatchGate;
-use ASAP\Security\SiteSecurityPolicyLoader;
-use ASAP\Site\SiteResolver;
-use ASAP\Template\TwigTemplateRenderer;
+use Opus\Controller\ControllerDispatcher;
+use Opus\Http\Request;
+use Opus\Http\Response;
+use Opus\Renderer\HtmlRenderer;
+use Opus\Routing\Router;
+use Opus\Security\SecureDispatchGate;
+use Opus\Security\SiteSecurityPolicyLoader;
+use Opus\Site\SiteResolver;
+use Opus\Template\TwigTemplateRenderer;
 
 /*
  * OPUS_REFBOOK:
@@ -41,7 +41,7 @@ use ASAP\Template\TwigTemplateRenderer;
  *   controller dispatch and response return.
  *
  * Legacy alignment:
- *   The dispatcher belongs to `ASAP\Controller`, matching the original ASAP
+ *   The dispatcher belongs to `Opus\Controller`, matching the original Opus
  *   namespace/domain naming.
  *
  * Contract:

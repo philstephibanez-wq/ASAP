@@ -47,7 +47,7 @@ final class AutoloadCache
     {
         return rtrim($projectRoot, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR
             . 'var' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR
-            . 'asap' . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR
+            . 'opus' . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR
             . 'opus_classmap.php';
     }
 

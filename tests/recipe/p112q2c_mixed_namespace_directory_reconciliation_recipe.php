@@ -13,9 +13,9 @@ declare(strict_types=1);
  * themselves when the migration is rerun after a partial failure.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
 if (!is_dir($frameworkRoot)) {
     throw new RuntimeException('OPUS_FRAMEWORK_ROOT_MISSING');
@@ -154,7 +154,7 @@ $forbidden = [
     'framework\\Opus\\' . $upperTemplate,
 ];
 
-assertNoRuntimeToken([$asapRoot, $refBookRoot], $forbidden);
+assertNoRuntimeToken([$opusRoot, $refBookRoot], $forbidden);
 
 echo 'PASS NO_OLD_RUNTIME_NAMESPACE_OR_PATH_TOKENS' . PHP_EOL;
 echo 'P112Q2C_MIXED_NAMESPACE_DIRECTORY_RECONCILIATION_RECIPE_OK' . PHP_EOL;

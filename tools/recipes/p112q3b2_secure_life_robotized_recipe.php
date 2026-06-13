@@ -32,19 +32,19 @@ declare(strict_types=1);
  *   only when OPUS_P112Q3B2_MAIL_REQUIRED is not set to 1.
  */
 
-use ASAP\Acl\AccessRule;
-use ASAP\Acl\PrivilegeDefinition;
-use ASAP\Acl\ResourceDefinition;
-use ASAP\Acl\RoleDefinition;
-use ASAP\Contract\ContractException;
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\StateMachineException;
-use ASAP\Fsm\TransitionDefinition;
-use ASAP\Http\Request;
-use ASAP\Routing\Router;
-use ASAP\Security\SecureDispatchGate;
-use ASAP\Security\SiteSecurityPolicy;
-use ASAP\Site\SiteDefinition;
+use Opus\Acl\AccessRule;
+use Opus\Acl\PrivilegeDefinition;
+use Opus\Acl\ResourceDefinition;
+use Opus\Acl\RoleDefinition;
+use Opus\Contract\ContractException;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\StateMachineException;
+use Opus\Fsm\TransitionDefinition;
+use Opus\Http\Request;
+use Opus\Routing\Router;
+use Opus\Security\SecureDispatchGate;
+use Opus\Security\SiteSecurityPolicy;
+use Opus\Site\SiteDefinition;
 
 $root = dirname(__DIR__, 2);
 $reportDir = $root . '/var/reports/p112q3b2';
@@ -306,7 +306,7 @@ function p112q3b2_scenarios(): array
             'expected_rights' => 'formulaire public autorisÃ©',
             'form_title' => 'Contact public',
             'form_field' => 'message',
-            'form_value' => 'Bonjour ASAP',
+            'form_value' => 'Bonjour Opus',
         ],
         [
             'kind' => 'form',

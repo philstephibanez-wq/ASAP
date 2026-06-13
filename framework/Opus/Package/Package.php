@@ -45,11 +45,11 @@ final class Package
         private readonly array $content = []
     ) {
         if (trim($this->id) === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_PACKAGE_ID_EMPTY');
+            throw \Opus\Exception\Exception::because('OPUS_PACKAGE_ID_EMPTY');
         }
 
         if (trim($this->rootDir) === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_PACKAGE_ROOT_EMPTY', $this->id);
+            throw \Opus\Exception\Exception::because('OPUS_PACKAGE_ROOT_EMPTY', $this->id);
         }
     }
 
@@ -81,7 +81,7 @@ final class Package
         }
 
         if (!array_key_exists($key, $this->content)) {
-            throw \ASAP\Exception\Exception::because('OPUS_PACKAGE_CONTENT_KEY_MISSING', $this->id . '::' . $key);
+            throw \Opus\Exception\Exception::because('OPUS_PACKAGE_CONTENT_KEY_MISSING', $this->id . '::' . $key);
         }
 
         return $this->content[$key];

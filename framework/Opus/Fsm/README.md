@@ -1,4 +1,4 @@
-# ASAP\FSM
+# Opus\FSM
 
 FSM = moteur d’état générique.
 

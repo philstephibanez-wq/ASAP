@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * Public CLI tool.
  * Role:
- *   Generate an observable JSON/MD/HTML report proving the first critical ASAP
+ *   Generate an observable JSON/MD/HTML report proving the first critical Opus
  *   domain (FSM) is fully covered by Reflection-backed RefBook metadata.
  */
 $root = dirname(__DIR__, 2);
@@ -20,11 +20,11 @@ $snapshotRoot = $root . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'ref
 ensureDirectory($reportRoot);
 ensureDirectory($snapshotRoot);
 
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($fsmRoot, 'Opus\\Fsm');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
-$builder = new ASAP\RefBook\RefBookSnapshotBuilder();
+$builder = new Opus\RefBook\RefBookSnapshotBuilder();
 $snapshot = $builder->build($result, $fsmRoot);
 
 $timestamp = date('Ymd_His');

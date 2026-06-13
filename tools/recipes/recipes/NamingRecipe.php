@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -29,7 +29,7 @@ final class NamingRecipe implements RecipeInterface
                 $seen[$lower] = $relative;
                 if (strtolower($item->getExtension()) !== 'php') { continue; }
                 $text = file_get_contents($item->getPathname()) ?: '';
-                $forbiddenTokens = ['framework/' . 'ASAP', 'namespace ' . 'ASAP' . '\\' . 'ASAP', 'ASAP' . '\\' . 'BDD', 'ASAP' . '\\' . 'RENDER'];
+                $forbiddenTokens = ['framework/' . 'Opus', 'namespace ' . 'Opus' . '\\' . 'Opus', 'Opus' . '\\' . 'BDD', 'Opus' . '\\' . 'RENDER'];
                 foreach ($forbiddenTokens as $token) {
                     $context->assert(!str_contains($text, $token), 'OPUS_FORBIDDEN_LEGACY_TOKEN', $relative . ' :: ' . $token);
                 }

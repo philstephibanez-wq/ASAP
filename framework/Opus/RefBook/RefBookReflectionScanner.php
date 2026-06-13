@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Opus\RefBook;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
-use ASAP\RefBook\Model\RefBookClassEntry;
-use ASAP\RefBook\Model\RefBookMethodEntry;
-use ASAP\RefBook\Model\RefBookScanResult;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Model\RefBookClassEntry;
+use Opus\RefBook\Model\RefBookMethodEntry;
+use Opus\RefBook\Model\RefBookScanResult;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionMethod;

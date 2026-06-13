@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Opus\Routing;
 
-use ASAP\Contract\ContractException;
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\Contract\ContractException;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 
 /*
  * OPUS_REFBOOK:

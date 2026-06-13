@@ -22,10 +22,10 @@ if (is_file($autoload)) {
     });
 }
 
-use ASAP\Database\DatabaseMultiConfigLoader;
-use ASAP\Lstsa\LstsaArchiveWriter;
-use ASAP\Lstsa\LstsaConfigLoader;
-use ASAP\Lstsa\LstsaReport;
+use Opus\Database\DatabaseMultiConfigLoader;
+use Opus\Lstsa\LstsaArchiveWriter;
+use Opus\Lstsa\LstsaConfigLoader;
+use Opus\Lstsa\LstsaReport;
 
 function p112q2i1_assert(bool $condition, string $message): void
 {

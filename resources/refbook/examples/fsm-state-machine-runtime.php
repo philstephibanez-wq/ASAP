@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\TransitionDefinition;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\TransitionDefinition;
 
 // Example: the framework FSM is declared explicitly with states and transitions.
 // RefBook uses Reflection for signatures and metadata/examples for explanation.

@@ -8,8 +8,8 @@ declare(strict_types=1);
  *   Keep side effects behind an explicit transition action.
  */
 
-use ASAP\Fsm\StateActionInterface;
-use ASAP\Fsm\TransitionResult;
+use Opus\Fsm\StateActionInterface;
+use Opus\Fsm\TransitionResult;
 
 final class PublishValidatedPageAction implements StateActionInterface
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
  * P113D3B live smoke.
  *
  * Contract:
- *   Ask OPUS_REF_BOOK live API to recompute asset integrity after the ASAP
+ *   Ask OPUS_REF_BOOK live API to recompute asset integrity after the Opus
  *   documentation assets are installed.
  */
 

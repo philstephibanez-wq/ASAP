@@ -24,10 +24,10 @@ require_once $root . '/application/reference/Service/ReferenceContentService.php
 require_once $root . '/application/reference/Service/ReferenceCatalogService.php';
 require_once $root . '/application/reference/Service/ReferenceSearchService.php';
 
-use ASAPRefBook\Reference\Service\ManifestRepository;
-use ASAPRefBook\Reference\Service\ReferenceCatalogService;
-use ASAPRefBook\Reference\Service\ReferenceContentService;
-use ASAPRefBook\Reference\Service\ReferenceSearchService;
+use OpusRefBook\Reference\Service\ManifestRepository;
+use OpusRefBook\Reference\Service\ReferenceCatalogService;
+use OpusRefBook\Reference\Service\ReferenceContentService;
+use OpusRefBook\Reference\Service\ReferenceSearchService;
 
 function fail(string $message): never
 {

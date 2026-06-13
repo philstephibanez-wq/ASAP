@@ -42,15 +42,15 @@ require_once __DIR__ . '/../../framework/Opus/Acl/AccessRule.php';
 require_once __DIR__ . '/../../framework/Opus/Acl/AccessDecision.php';
 require_once __DIR__ . '/../../framework/Opus/Acl/AccessControl.php';
 
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\TransitionDefinition;
-use ASAP\Fsm\StateMachine;
-use ASAP\Fsm\StateMachineException;
-use ASAP\Acl\RoleDefinition;
-use ASAP\Acl\ResourceDefinition;
-use ASAP\Acl\PrivilegeDefinition;
-use ASAP\Acl\AccessRule;
-use ASAP\Acl\AccessControl;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\TransitionDefinition;
+use Opus\Fsm\StateMachine;
+use Opus\Fsm\StateMachineException;
+use Opus\Acl\RoleDefinition;
+use Opus\Acl\ResourceDefinition;
+use Opus\Acl\PrivilegeDefinition;
+use Opus\Acl\AccessRule;
+use Opus\Acl\AccessControl;
 
 function assertTrue(bool $condition, string $message): void
 {

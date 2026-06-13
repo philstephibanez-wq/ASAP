@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Acl;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
 
 /*
  * OPUS_REFBOOK:
@@ -33,7 +33,7 @@ use ASAP\RefBook\Attribute\OpusRefBookMethod;
  * Contract:
  *   Conditions are declared objects. No arbitrary Reflection call fallback is allowed.
  *
- * @package ASAP\Acl
+ * @package Opus\Acl
  */
 #[OpusRefBookClass(
     domain: 'ACL',

@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace OpusRefBook\Reference\Controller;
 
-use ASAP\Application\ApplicationPaths;
-use ASAP\Renderer\ViewModel;
-use ASAP\Template\TemplateRendererInterface;
-use ASAPRefBook\Reference\Service\ManifestRepository;
-use ASAPRefBook\Reference\Service\ReferenceCatalogService;
-use ASAPRefBook\Reference\Service\ReferenceContentService;
-use ASAPRefBook\Reference\Service\ReferenceSearchService;
-use ASAPRefBook\Reference\Service\ReferenceThemeService;
+use Opus\Application\ApplicationPaths;
+use Opus\Renderer\ViewModel;
+use Opus\Template\TemplateRendererInterface;
+use OpusRefBook\Reference\Service\ManifestRepository;
+use OpusRefBook\Reference\Service\ReferenceCatalogService;
+use OpusRefBook\Reference\Service\ReferenceContentService;
+use OpusRefBook\Reference\Service\ReferenceSearchService;
+use OpusRefBook\Reference\Service\ReferenceThemeService;
 use RuntimeException;
 
 /**

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Opus\Controller;
 
-use ASAP\Application\ApplicationPaths;
-use ASAP\Http\Response;
-use ASAP\Template\TemplateRendererInterface;
-use ASAP\View\Html;
+use Opus\Application\ApplicationPaths;
+use Opus\Http\Response;
+use Opus\Template\TemplateRendererInterface;
+use Opus\View\Html;
 
 /*
  * OPUS_REFBOOK:

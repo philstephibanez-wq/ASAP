@@ -22,5 +22,5 @@ Chrome :
 chrome://extensions
 â†’ Mode dÃ©veloppeur
 â†’ Charger lâ€™extension non empaquetÃ©e
-â†’ H:\ASAP\tools\chrome_extension\opus_runtime_robot
+â†’ H:\OPUS\tools\chrome_extension\opus_runtime_robot
 ```

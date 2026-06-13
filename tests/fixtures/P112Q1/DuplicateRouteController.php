@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Tests\Fixtures\P112Q1;
 
-use ASAP\Routing\Route;
+use Opus\Routing\Route;
 
 final class DuplicateRouteController
 {

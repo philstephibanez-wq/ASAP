@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\View;
 
-use ASAP\Template\TemplateRendererInterface;
+use Opus\Template\TemplateRendererInterface;
 
 /*
  * OPUS_REFBOOK:
@@ -24,7 +24,7 @@ use ASAP\Template\TemplateRendererInterface;
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *
  * Role:
- *   Restore the small top-level `ASAP\View` surface.
+ *   Restore the small top-level `Opus\View` surface.
  *
  * Contract:
  *   Rendering requires an explicit renderer. No template fallback.
@@ -44,7 +44,7 @@ final class View
     public function render(TemplateRendererInterface|callable $renderer): string
     {
         if ($this->template === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_VIEW_TEMPLATE_EMPTY');
+            throw \Opus\Exception\Exception::because('OPUS_VIEW_TEMPLATE_EMPTY');
         }
 
         if ($renderer instanceof TemplateRendererInterface) {
@@ -54,7 +54,7 @@ final class View
         $result = $renderer($this->template, $this->data);
 
         if (!is_string($result)) {
-            throw \ASAP\Exception\Exception::because('OPUS_VIEW_RENDERER_RESULT_INVALID');
+            throw \Opus\Exception\Exception::because('OPUS_VIEW_RENDERER_RESULT_INVALID');
         }
 
         return $result;

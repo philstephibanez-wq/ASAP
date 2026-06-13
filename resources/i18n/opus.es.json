@@ -1,8 +1,8 @@
 {
   "locale": "es",
   "messages": {
-    "opus.title": "Framework ASAP",
-    "opus.reference": "Libro de referencia ASAP",
+    "opus.title": "Framework Opus",
+    "opus.reference": "Libro de referencia Opus",
     "opus.portage": "MigraciÃ³n PHP 8",
     "opus.renderer": "Motor de renderizado",
     "opus.controller": "Controlador y despachador",

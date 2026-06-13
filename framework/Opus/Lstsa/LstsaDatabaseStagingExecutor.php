@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Lstsa;
 
-use ASAP\Database\DatabaseMultiConfigLoader;
-use ASAP\Database\PdoDatabaseConnector;
+use Opus\Database\DatabaseMultiConfigLoader;
+use Opus\Database\PdoDatabaseConnector;
 use SimpleXMLElement;
 
 /*

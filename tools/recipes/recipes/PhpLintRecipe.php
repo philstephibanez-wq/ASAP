@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: lint all active Opus PHP sources included in the framework and recipes. */
 final class PhpLintRecipe implements RecipeInterface

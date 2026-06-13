@@ -8,10 +8,10 @@ declare(strict_types=1);
  *   Define a tiny state machine with explicit states and signals.
  */
 
-use ASAP\Fsm\Fsm;
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\SignalDefinition;
-use ASAP\Fsm\TransitionDefinition;
+use Opus\Fsm\Fsm;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\SignalDefinition;
+use Opus\Fsm\TransitionDefinition;
 
 $fsm = new Fsm(
     states: [

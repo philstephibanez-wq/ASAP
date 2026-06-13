@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Acl;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookClass;
 
 /*
  * OPUS_REFBOOK:
@@ -32,7 +32,7 @@ use ASAP\RefBook\Attribute\OpusRefBookClass;
  * Contract:
  *   Denial must be explicit and inspectable.
  *
- * @package ASAP\Acl
+ * @package Opus\Acl
  */
 #[OpusRefBookClass(
     domain: 'ACL',

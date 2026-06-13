@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate FSM explicit transitions and forbidden signal failure. */
 final class FsmRecipe implements RecipeInterface
@@ -14,9 +14,9 @@ final class FsmRecipe implements RecipeInterface
 
     public function run(RecipeContext $context): array
     {
-        $fsm = new \ASAP\Fsm\StateMachine(
-            [new \ASAP\Fsm\StateDefinition('DRAFT'), new \ASAP\Fsm\StateDefinition('REVIEW'), new \ASAP\Fsm\StateDefinition('PUBLISHED')],
-            [new \ASAP\Fsm\TransitionDefinition('DRAFT', 'SUBMIT', 'REVIEW'), new \ASAP\Fsm\TransitionDefinition('REVIEW', 'APPROVE', 'PUBLISHED')],
+        $fsm = new \Opus\Fsm\StateMachine(
+            [new \Opus\Fsm\StateDefinition('DRAFT'), new \Opus\Fsm\StateDefinition('REVIEW'), new \Opus\Fsm\StateDefinition('PUBLISHED')],
+            [new \Opus\Fsm\TransitionDefinition('DRAFT', 'SUBMIT', 'REVIEW'), new \Opus\Fsm\TransitionDefinition('REVIEW', 'APPROVE', 'PUBLISHED')],
             'DRAFT'
         );
         $context->assert($fsm->currentState() === 'DRAFT', 'OPUS_FSM_INITIAL_STATE_INVALID');
@@ -24,7 +24,7 @@ final class FsmRecipe implements RecipeInterface
         try {
             $fsm->apply('SUBMIT');
             $context->assert(false, 'OPUS_FSM_FORBIDDEN_TRANSITION_DID_NOT_FAIL');
-        } catch (\ASAP\Fsm\StateMachineException) {
+        } catch (\Opus\Fsm\StateMachineException) {
         }
         $context->assert($fsm->apply('APPROVE')->toState() === 'PUBLISHED', 'OPUS_FSM_APPROVE_TRANSITION_INVALID');
 

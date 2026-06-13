@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Fsm;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC CLASS
@@ -20,7 +20,7 @@ use ASAP\RefBook\Contract\RefBookInspectableInterface;
  * Contract:
  *   No fallback state. No implicit transition. No GraphViz dependency. No destructor persistence.
  *
- * @package ASAP\Fsm
+ * @package Opus\Fsm
  * OPUS_REFBOOK:
  *   domain: FSM
  *   role: Runtime executor that evaluates signals, guards and transitions.

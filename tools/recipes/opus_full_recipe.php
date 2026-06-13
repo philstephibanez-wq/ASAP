@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeManifest;
-use ASAP\Recipe\RecipeReport;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeManifest;
+use Opus\Recipe\RecipeReport;
 
 $root = dirname(__DIR__, 2);
 $runId = 'opus_global_recipe_' . date('Ymd_His') . '_' . bin2hex(random_bytes(4));

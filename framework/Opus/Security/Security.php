@@ -23,7 +23,7 @@ namespace Opus\Security;
  *
  * Role:
  *   Preserve the Opus SECURITY result concept inside the canonical Windows-safe
- *   `ASAP\Security` namespace/directory.
+ *   `Opus\Security` namespace/directory.
  *
  * Responsibility:
  *   Carry an explicit authorization result.

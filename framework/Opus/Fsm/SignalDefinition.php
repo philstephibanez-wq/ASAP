@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Fsm;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 
 /**
  * PUBLIC DTO
@@ -20,7 +20,7 @@ use ASAP\RefBook\Contract\RefBookInspectableInterface;
  * Contract:
  *   Signal identifiers must be explicit non-empty strings.
  *
- * @package ASAP\Fsm
+ * @package Opus\Fsm
  * OPUS_REFBOOK:
  *   domain: FSM
  *   role: Immutable definition of a signal accepted by an FSM.

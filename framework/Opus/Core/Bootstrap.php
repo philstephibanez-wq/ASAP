@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Core;
 
-use ASAP\Application\Application;
-use ASAP\Http\Request;
-use ASAP\Http\Response as HttpResponse;
+use Opus\Application\Application;
+use Opus\Http\Request;
+use Opus\Http\Response as HttpResponse;
 
 /*
  * OPUS_REFBOOK:
@@ -42,7 +42,7 @@ final class Bootstrap
             $response = $target->run($request ?? Request::fromGlobals());
 
             if (!$response instanceof HttpResponse) {
-                throw \ASAP\Exception\Exception::because('OPUS_BOOTSTRAP_RESPONSE_INVALID');
+                throw \Opus\Exception\Exception::because('OPUS_BOOTSTRAP_RESPONSE_INVALID');
             }
 
             return $response;

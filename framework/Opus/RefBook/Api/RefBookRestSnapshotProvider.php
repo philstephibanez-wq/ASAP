@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Opus\RefBook\Api;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
-use ASAP\RefBook\RefBookContractValidator;
-use ASAP\RefBook\RefBookReflectionScanner;
-use ASAP\RefBook\RefBookSnapshotBuilder;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\RefBookContractValidator;
+use Opus\RefBook\RefBookReflectionScanner;
+use Opus\RefBook\RefBookSnapshotBuilder;
 
 /**
  * PUBLIC RefBook REST snapshot provider.
@@ -97,7 +97,7 @@ final class RefBookRestSnapshotProvider implements RefBookInspectableInterface
         $assetRoot = $this->path('resources/refbook');
 
         $scanner = new RefBookReflectionScanner();
-        $scan = $scanner->scan($sourceRoot, 'ASAP');
+        $scan = $scanner->scan($sourceRoot, 'Opus');
         $validator = new RefBookContractValidator();
         $validation = $validator->validate($scan);
         $builder = new RefBookSnapshotBuilder();

@@ -8,9 +8,9 @@ declare(strict_types=1);
  *   Show an HTML response boundary. Data is prepared before representation.
  */
 
-use ASAP\Http\Response;
+use Opus\Http\Response;
 
-$html = '<!doctype html><html lang="fr"><body><h1>ASAP</h1></body></html>';
+$html = '<!doctype html><html lang="fr"><body><h1>Opus</h1></body></html>';
 
 $response = new Response(
     status: 200,

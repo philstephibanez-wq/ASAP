@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Life;
 
-use ASAP\Recipe\RecipeContext;
+use Opus\Recipe\RecipeContext;
 
 /**
  * PUBLIC SERVICE

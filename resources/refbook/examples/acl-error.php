@@ -8,8 +8,8 @@ declare(strict_types=1);
  *   Demonstrate the expected behavior when ACL denies access.
  */
 
-use ASAP\Acl\AccessContext;
-use ASAP\Acl\AccessControlException;
+use Opus\Acl\AccessContext;
+use Opus\Acl\AccessControlException;
 
 $context = new AccessContext(
     role: 'guest',

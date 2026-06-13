@@ -8,7 +8,7 @@ declare(strict_types=1);
  *   Demonstrate the expected explicit failure on an invalid signal.
  */
 
-use ASAP\Fsm\StateMachineException;
+use Opus\Fsm\StateMachineException;
 
 try {
     $fsm->apply($memory, 'UNKNOWN_SIGNAL');

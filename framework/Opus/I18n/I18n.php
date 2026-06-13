@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Opus\I18n;
 
-use ASAP\I18n\Plural\EnglishPluralRule;
-use ASAP\I18n\Plural\FrenchPluralRule;
-use ASAP\I18n\Plural\RussianPluralRule;
-use ASAP\I18n\Plural\SpanishPluralRule;
+use Opus\I18n\Plural\EnglishPluralRule;
+use Opus\I18n\Plural\FrenchPluralRule;
+use Opus\I18n\Plural\RussianPluralRule;
+use Opus\I18n\Plural\SpanishPluralRule;
 
 /*
  * OPUS_REFBOOK:
@@ -77,7 +77,7 @@ final class I18n
         $languages = [];
 
         foreach ($files as $file) {
-            if (preg_match('/asap\.([a-z]{2}(?:-[a-z]{2})?)\.json$/i', basename($file), $m) === 1) {
+            if (preg_match('/opus\.([a-z]{2}(?:-[a-z]{2})?)\.json$/i', basename($file), $m) === 1) {
                 $languages[] = strtolower($m[1]);
             }
         }

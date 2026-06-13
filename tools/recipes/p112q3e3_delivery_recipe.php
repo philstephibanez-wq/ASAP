@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * Public CLI delivery gate.
  * Role:
- *   Validate the ROUTING RefBook metadata feature, then run the global ASAP
+ *   Validate the ROUTING RefBook metadata feature, then run the global Opus
  *   anti-regression recipe to detect side effects before the delivery is accepted.
  */
 $root = dirname(__DIR__, 2);

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate the existing Lstsa/LSTSAR background smoke contract. */
 final class LstsaRecipe implements RecipeInterface
@@ -15,17 +15,17 @@ final class LstsaRecipe implements RecipeInterface
     public function run(RecipeContext $context): array
     {
         foreach ([
-            \ASAP\Lstsa\LstsaScheduler::class,
-            \ASAP\Lstsa\LstsaRunner::class,
-            \ASAP\Lstsa\LstsaFsmController::class,
-            \ASAP\Lstsa\LstsaLoadPhase::class,
-            \ASAP\Lstsa\LstsaSecureInputPhase::class,
-            \ASAP\Lstsa\LstsaTransformPhase::class,
-            \ASAP\Lstsa\LstsaSecureOutputPhase::class,
-            \ASAP\Lstsa\LstsaStorePhase::class,
-            \ASAP\Lstsa\LstsaArchivePhase::class,
-            \ASAP\Lstsa\LstsaReportPhase::class,
-            \ASAP\Lstsa\LstsaDatabaseStagingExecutor::class,
+            \Opus\Lstsa\LstsaScheduler::class,
+            \Opus\Lstsa\LstsaRunner::class,
+            \Opus\Lstsa\LstsaFsmController::class,
+            \Opus\Lstsa\LstsaLoadPhase::class,
+            \Opus\Lstsa\LstsaSecureInputPhase::class,
+            \Opus\Lstsa\LstsaTransformPhase::class,
+            \Opus\Lstsa\LstsaSecureOutputPhase::class,
+            \Opus\Lstsa\LstsaStorePhase::class,
+            \Opus\Lstsa\LstsaArchivePhase::class,
+            \Opus\Lstsa\LstsaReportPhase::class,
+            \Opus\Lstsa\LstsaDatabaseStagingExecutor::class,
         ] as $class) {
             $context->assert(class_exists($class), 'OPUS_LSTSA_CLASS_NOT_LOADABLE', $class);
         }

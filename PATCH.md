@@ -4,15 +4,15 @@
 Add the first Opus contract layer for site multi-database declarations and Lstsa.
 
 ## Added
-- `ASAP\Database\DatabaseConnectionsConfig`
-- `ASAP\Database\DatabaseMultiConfigLoader`
-- `ASAP\Lstsa\LstsaException`
-- `ASAP\Lstsa\LstsaFieldConstraint`
-- `ASAP\Lstsa\LstsaFieldMapping`
-- `ASAP\Lstsa\LstsaDefinition`
-- `ASAP\Lstsa\LstsaConfigLoader`
-- `ASAP\Lstsa\LstsaReport`
-- `ASAP\Lstsa\LstsaArchiveWriter`
+- `Opus\Database\DatabaseConnectionsConfig`
+- `Opus\Database\DatabaseMultiConfigLoader`
+- `Opus\Lstsa\LstsaException`
+- `Opus\Lstsa\LstsaFieldConstraint`
+- `Opus\Lstsa\LstsaFieldMapping`
+- `Opus\Lstsa\LstsaDefinition`
+- `Opus\Lstsa\LstsaConfigLoader`
+- `Opus\Lstsa\LstsaReport`
+- `Opus\Lstsa\LstsaArchiveWriter`
 - Lstsa smoke recipe and automation check.
 
 ## Contract
@@ -29,10 +29,10 @@ No long runner is started from Apache. The runner/scheduler must be introduced i
 <!-- BEGIN MAESTRO_WORKSPACE P112Q2I2_OPUS_Lstsa_RUNNER_SCHEDULER_BASELINE -->
 ## P112Q2I2_OPUS_Lstsa_RUNNER_SCHEDULER_BASELINE
 
-- CrÃƒÂ©e `ASAP\Lstsa\LstsaRunStatus`.
-- CrÃƒÂ©e `ASAP\Lstsa\LstsaRunStore`.
-- CrÃƒÂ©e `ASAP\Lstsa\LstsaScheduler`.
-- CrÃƒÂ©e `ASAP\Lstsa\LstsaRunner`.
+- CrÃƒÂ©e `Opus\Lstsa\LstsaRunStatus`.
+- CrÃƒÂ©e `Opus\Lstsa\LstsaRunStore`.
+- CrÃƒÂ©e `Opus\Lstsa\LstsaScheduler`.
+- CrÃƒÂ©e `Opus\Lstsa\LstsaRunner`.
 - CrÃƒÂ©e `bin/opus-lstsa-runner.cmd` et `bin/opus-lstsa-scheduler.cmd`.
 - Ajoute ignores runtime queue/locks/heartbeats.
 <!-- END MAESTRO_WORKSPACE P112Q2I2_OPUS_Lstsa_RUNNER_SCHEDULER_BASELINE -->
@@ -94,9 +94,9 @@ No long runner is started from Apache. The runner/scheduler must be introduced i
 
 ### Scope
 - Adds `tools/recipes/manifest/opus_feature_manifest.php`.
-- Adds `ASAP\Recipe\Recipes\FeatureManifestRecipe`.
-- Adds `ASAP\Recipe\Recipes\MailRecipe`.
-- Adds `ASAP\Recipe\Life\Scenarios\HttpMailLifeRobotScenario`.
+- Adds `Opus\Recipe\Recipes\FeatureManifestRecipe`.
+- Adds `Opus\Recipe\Recipes\MailRecipe`.
+- Adds `Opus\Recipe\Life\Scenarios\HttpMailLifeRobotScenario`.
 - Adds `tools/recipes/RUN_OPUS_FULL_RECIPE_VISIBLE_BROWSER.cmd`.
 - Updates the global recipe manifest and docs recipe.
 
@@ -142,7 +142,7 @@ OPUS_GLOBAL_RECIPE_OK
 
 ### Scope
 
-- Add `ASAP\Recipe\Recipes\RealFeatureBindingRecipe`.
+- Add `Opus\Recipe\Recipes\RealFeatureBindingRecipe`.
 - Register the recipe in `RecipeManifest` after feature manifest validation.
 - Register `real_features_recipe_binding` in `tools/recipes/manifest/opus_feature_manifest.php`.
 - Extend docs validation to require the P112Q2K contract.

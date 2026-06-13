@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Template;
 
-use ASAP\Template\TwigTemplateRenderer;
+use Opus\Template\TwigTemplateRenderer;
 
 /*
  * OPUS_REFBOOK:

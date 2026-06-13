@@ -53,7 +53,7 @@ function p113b7_assert_contains(string $haystack, string $needle, string $label)
 
 require_once $root . '/application/reference/Service/ReferenceThemeService.php';
 
-$themeServiceClass = 'ASAPRefBook\\Reference\\Service\\ReferenceThemeService';
+$themeServiceClass = 'OpusRefBook\\Reference\\Service\\ReferenceThemeService';
 $themes = $themeServiceClass::SUPPORTED_THEMES;
 if ($themeServiceClass::DEFAULT_THEME !== 'night') {
     fwrite(STDERR, 'P113B7_DEFAULT_THEME_INVALID' . PHP_EOL);

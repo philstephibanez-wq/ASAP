@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Autoload\AutoloadCache;
-use ASAP\Autoload\ClassMapBuilder;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Autoload\AutoloadCache;
+use Opus\Autoload\ClassMapBuilder;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate official Opus autoloader cache and class index contract. */
 final class AutoloadCacheRecipe implements RecipeInterface
@@ -34,14 +34,14 @@ final class AutoloadCacheRecipe implements RecipeInterface
         (new AutoloadCache($root, $cacheFile))->register();
 
         foreach ([
-            \ASAP\Autoload\AutoloadCache::class,
-            \ASAP\Autoload\ClassMapBuilder::class,
-            \ASAP\Core\Bootstrap::class,
-            \ASAP\Application\Application::class,
-            \ASAP\Routing\ClassIndex::class,
-            \ASAP\Routing\RouteManifestCompiler::class,
-            \ASAP\Lstsa\LstsaRunner::class,
-            \ASAP\Database\DatabaseMultiConfigLoader::class,
+            \Opus\Autoload\AutoloadCache::class,
+            \Opus\Autoload\ClassMapBuilder::class,
+            \Opus\Core\Bootstrap::class,
+            \Opus\Application\Application::class,
+            \Opus\Routing\ClassIndex::class,
+            \Opus\Routing\RouteManifestCompiler::class,
+            \Opus\Lstsa\LstsaRunner::class,
+            \Opus\Database\DatabaseMultiConfigLoader::class,
         ] as $class) {
             $context->assert(class_exists($class), 'OPUS_AUTOLOADER_CACHE_CLASS_NOT_LOADABLE', $class);
         }
@@ -67,16 +67,16 @@ final class AutoloadCacheRecipe implements RecipeInterface
     {
         $autoload = $refBookRoot . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
         $composerStatic = $refBookRoot . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'composer' . DIRECTORY_SEPARATOR . 'autoload_static.php';
-        $asapVendorRoot = $refBookRoot . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'logandplay' . DIRECTORY_SEPARATOR . 'asap';
+        $opusVendorRoot = $refBookRoot . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'logandplay' . DIRECTORY_SEPARATOR . 'opus';
 
         $context->assert(is_file($autoload), 'OPUS_REFBOOK_VENDOR_AUTOLOAD_MISSING', $autoload);
         $context->assert(is_file($composerStatic), 'OPUS_REFBOOK_COMPOSER_STATIC_MISSING', $composerStatic);
-        $context->assert(is_dir($asapVendorRoot), 'OPUS_REFBOOK_OPUS_VENDOR_ROOT_MISSING', $asapVendorRoot);
+        $context->assert(is_dir($opusVendorRoot), 'OPUS_REFBOOK_OPUS_VENDOR_ROOT_MISSING', $opusVendorRoot);
 
         $static = (string)file_get_contents($composerStatic);
         $context->assert(str_contains($static, "'Opus\\\\'") || str_contains($static, '"Opus\\\\"'), 'OPUS_REFBOOK_OPUS_PSR4_PREFIX_MISSING', $composerStatic);
 
-        $vendorFramework = $asapVendorRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+        $vendorFramework = $opusVendorRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
         $context->assert(is_dir($vendorFramework), 'OPUS_REFBOOK_OPUS_VENDOR_FRAMEWORK_OPUS_MISSING', $vendorFramework);
     }
 }

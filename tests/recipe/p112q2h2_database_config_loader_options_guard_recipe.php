@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$root = 'H:\\ASAP';
+$root = 'H:\\Opus';
 $framework = $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
 if (!is_dir($framework)) {
@@ -15,7 +15,7 @@ require_once $framework . '/Database/DatabaseConnectionConfig.php';
 require_once $framework . '/Database/DatabaseDsnFactory.php';
 require_once $framework . '/Database/DatabaseConfigLoader.php';
 
-$loader = new \ASAP\Database\DatabaseConfigLoader();
+$loader = new \Opus\Database\DatabaseConfigLoader();
 
 $withoutOptions = simplexml_load_string(
     '<database provider="sqlite"><path>H:/OPUS_REF_BOOK/var/data/opus.sqlite</path></database>'
@@ -60,7 +60,7 @@ if (!$badOption instanceof SimpleXMLElement) {
 try {
     $loader->fromXml($badOption, 'bad-option');
     throw new RuntimeException('EMPTY_OPTION_NAME_DID_NOT_FAIL');
-} catch (\ASAP\Database\DatabaseException) {
+} catch (\Opus\Database\DatabaseException) {
     echo 'PASS EMPTY_OPTION_NAME_FAILS' . PHP_EOL;
 }
 

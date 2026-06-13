@@ -6,7 +6,7 @@ $root = dirname(__DIR__, 2);
 
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaReportCatalog.php';
 
-use ASAP\Lstsa\LstsaReportCatalog;
+use Opus\Lstsa\LstsaReportCatalog;
 
 $limit = 50;
 foreach ($argv as $arg) {

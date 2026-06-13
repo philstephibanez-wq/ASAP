@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\I18n\Plural;
 
-use ASAP\I18n\PluralRuleInterface;
+use Opus\I18n\PluralRuleInterface;
 
 /*
  * OPUS_REFBOOK:

@@ -22,7 +22,7 @@ namespace Opus\Support;
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *
  * Role:
- *   Restore the small `ASAP\Support` utility surface used by legacy Opus code.
+ *   Restore the small `Opus\Support` utility surface used by legacy Opus code.
  *
  * Contract:
  *   Pure helpers only. No global state, no IO side effects and no hidden fallback.
@@ -42,7 +42,7 @@ final class Support
         $path = trim(str_replace('\\', '/', $path));
 
         if ($path === '') {
-            throw \ASAP\Exception\Exception::because('OPUS_SUPPORT_PATH_EMPTY');
+            throw \Opus\Exception\Exception::because('OPUS_SUPPORT_PATH_EMPTY');
         }
 
         $prefix = '';
@@ -61,7 +61,7 @@ final class Support
 
             if ($segment === '..') {
                 if ($segments === []) {
-                    throw \ASAP\Exception\Exception::because('OPUS_SUPPORT_PATH_TRAVERSAL_OUTSIDE_ROOT', $path);
+                    throw \Opus\Exception\Exception::because('OPUS_SUPPORT_PATH_TRAVERSAL_OUTSIDE_ROOT', $path);
                 }
 
                 array_pop($segments);

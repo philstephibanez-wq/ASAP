@@ -18,8 +18,8 @@ $cacheFile = rtrim($root, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'framewor
 require_once $builderFile;
 require_once $cacheFile;
 
-use ASAP\Autoload\AutoloadCache;
-use ASAP\Autoload\ClassMapBuilder;
+use Opus\Autoload\AutoloadCache;
+use Opus\Autoload\ClassMapBuilder;
 
 $out = AutoloadCache::defaultCacheFile($root);
 $assert = false;
@@ -45,12 +45,12 @@ if ($assert) {
     (new AutoloadCache($root, $out))->register();
 
     $required = [
-        \ASAP\Autoload\AutoloadCache::class,
-        \ASAP\Autoload\ClassMapBuilder::class,
-        \ASAP\Core\Bootstrap::class,
-        \ASAP\Application\Application::class,
-        \ASAP\Routing\ClassIndex::class,
-        \ASAP\Lstsa\LstsaRunner::class,
+        \Opus\Autoload\AutoloadCache::class,
+        \Opus\Autoload\ClassMapBuilder::class,
+        \Opus\Core\Bootstrap::class,
+        \Opus\Application\Application::class,
+        \Opus\Routing\ClassIndex::class,
+        \Opus\Lstsa\LstsaRunner::class,
     ];
 
     foreach ($required as $class) {

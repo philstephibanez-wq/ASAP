@@ -10,9 +10,9 @@ declare(strict_types=1);
  * migration cannot rewrite this recipe into checking valid Database tokens.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
 if (!is_dir($frameworkRoot)) {
     throw new RuntimeException('OPUS_FRAMEWORK_ROOT_MISSING');
@@ -165,35 +165,35 @@ $legacy = 'BD' . 'D';
 assertExactDirectoryState($frameworkRoot, $legacy, 'Database');
 
 $forbidden = [
-    'ASAP' . '\\' . $legacy,
-    'ASAP' . '\\\\' . $legacy,
+    'Opus' . '\\' . $legacy,
+    'Opus' . '\\\\' . $legacy,
     'framework/Opus/' . $legacy,
-    'framework' . '\\' . 'ASAP' . '\\' . $legacy,
-    'framework' . '\\\\' . 'ASAP' . '\\\\' . $legacy,
+    'framework' . '\\' . 'Opus' . '\\' . $legacy,
+    'framework' . '\\\\' . 'Opus' . '\\\\' . $legacy,
     '/' . $legacy . '/',
     '\\' . $legacy . '\\',
 ];
 
-assertNoRuntimeToken([$asapRoot, $refBookRoot], $forbidden);
+assertNoRuntimeToken([$opusRoot, $refBookRoot], $forbidden);
 
 echo 'PASS NO_OLD_DATABASE_NAMESPACE_OR_PATH_TOKENS' . PHP_EOL;
 
 require_once $frameworkRoot . '/Database/Database.php';
 require_once $frameworkRoot . '/Database/Mysql.php';
 
-if (!class_exists(\ASAP\Database\Database::class)) {
+if (!class_exists(\Opus\Database\Database::class)) {
     throw new RuntimeException('OPUS_DATABASE_DATABASE_CLASS_NOT_LOADABLE');
 }
 
-if (!class_exists(\ASAP\Database\Mysql::class)) {
+if (!class_exists(\Opus\Database\Mysql::class)) {
     throw new RuntimeException('OPUS_DATABASE_MYSQL_CLASS_NOT_LOADABLE');
 }
 
 echo 'PASS DATABASE_CLASSES_LOADABLE' . PHP_EOL;
 
 assertPhpFilesLintInRoot($frameworkRoot);
-assertPhpFilesLintInRoot($asapRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'recipe');
-assertPhpFilesLintInRoot($asapRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures');
+assertPhpFilesLintInRoot($opusRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'recipe');
+assertPhpFilesLintInRoot($opusRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures');
 
 echo 'PASS PHP_LINT_FRAMEWORK_RECIPE_FIXTURES' . PHP_EOL;
 echo 'P112Q2E_BDD_TO_DATABASE_ENGLISH_DOMAIN_RENAME_RECIPE_OK' . PHP_EOL;

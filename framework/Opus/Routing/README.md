@@ -1,6 +1,6 @@
-# ASAP\Routing
+# Opus\Routing
 
-`ASAP\Routing` is the canonical runtime routing domain.
+`Opus\Routing` is the canonical runtime routing domain.
 
 ## Role
 
@@ -30,20 +30,20 @@ A non-matching route must fail explicitly.
 
 ## Runtime boundary
 
-The application runtime must depend on `ASAP\Routing`, not on legacy `ASAP\Router`.
+The application runtime must depend on `Opus\Routing`, not on legacy `Opus\Router`.
 
 Expected runtime chain:
 
 ```text
 Application
-  -> ASAP\Routing\Router
-  -> ASAP\Routing\RouteMatch
+  -> Opus\Routing\Router
+  -> Opus\Routing\RouteMatch
   -> SecureDispatchGate
   -> ControllerDispatcher
 ```
 
 ## Legacy distinction
 
-`ASAP\Router` is a legacy/public lightweight route registry domain.
+`Opus\Router` is a legacy/public lightweight route registry domain.
 
 It is not the canonical HTTP/FSM/ACL routing runtime.

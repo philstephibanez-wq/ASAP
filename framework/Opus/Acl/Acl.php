@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Acl;
 
-use ASAP\RefBook\Attribute\OpusRefBookClass;
-use ASAP\RefBook\Attribute\OpusRefBookMethod;
-use ASAP\RefBook\Contract\RefBookInspectableInterface;
+use Opus\RefBook\Attribute\OpusRefBookClass;
+use Opus\RefBook\Attribute\OpusRefBookMethod;
+use Opus\RefBook\Contract\RefBookInspectableInterface;
 
 /*
  * OPUS_REFBOOK:
@@ -26,11 +26,11 @@ use ASAP\RefBook\Contract\RefBookInspectableInterface;
  * PUBLIC LEGACY COMPATIBILITY SHIM
  *
  * Role:
- *   Restore the small top-level `ASAP\Acl` compatibility surface.
+ *   Restore the small top-level `Opus\Acl` compatibility surface.
  *
  * Contract:
  *   This is not the full ACL engine. It does not grant access implicitly.
- *   Full ACL decisions belong to `ASAP\Acl\AccessControl`.
+ *   Full ACL decisions belong to `Opus\Acl\AccessControl`.
  *
  * Since:
  *   P112P1

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Template;
 
-use ASAP\Contract\ContractException;
+use Opus\Contract\ContractException;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 

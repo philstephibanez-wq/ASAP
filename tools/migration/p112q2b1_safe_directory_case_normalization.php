@@ -15,11 +15,11 @@ declare(strict_types=1);
  * It intentionally does not touch risky namespace/domain directories.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
-if (!is_dir($asapRoot)) {
+if (!is_dir($opusRoot)) {
     fwrite(STDERR, "OPUS_ROOT_MISSING\n");
     exit(1);
 }
@@ -192,7 +192,7 @@ foreach ($renames as $from => $to) {
     $replacements['framework\\Opus\\' . $from] = 'framework\\Opus\\' . $to;
     $replacements['framework\\\\Opus\\\\' . $from] = 'framework\\\\Opus\\\\' . $to;
 
-    $replacements['ASAP/' . $from] = 'ASAP/' . $to;
+    $replacements['Opus/' . $from] = 'Opus/' . $to;
     $replacements['Opus\\' . $from] = 'Opus\\' . $to;
     $replacements['Opus\\\\' . $from] = 'Opus\\\\' . $to;
 
@@ -201,7 +201,7 @@ foreach ($renames as $from => $to) {
     $replacements['\\\\' . $from . '\\\\'] = '\\\\' . $to . '\\\\';
 }
 
-$changedFiles = replaceInTextFiles([$asapRoot, $refBookRoot], $replacements);
+$changedFiles = replaceInTextFiles([$opusRoot, $refBookRoot], $replacements);
 
 echo 'TEXT_FILES_UPDATED=' . $changedFiles . PHP_EOL;
 echo 'P112Q2B1_SAFE_DIRECTORY_CASE_NORMALIZATION_OK' . PHP_EOL;

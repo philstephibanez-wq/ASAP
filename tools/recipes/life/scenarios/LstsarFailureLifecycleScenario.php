@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Life\Scenarios;
 
-use ASAP\Recipe\Life\LifeScenarioRunner;
-use ASAP\Recipe\Life\RobotActor;
-use ASAP\Recipe\Life\RobotScenario;
-use ASAP\Recipe\Life\RobotSession;
-use ASAP\Recipe\Life\RobotStep;
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\Life\LifeScenarioRunner;
+use Opus\Recipe\Life\RobotActor;
+use Opus\Recipe\Life\RobotScenario;
+use Opus\Recipe\Life\RobotSession;
+use Opus\Recipe\Life\RobotStep;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC LIFE RECIPE: invalid data fails LSTSAR without final target mutation. */
 final class LstsarFailureLifecycleScenario implements RecipeInterface, RobotScenario
@@ -30,11 +30,11 @@ final class LstsarFailureLifecycleScenario implements RecipeInterface, RobotScen
             $source = new \PDO('sqlite:' . $sourceDb, null, null, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
             $source->exec('CREATE TABLE raw_users (email TEXT NOT NULL, status TEXT NOT NULL)');
             $source->exec("INSERT INTO raw_users (email, status) VALUES ('not-an-email', 'active')");
-            $store = new \ASAP\Lstsa\LstsaRunStore($context->rootPath());
-            $scheduler = new \ASAP\Lstsa\LstsaScheduler($store);
+            $store = new \Opus\Lstsa\LstsaRunStore($context->rootPath());
+            $scheduler = new \Opus\Lstsa\LstsaScheduler($store);
             $scheduler->enqueueDatabaseStagingSmokeRun($sourceDb, $targetDb);
-            $failed = (new \ASAP\Lstsa\LstsaRunner($store))->runOnce('life_lstsar_failure_runner');
-            $context->assert(is_array($failed) && $failed['status'] === \ASAP\Lstsa\LstsaRunStatus::FAILED, 'OPUS_LIFE_LSTSAR_FAILURE_NOT_FAILED');
+            $failed = (new \Opus\Lstsa\LstsaRunner($store))->runOnce('life_lstsar_failure_runner');
+            $context->assert(is_array($failed) && $failed['status'] === \Opus\Lstsa\LstsaRunStatus::FAILED, 'OPUS_LIFE_LSTSAR_FAILURE_NOT_FAILED');
             if (is_file($targetDb)) {
                 $target = new \PDO('sqlite:' . $targetDb, null, null, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
                 $tables = $target->query("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")->fetchAll(\PDO::FETCH_COLUMN);

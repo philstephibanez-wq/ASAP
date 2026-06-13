@@ -17,11 +17,11 @@ declare(strict_types=1);
  * - no runtime autoload magic.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
-if (!is_dir($asapRoot)) {
+if (!is_dir($opusRoot)) {
     fwrite(STDERR, "OPUS_ROOT_MISSING\n");
     exit(1);
 }
@@ -214,13 +214,13 @@ $replacements = [
     'framework/Opus/BDD' => 'framework/Opus/Database',
     'framework\\Opus\\BDD' => 'framework\\Opus\\Database',
     'framework\\\\Opus\\\\BDD' => 'framework\\\\Opus\\\\Database',
-    'ASAP/BDD' => 'ASAP/Database',
+    'Opus/BDD' => 'Opus/Database',
     '/BDD/' => '/Database/',
     '\\BDD\\' => '\\Database\\',
     '\\\\BDD\\\\' => '\\\\Database\\\\',
 ];
 
-$changedFiles = replaceInTextFiles([$asapRoot, $refBookRoot], $replacements);
+$changedFiles = replaceInTextFiles([$opusRoot, $refBookRoot], $replacements);
 
 echo 'TEXT_FILES_UPDATED=' . $changedFiles . PHP_EOL;
 echo 'P112Q2E_BDD_TO_DATABASE_ENGLISH_DOMAIN_RENAME_OK' . PHP_EOL;

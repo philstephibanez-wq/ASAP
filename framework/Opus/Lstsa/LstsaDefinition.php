@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Lstsa;
 
-use ASAP\Database\DatabaseConnectionsConfig;
+use Opus\Database\DatabaseConnectionsConfig;
 
 /*
  * OPUS_REFBOOK:

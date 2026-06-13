@@ -8,9 +8,9 @@ declare(strict_types=1);
  * Public smoke test.
  *
  * Contract:
- *   - ASAP\Routing remains the canonical runtime routing domain;
- *   - ASAP\Router remains documented as a legacy/public lightweight registry;
- *   - application runtime classes must not depend on ASAP\Router.
+ *   - Opus\Routing remains the canonical runtime routing domain;
+ *   - Opus\Router remains documented as a legacy/public lightweight registry;
+ *   - application runtime classes must not depend on Opus\Router.
  */
 $root = dirname(__DIR__, 2);
 

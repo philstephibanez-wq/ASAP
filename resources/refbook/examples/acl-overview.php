@@ -12,13 +12,13 @@ declare(strict_types=1);
  *   continue when the access decision is denied.
  */
 
-use ASAP\Acl\Acl;
-use ASAP\Acl\AccessContext;
-use ASAP\Acl\AccessControl;
-use ASAP\Acl\AccessDecision;
-use ASAP\Acl\AccessRule;
-use ASAP\Acl\ResourceDefinition;
-use ASAP\Acl\RoleDefinition;
+use Opus\Acl\Acl;
+use Opus\Acl\AccessContext;
+use Opus\Acl\AccessControl;
+use Opus\Acl\AccessDecision;
+use Opus\Acl\AccessRule;
+use Opus\Acl\ResourceDefinition;
+use Opus\Acl\RoleDefinition;
 
 // 1. Declare roles/resources/privileges in configuration or bootstrap code.
 $acl = new Acl(

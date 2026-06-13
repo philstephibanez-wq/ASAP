@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\Recipes\AutoloadCacheRecipe;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\Recipes\AutoloadCacheRecipe;
 
 $root = dirname(__DIR__, 2);
 $runId = 'opus_autoload_cache_recipe_' . date('Ymd_His') . '_' . bin2hex(random_bytes(4));

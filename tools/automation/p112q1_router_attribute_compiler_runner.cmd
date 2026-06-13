@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 
-set "OPUS_ROOT=H:\ASAP"
+set "OPUS_ROOT=H:\OPUS"
 set "PHP=H:\UwAmp\bin\php\php-8.5.6\php.exe"
 set "SMOKE=%OPUS_ROOT%\tests\smoke\p112q1_router_attribute_compiler_smoke.php"
 

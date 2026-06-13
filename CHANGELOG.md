@@ -99,8 +99,8 @@
 
 ## P112Q2K1_OPUS_AUTOLOADER_CACHE_CONTRACT
 
-- Ajout du contrat officiel `ASAP\Autoload`.
-- GÃ©nÃ©ration du cache `var/cache/asap/autoload/opus_classmap.php`.
+- Ajout du contrat officiel `Opus\Autoload`.
+- GÃ©nÃ©ration du cache `var/cache/opus/autoload/opus_classmap.php`.
 - Recette `OPUS_AUTOLOADER_CACHE_OK`.
 
 ## P112Q2L_OPUS_REAL_REFBOOK_HTTP_DIAGNOSTICS

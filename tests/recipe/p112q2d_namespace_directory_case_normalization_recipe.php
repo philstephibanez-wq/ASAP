@@ -12,9 +12,9 @@ declare(strict_types=1);
  * contract and may contain pre-existing syntax-policy issues.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
 if (!is_dir($frameworkRoot)) {
     throw new RuntimeException('OPUS_FRAMEWORK_ROOT_MISSING');
@@ -200,20 +200,20 @@ foreach ($renames as $old => $new) {
 $forbidden = [];
 
 foreach (array_keys($renames) as $old) {
-    $forbidden[] = 'ASAP' . '\\' . $old;
-    $forbidden[] = 'ASAP' . '\\\\' . $old;
+    $forbidden[] = 'Opus' . '\\' . $old;
+    $forbidden[] = 'Opus' . '\\\\' . $old;
     $forbidden[] = 'framework/Opus/' . $old;
-    $forbidden[] = 'framework' . '\\' . 'ASAP' . '\\' . $old;
-    $forbidden[] = 'framework' . '\\\\' . 'ASAP' . '\\\\' . $old;
+    $forbidden[] = 'framework' . '\\' . 'Opus' . '\\' . $old;
+    $forbidden[] = 'framework' . '\\\\' . 'Opus' . '\\\\' . $old;
 }
 
-assertNoRuntimeToken([$asapRoot, $refBookRoot], $forbidden);
+assertNoRuntimeToken([$opusRoot, $refBookRoot], $forbidden);
 
 echo 'PASS NO_OLD_RUNTIME_NAMESPACE_OR_PATH_TOKENS' . PHP_EOL;
 
 assertPhpFilesLintInRoot($frameworkRoot);
-assertPhpFilesLintInRoot($asapRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'recipe');
-assertPhpFilesLintInRoot($asapRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures');
+assertPhpFilesLintInRoot($opusRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'recipe');
+assertPhpFilesLintInRoot($opusRoot . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures');
 
 echo 'PASS PHP_LINT_FRAMEWORK_RECIPE_FIXTURES' . PHP_EOL;
 echo 'P112Q2D_NAMESPACE_DIRECTORY_CASE_NORMALIZATION_RECIPE_OK' . PHP_EOL;

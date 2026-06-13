@@ -8,7 +8,7 @@ declare(strict_types=1);
  *   Route matching, ACL and FSM metadata are validated before controller action.
  */
 
-use ASAP\Routing\RouteMatch;
+use Opus\Routing\RouteMatch;
 
 function dispatchWithGate(RouteMatch $match): void
 {

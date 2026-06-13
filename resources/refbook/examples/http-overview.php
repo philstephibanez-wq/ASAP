@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ASAP\Http\Request;
+use Opus\Http\Request;
 
 $request = new Request('/api/refbook/health', 'GET');
 echo $request->method . ' ' . $request->path . PHP_EOL;

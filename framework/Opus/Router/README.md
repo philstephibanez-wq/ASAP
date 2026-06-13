@@ -1,6 +1,6 @@
-# ASAP\Router
+# Opus\Router
 
-`ASAP\Router` is a legacy/public lightweight route registry domain.
+`Opus\Router` is a legacy/public lightweight route registry domain.
 
 ## Role
 
@@ -29,16 +29,16 @@ It must not:
 
 ## Runtime status
 
-`ASAP\Router` is not the canonical application runtime router.
+`Opus\Router` is not the canonical application runtime router.
 
-The canonical runtime routing domain is `ASAP\Routing`.
+The canonical runtime routing domain is `Opus\Routing`.
 
 Application-level routing must use:
 
 ```text
-ASAP\Routing\Router
-ASAP\Routing\RouteDefinition
-ASAP\Routing\RouteMatch
+Opus\Routing\Router
+Opus\Routing\RouteDefinition
+Opus\Routing\RouteMatch
 ```
 
 ## Preservation rule

@@ -16,7 +16,7 @@ declare(strict_types=1);
  * The tool does not rename, edit, or delete framework files.
  */
 
-$workspaceRoot = 'H:\\ASAP';
+$workspaceRoot = 'H:\\Opus';
 $frameworkRoot = $workspaceRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 $reportRoot = 'H:\\OPUS_REF_BOOK\\var\\reports';
 

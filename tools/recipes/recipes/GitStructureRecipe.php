@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate repository structure and ignored runtime paths. */
 final class GitStructureRecipe implements RecipeInterface
@@ -21,7 +21,7 @@ final class GitStructureRecipe implements RecipeInterface
         $frameworkRoot = $context->path('framework');
         $entries = is_dir($frameworkRoot) ? (scandir($frameworkRoot) ?: []) : [];
         $context->assert(in_array('Opus', $entries, true) && is_dir($frameworkRoot . DIRECTORY_SEPARATOR . 'Opus'), 'OPUS_FRAMEWORK_OPUS_DIRECTORY_MISSING');
-        $context->assert(!in_array('ASAP', $entries, true), 'OPUS_FORBIDDEN_UPPERCASE_FRAMEWORK_DIRECTORY_PRESENT');
+        $context->assert(!in_array('Opus', $entries, true), 'OPUS_FORBIDDEN_UPPERCASE_FRAMEWORK_DIRECTORY_PRESENT');
 
         if (is_dir($context->path('.git'))) {
             $output = $context->runCommand('git ls-files', 'OPUS_GIT_LS_FILES_FAILED');

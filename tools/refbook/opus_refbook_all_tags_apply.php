@@ -11,15 +11,15 @@ declare(strict_types=1);
  * - Existing OPUS_REFBOOK tags are preserved.
  */
 
-$asapRoot = getenv('OPUS_ROOT') ?: 'H:\\ASAP';
+$opusRoot = getenv('OPUS_ROOT') ?: 'H:\\Opus';
 foreach ($argv as $arg) {
-    if (str_starts_with($arg, '--asap=')) {
-        $asapRoot = substr($arg, 7);
+    if (str_starts_with($arg, '--opus=')) {
+        $opusRoot = substr($arg, 7);
     }
 }
 
-$asapRoot = require_dir($asapRoot, 'P112Q2T_OPUS_ROOT_NOT_FOUND');
-$frameworkRoot = require_dir($asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus', 'P112Q2T_FRAMEWORK_ROOT_NOT_FOUND');
+$opusRoot = require_dir($opusRoot, 'P112Q2T_OPUS_ROOT_NOT_FOUND');
+$frameworkRoot = require_dir($opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus', 'P112Q2T_FRAMEWORK_ROOT_NOT_FOUND');
 
 $files = phpFiles($frameworkRoot);
 $tagged = 0;
@@ -50,8 +50,8 @@ foreach ($files as $file) {
     $tagged++;
 }
 
-writeToolDoc($asapRoot, $tagged, $skipped);
-ensureGitignore($asapRoot, '/var/generated/');
+writeToolDoc($opusRoot, $tagged, $skipped);
+ensureGitignore($opusRoot, '/var/generated/');
 
 echo 'P112Q2T_TAGGED=' . $tagged . PHP_EOL;
 echo 'P112Q2T_SKIPPED_EXISTING=' . $skipped . PHP_EOL;
@@ -158,7 +158,7 @@ function insertTagBeforeSymbol(string $content, string $className, string $tag):
     return substr($content, 0, $declarationStart) . $tag . substr($content, $declarationStart);
 }
 
-function writeToolDoc(string $asapRoot, int $tagged, int $skipped): void
+function writeToolDoc(string $opusRoot, int $tagged, int $skipped): void
 {
     $doc = <<<'MD'
 # P112Q2T — Opus RefBook All Source Tags Baseline
@@ -185,7 +185,7 @@ MD;
     $doc .= '- Tagged during apply: `' . $tagged . '`' . PHP_EOL;
     $doc .= '- Already tagged: `' . $skipped . '`' . PHP_EOL;
 
-    writeFile($asapRoot . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'P112Q2T_OPUS_REFBOOK_ALL_SOURCE_TAGS_BASELINE.md', $doc);
+    writeFile($opusRoot . DIRECTORY_SEPARATOR . 'DOC' . DIRECTORY_SEPARATOR . 'P112Q2T_OPUS_REFBOOK_ALL_SOURCE_TAGS_BASELINE.md', $doc);
 }
 
 function ensureGitignore(string $root, string $entry): void

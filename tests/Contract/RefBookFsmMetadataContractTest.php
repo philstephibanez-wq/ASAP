@@ -15,9 +15,9 @@ $root = dirname(__DIR__, 2);
 requireRefBookCore($root);
 
 $fsmRoot = $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Fsm';
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($fsmRoot, 'Opus\\Fsm');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
 $summary = $validation['summary'];
 
@@ -84,9 +84,9 @@ $demoFlow = findMethod($fsmFacade['methods'], 'demoFlow');
 assertSame('array', $demoFlow['return_type'], 'Fsm::demoFlow return type must come from Reflection.');
 assertContains('fsm-basic-transition', $demoFlow['metadata']['examples'] ?? [], 'Fsm::demoFlow must link FSM basic transition example.');
 
-$machine = new ASAP\Fsm\StateMachine(
-    [new ASAP\Fsm\StateDefinition('A'), new ASAP\Fsm\StateDefinition('B')],
-    [new ASAP\Fsm\TransitionDefinition('A', 'NEXT', 'B')],
+$machine = new Opus\Fsm\StateMachine(
+    [new Opus\Fsm\StateDefinition('A'), new Opus\Fsm\StateDefinition('B')],
+    [new Opus\Fsm\TransitionDefinition('A', 'NEXT', 'B')],
     'A'
 );
 assertSame('A', $machine->currentState(), 'FSM runtime sanity: initial state mismatch.');

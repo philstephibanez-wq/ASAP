@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Site;
 
-use ASAP\Contract\ContractException;
-use ASAP\Http\Request;
+use Opus\Contract\ContractException;
+use Opus\Http\Request;
 use SimpleXMLElement;
 
 /*

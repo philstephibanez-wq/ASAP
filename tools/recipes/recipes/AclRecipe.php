@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Recipe\Recipes;
 
-use ASAP\Recipe\RecipeContext;
-use ASAP\Recipe\RecipeInterface;
+use Opus\Recipe\RecipeContext;
+use Opus\Recipe\RecipeInterface;
 
 /** PUBLIC RECIPE: validate ACL allow, deny and unknown-role failures. */
 final class AclRecipe implements RecipeInterface
@@ -14,11 +14,11 @@ final class AclRecipe implements RecipeInterface
 
     public function run(RecipeContext $context): array
     {
-        $acl = new \ASAP\Acl\AccessControl(
-            [new \ASAP\Acl\RoleDefinition('anonymous'), new \ASAP\Acl\RoleDefinition('admin'), new \ASAP\Acl\RoleDefinition('denied')],
-            [new \ASAP\Acl\ResourceDefinition('public'), new \ASAP\Acl\ResourceDefinition('admin')],
-            [new \ASAP\Acl\PrivilegeDefinition('view')],
-            [new \ASAP\Acl\AccessRule('anonymous', 'public', 'view', true), new \ASAP\Acl\AccessRule('admin', 'admin', 'view', true), new \ASAP\Acl\AccessRule('denied', 'admin', 'view', false)]
+        $acl = new \Opus\Acl\AccessControl(
+            [new \Opus\Acl\RoleDefinition('anonymous'), new \Opus\Acl\RoleDefinition('admin'), new \Opus\Acl\RoleDefinition('denied')],
+            [new \Opus\Acl\ResourceDefinition('public'), new \Opus\Acl\ResourceDefinition('admin')],
+            [new \Opus\Acl\PrivilegeDefinition('view')],
+            [new \Opus\Acl\AccessRule('anonymous', 'public', 'view', true), new \Opus\Acl\AccessRule('admin', 'admin', 'view', true), new \Opus\Acl\AccessRule('denied', 'admin', 'view', false)]
         );
         $context->assert($acl->decide('anonymous', 'public', 'view')->allowed(), 'OPUS_ACL_PUBLIC_ACCESS_DENIED');
         $context->assert($acl->decide('admin', 'admin', 'view')->allowed(), 'OPUS_ACL_ADMIN_ACCESS_DENIED');
@@ -27,7 +27,7 @@ final class AclRecipe implements RecipeInterface
         try {
             $acl->decide('ghost', 'public', 'view');
             $context->assert(false, 'OPUS_ACL_UNKNOWN_ROLE_DID_NOT_FAIL');
-        } catch (\ASAP\Acl\AccessControlException) {
+        } catch (\Opus\Acl\AccessControlException) {
         }
 
         return ['OPUS_ACL_OK'];

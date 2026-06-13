@@ -27,7 +27,7 @@
       linkCount: links,
       markers: {
         runtimeError: runtimeError,
-        asapText: /ASAP/i.test(bodyText),
+        opusText: /Opus/i.test(bodyText),
         refbookText: /REFBOOK|RefBook/i.test(bodyText)
       },
       checkedAt: new Date().toISOString()

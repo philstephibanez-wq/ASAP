@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Module;
 
-use ASAP\Contract\ContractException;
+use Opus\Contract\ContractException;
 
 /*
  * OPUS_REFBOOK:
@@ -25,7 +25,7 @@ use ASAP\Contract\ContractException;
  *
  * Role:
  *   Preserve the Opus MODULE concept inside the canonical Windows-safe
- *   `ASAP\Module` namespace/directory.
+ *   `Opus\Module` namespace/directory.
  *
  * Responsibility:
  *   Carry one module declaration.

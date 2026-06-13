@@ -12,12 +12,12 @@ require_once __DIR__ . '/../../framework/Opus/Routing/RouteManifestCompiler.php'
 require_once __DIR__ . '/../fixtures/P112Q1/DemoRouteController.php';
 require_once __DIR__ . '/../fixtures/P112Q1/DuplicateRouteController.php';
 
-use ASAP\Routing\AttributeRouteProvider;
-use ASAP\Routing\ClassIndex;
-use ASAP\Routing\RouteCompilerException;
-use ASAP\Routing\RouteManifestCompiler;
-use ASAP\Tests\Fixtures\P112Q1\DemoRouteController;
-use ASAP\Tests\Fixtures\P112Q1\DuplicateRouteController;
+use Opus\Routing\AttributeRouteProvider;
+use Opus\Routing\ClassIndex;
+use Opus\Routing\RouteCompilerException;
+use Opus\Routing\RouteManifestCompiler;
+use Opus\Tests\Fixtures\P112Q1\DemoRouteController;
+use Opus\Tests\Fixtures\P112Q1\DuplicateRouteController;
 
 function assertTrue(bool $condition, string $message): void
 {

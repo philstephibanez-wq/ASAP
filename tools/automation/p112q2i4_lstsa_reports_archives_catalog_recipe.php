@@ -16,11 +16,11 @@ require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . '
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaRunner.php';
 require_once $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Lstsa' . DIRECTORY_SEPARATOR . 'LstsaReportCatalog.php';
 
-use ASAP\Lstsa\LstsaReportCatalog;
-use ASAP\Lstsa\LstsaRunStatus;
-use ASAP\Lstsa\LstsaRunStore;
-use ASAP\Lstsa\LstsaRunner;
-use ASAP\Lstsa\LstsaScheduler;
+use Opus\Lstsa\LstsaReportCatalog;
+use Opus\Lstsa\LstsaRunStatus;
+use Opus\Lstsa\LstsaRunStore;
+use Opus\Lstsa\LstsaRunner;
+use Opus\Lstsa\LstsaScheduler;
 
 function p112q2i4_fail(string $message): void
 {

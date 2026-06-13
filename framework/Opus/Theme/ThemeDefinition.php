@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Opus\Theme;
 
-use ASAP\Contract\ContractException;
+use Opus\Contract\ContractException;
 
 /*
  * OPUS_REFBOOK:

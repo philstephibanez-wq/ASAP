@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Opus\Application;
 
-use ASAP\Http\Request;
-use ASAP\Http\Response;
+use Opus\Http\Request;
+use Opus\Http\Response;
 
 /*
  * OPUS_REFBOOK:
@@ -29,7 +29,7 @@ use ASAP\Http\Response;
  *   casing collision with the existing `Application` runtime class.
  *
  * Responsibility:
- *   Delegate to the canonical `ASAP\Application\Application` kernel.
+ *   Delegate to the canonical `Opus\Application\Application` kernel.
  *
  * Contract:
  *   Facade only. No routing, rendering, security decision or fallback.

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Opus\Security;
 
-use ASAP\Acl\AccessContext;
-use ASAP\Acl\AccessControl;
-use ASAP\Acl\AccessControlException;
-use ASAP\Http\Request;
+use Opus\Acl\AccessContext;
+use Opus\Acl\AccessControl;
+use Opus\Acl\AccessControlException;
+use Opus\Http\Request;
 
 /*
  * OPUS_REFBOOK:

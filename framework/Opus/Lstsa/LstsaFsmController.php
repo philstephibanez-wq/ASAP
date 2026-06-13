@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Opus\Lstsa;
 
-use ASAP\Fsm\StateDefinition;
-use ASAP\Fsm\StateMachine;
-use ASAP\Fsm\TransitionDefinition;
+use Opus\Fsm\StateDefinition;
+use Opus\Fsm\StateMachine;
+use Opus\Fsm\TransitionDefinition;
 
 /*
  * OPUS_REFBOOK:

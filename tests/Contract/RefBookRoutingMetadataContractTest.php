@@ -15,9 +15,9 @@ requireRefBookCore($root);
 requireRoutingRuntime($root);
 
 $routingRoot = $root . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus' . DIRECTORY_SEPARATOR . 'Routing';
-$scanner = new ASAP\RefBook\RefBookReflectionScanner();
+$scanner = new Opus\RefBook\RefBookReflectionScanner();
 $result = $scanner->scan($routingRoot, 'Opus\\Routing');
-$validator = new ASAP\RefBook\RefBookContractValidator();
+$validator = new Opus\RefBook\RefBookContractValidator();
 $validation = $validator->validate($result);
 $summary = $validation['summary'];
 
@@ -63,13 +63,13 @@ foreach (['Opus\\Routing\\AttributeRouteProvider', 'Opus\\Routing\\ClassIndex', 
 }
 
 
-$attributeProvider = $classes['ASAP\Routing\AttributeRouteProvider'];
+$attributeProvider = $classes['Opus\Routing\AttributeRouteProvider'];
 $providerRoutes = findMethod($attributeProvider['methods'], 'routes');
 assertSame('array', $providerRoutes['return_type'], 'AttributeRouteProvider::routes return type must come from Reflection.');
 assertSame('?string', $providerRoutes['parameters'][0]['type'] ?? null, 'AttributeRouteProvider::routes namespace parameter type must come from Reflection.');
 assertContains('OPUS_ROUTE_CONTROLLER_CLASS_NOT_FOUND', $providerRoutes['metadata']['errors'] ?? [], 'AttributeRouteProvider::routes must declare missing controller class error.');
 
-$classIndex = $classes['ASAP\Routing\ClassIndex'];
+$classIndex = $classes['Opus\Routing\ClassIndex'];
 $classesMethod = findMethod($classIndex['methods'], 'classes');
 assertSame('array', $classesMethod['return_type'], 'ClassIndex::classes return type must come from Reflection.');
 $classesInNamespace = findMethod($classIndex['methods'], 'classesInNamespace');
@@ -78,15 +78,15 @@ assertContains('OPUS_CLASS_INDEX_NAMESPACE_EMPTY', $classesInNamespace['metadata
 $pathForClass = findMethod($classIndex['methods'], 'pathForClass');
 assertSame('?string', $pathForClass['return_type'], 'ClassIndex::pathForClass return type must come from Reflection.');
 
-$routeAttribute = $classes['ASAP\Routing\Route'];
+$routeAttribute = $classes['Opus\Routing\Route'];
 $routeAttributeMethods = findMethod($routeAttribute['methods'], 'normalizedMethods');
 assertSame('array', $routeAttributeMethods['return_type'], 'Route::normalizedMethods return type must come from Reflection.');
 
-$routeCompilerException = $classes['ASAP\Routing\RouteCompilerException'];
+$routeCompilerException = $classes['Opus\Routing\RouteCompilerException'];
 $because = findMethod($routeCompilerException['methods'], 'because');
 assertSame('Opus\\Routing\\RouteCompilerException', $because['return_type'], 'RouteCompilerException::because return type must come from Reflection scanner normalization.');
 
-$routeManifestCompiler = $classes['ASAP\Routing\RouteManifestCompiler'];
+$routeManifestCompiler = $classes['Opus\Routing\RouteManifestCompiler'];
 $compile = findMethod($routeManifestCompiler['methods'], 'compile');
 assertSame('array', $compile['return_type'], 'RouteManifestCompiler::compile return type must come from Reflection.');
 assertContains('OPUS_ROUTE_NAME_DUPLICATE', $compile['metadata']['errors'] ?? [], 'RouteManifestCompiler::compile must declare duplicate route name error.');
@@ -122,7 +122,7 @@ assertSame('string', $routeMatchRefBookDomain['return_type'], 'RouteMatch::refBo
 $tmpRoot = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'p112q3e3_routing_' . bin2hex(random_bytes(4));
 ensureDirectory($tmpRoot);
 
-$classIndexRuntime = new ASAP\Routing\ClassIndex([
+$classIndexRuntime = new Opus\Routing\ClassIndex([
     'App\\Controller\\HomeController' => $tmpRoot . DIRECTORY_SEPARATOR . 'HomeController.php',
     'App\\Controller\\PageController' => null,
 ]);
@@ -135,12 +135,12 @@ try {
     assertContains('OPUS_CLASS_INDEX_NAMESPACE_EMPTY', $exception->getMessage(), 'ClassIndex runtime sanity: empty namespace code mismatch.');
 }
 
-$routeAttributeRuntime = new ASAP\Routing\Route(path: '/demo', name: 'demo.route', methods: ['post', 'GET']);
+$routeAttributeRuntime = new Opus\Routing\Route(path: '/demo', name: 'demo.route', methods: ['post', 'GET']);
 assertSame(['GET', 'POST'], $routeAttributeRuntime->normalizedMethods(), 'Route attribute runtime sanity: normalized methods mismatch.');
 
-$compiler = new ASAP\Routing\RouteManifestCompiler();
+$compiler = new Opus\Routing\RouteManifestCompiler();
 $manifest = $compiler->compile([
-    new ASAP\Routing\RouteDefinition('manifest.home', '/', 'App\\Controller\\HomeController', 'show', [], ['GET']),
+    new Opus\Routing\RouteDefinition('manifest.home', '/', 'App\\Controller\\HomeController', 'show', [], ['GET']),
 ]);
 assertSame('manifest.home', $manifest['manifest.home']['name'] ?? '', 'RouteManifestCompiler runtime sanity: manifest row missing.');
 $manifestFile = $tmpRoot . DIRECTORY_SEPARATOR . 'compiled_routes.php';
@@ -149,8 +149,8 @@ $loadedManifest = $compiler->loadPhpManifest($manifestFile);
 assertSame('manifest.home', $loadedManifest['manifest.home']['name'] ?? '', 'RouteManifestCompiler runtime sanity: loaded manifest row missing.');
 try {
     $compiler->compile([
-        new ASAP\Routing\RouteDefinition('dup', '/', 'A', 'a', [], ['GET']),
-        new ASAP\Routing\RouteDefinition('dup', '/other', 'B', 'b', [], ['GET']),
+        new Opus\Routing\RouteDefinition('dup', '/', 'A', 'a', [], ['GET']),
+        new Opus\Routing\RouteDefinition('dup', '/other', 'B', 'b', [], ['GET']),
     ]);
     fail('RouteManifestCompiler runtime sanity: duplicate names must fail explicitly.');
 } catch (Opus\Routing\RouteCompilerException $exception) {
@@ -162,28 +162,28 @@ $securityFile = $tmpRoot . DIRECTORY_SEPARATOR . 'security.xml';
 file_put_contents($securityFile, '<security />');
 file_put_contents($routesFile, '<routes><route name="home" path="/" methods="GET POST" acl="page.home:read" fsmGuard="ROUTE_HOME"><target controllerClass="App\\Controller\\HomeController" action="show" /></route><route name="page" path="/{slug}"><target controllerClass="App\\Controller\\PageController" action="show" /><defaults><param name="lang">fr</param></defaults></route></routes>');
 
-$router = ASAP\Routing\Router::fromXml($routesFile);
-$site = new ASAP\Site\SiteDefinition('demo', '/demo', $routesFile, $securityFile);
-$matchResult = $router->match(new ASAP\Http\Request('/demo/', 'POST'), $site);
+$router = Opus\Routing\Router::fromXml($routesFile);
+$site = new Opus\Site\SiteDefinition('demo', '/demo', $routesFile, $securityFile);
+$matchResult = $router->match(new Opus\Http\Request('/demo/', 'POST'), $site);
 assertSame('home', $matchResult->name, 'Routing runtime sanity: home route name mismatch.');
 assertSame('App\\Controller\\HomeController', $matchResult->controllerClass, 'Routing runtime sanity: controller mismatch.');
 assertSame('page.home:read', $matchResult->acl, 'Routing runtime sanity: ACL metadata mismatch.');
 assertSame('ROUTE_HOME', $matchResult->fsmGuard, 'Routing runtime sanity: FSM metadata mismatch.');
 
-$slugMatch = $router->match(new ASAP\Http\Request('/demo/about', 'GET'), $site);
+$slugMatch = $router->match(new Opus\Http\Request('/demo/about', 'GET'), $site);
 assertSame('page', $slugMatch->name, 'Routing runtime sanity: slug route name mismatch.');
 assertSame('about', $slugMatch->params['slug'] ?? '', 'Routing runtime sanity: slug param mismatch.');
 assertSame('fr', $slugMatch->params['lang'] ?? '', 'Routing runtime sanity: default param mismatch.');
 
 try {
-    $router->match(new ASAP\Http\Request('/demo/', 'DELETE'), $site);
+    $router->match(new Opus\Http\Request('/demo/', 'DELETE'), $site);
     fail('Routing runtime sanity: method mismatch must fail explicitly.');
 } catch (Opus\Contract\ContractException $exception) {
     assertContains('OPUS_ROUTE_METHOD_NOT_ALLOWED', $exception->getMessage(), 'Routing runtime sanity: method mismatch code mismatch.');
 }
 
 try {
-    $router->match(new ASAP\Http\Request('/outside/', 'GET'), $site);
+    $router->match(new Opus\Http\Request('/outside/', 'GET'), $site);
     fail('Routing runtime sanity: outside site base path must fail explicitly.');
 } catch (Opus\Contract\ContractException $exception) {
     assertContains('OPUS_REQUEST_OUTSIDE_SITE_BASE_PATH', $exception->getMessage(), 'Routing runtime sanity: outside path code mismatch.');

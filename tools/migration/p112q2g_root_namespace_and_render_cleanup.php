@@ -13,11 +13,11 @@ declare(strict_types=1);
  * - no fallback root file is kept.
  */
 
-$asapRoot = 'H:\\ASAP';
+$opusRoot = 'H:\\Opus';
 $refBookRoot = 'H:\\OPUS_REF_BOOK';
-$frameworkRoot = $asapRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
+$frameworkRoot = $opusRoot . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'Opus';
 
-if (!is_dir($asapRoot)) {
+if (!is_dir($opusRoot)) {
     fwrite(STDERR, "OPUS_ROOT_MISSING\n");
     exit(1);
 }
@@ -105,7 +105,7 @@ function writeText(string $path, string $content): void
 
 function transformRootPhpFile(string $content, string $targetNamespace, ?array $classRename, array $customReplacements): string
 {
-    $content = preg_replace('/^namespace\s+ASAP\s*;/m', 'namespace ' . $targetNamespace . ';', $content, 1);
+    $content = preg_replace('/^namespace\s+Opus\s*;/m', 'namespace ' . $targetNamespace . ';', $content, 1);
 
     if (!is_string($content)) {
         throw new RuntimeException('NAMESPACE_REWRITE_FAILED');
@@ -293,7 +293,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/SimpleXMLElementExtended.php';
 
 if (!class_exists('OPUS_SimpleXMLElementExtended', false)) {
-    class OPUS_SimpleXMLElementExtended extends \ASAP\Compatibility\SimpleXMLElementExtended
+    class OPUS_SimpleXMLElementExtended extends \Opus\Compatibility\SimpleXMLElementExtended
     {
     }
 }
@@ -312,7 +312,7 @@ require_once __DIR__ . '/../Exception/Exception.php';
 require_once __DIR__ . '/Singleton.php';
 
 if (!class_exists('OPUS_Singleton', false)) {
-    class OPUS_Singleton extends \ASAP\Compatibility\Singleton
+    class OPUS_Singleton extends \Opus\Compatibility\Singleton
     {
     }
 }
@@ -383,7 +383,7 @@ foreach ($fqcnMap as $old => $new) {
     $regexReplacements['/(?<![A-Za-z0-9_\\\\])Opus\\\\\\\\' . preg_quote($old, '/') . '(?!\\\\\\\\|[A-Za-z0-9_])/'] = 'Opus\\\\' . str_replace('\\', '\\\\', $new);
 }
 
-$changedFiles = replaceOutsideFramework([$asapRoot, $refBookRoot], $simpleReplacements, $regexReplacements);
+$changedFiles = replaceOutsideFramework([$opusRoot, $refBookRoot], $simpleReplacements, $regexReplacements);
 
 echo 'TEXT_FILES_UPDATED_OUTSIDE_FRAMEWORK=' . $changedFiles . PHP_EOL;
 echo 'P112Q2G_ROOT_NAMESPACE_AND_RENDER_CLEANUP_OK' . PHP_EOL;

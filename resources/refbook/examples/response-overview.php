@@ -8,7 +8,7 @@ declare(strict_types=1);
  *   Build a typed HTTP response without rendering logic inside controllers.
  */
 
-use ASAP\Http\Response;
+use Opus\Http\Response;
 
 $response = new Response(
     status: 200,
